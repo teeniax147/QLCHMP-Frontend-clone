@@ -1,0 +1,140 @@
+.staff-layout {
+    display: flex;
+    height: 100vh;
+}
+
+.staff-sidebar {
+    width: 250px;
+    background-color: #2a4f85; /* Màu nền khác so với admin */
+    color: white;
+    padding: 20px;
+}
+
+.staff-sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.staff-sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.staff-sidebar nav ul li {
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.staff-sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.staff-sidebar nav ul li a:hover {
+    background-color: #3a6ba8; /* Màu khác khi hover */
+}
+
+.staff-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+}
+
+.staff-header {
+    background-color: #2a4f85; /* Màu header giống sidebar */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.staff-header input {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.staff-page-content {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Hiệu ứng khi mục cha được mở */
+.staff-sidebar nav ul li.open > a {
+    background-color: #3a6ba8;
+    color: white;
+}
+
+/* Dropdown menu */
+.staff-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 290px;
+    height: 180px;
+    padding: 16px;
+    z-index: 1000;
+    font-family: 'Arial', sans-serif;
+}
+
+.staff-dropdown-menu p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.staff-dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin-top: -5px; 
+}
+
+.staff-dropdown-menu li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    border-top: 1px solid #eaeaea;
+    padding-top: 12px;
+}
+
+.staff-dropdown-menu li:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.staff-dropdown-menu a,
+.staff-dropdown-menu button {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    display: block;
+    flex-grow: 1;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+}
+
+.staff-dropdown-menu button {
+    font-weight: normal;
+}
+
+.staff-dropdown-menu a:hover,
+.staff-dropdown-menu button:hover {
+    color: #3a6ba8;
+}
+
+.staff-dropdown-menu .icon {
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+}

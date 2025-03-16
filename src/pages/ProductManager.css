@@ -1,0 +1,161 @@
+/* Đặt chiều cao và overflow cho container chính */
+.container {
+  height: 100vh; /* Chiều cao toàn màn hình */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Ẩn thanh cuộn toàn màn hình */
+  /* margin-top: -76px; */
+   /* Loại bỏ khoảng trống không cần thiết */
+}
+
+/* Khu vực chứa bảng sản phẩm */
+.product-table-container {
+  flex-grow: 1; /* Mở rộng để chiếm khoảng trống còn lại */
+  overflow-x: auto; /* Bật thanh cuộn ngang nếu cần */
+  overflow-y: auto; /* Bật thanh cuộn dọc */
+  margin-top: 10px; /* Khoảng cách giữa bảng và các thành phần khác */
+}
+
+/* Bảng sản phẩm */
+table {
+  width: 100%;
+  border-collapse: collapse; /* Gộp các đường viền */
+  margin-bottom: 20px; /* Khoảng cách dưới bảng */
+
+}
+
+/* Tiêu đề bảng (thead) */
+thead {
+  background-color: #f4f4f4;
+  position: sticky; /* Cố định tiêu đề khi cuộn */
+  top: 0; /* Vị trí cố định ở trên cùng */
+  z-index: 1; /* Đảm bảo tiêu đề nằm trên các thành phần khác */
+}
+
+/* Cố định chiều cao và căn chỉnh cho cột */
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+  word-wrap: break-word; /* Tự động xuống dòng nếu nội dung quá dài */
+  vertical-align: top; /* Căn nội dung lên trên đầu */
+}
+
+/* Phần nội dung của bảng */
+tbody {
+  display: block;
+  max-height: calc(100vh - 280px); /* Điều chỉnh chiều cao tối đa để vừa với màn hình */
+  overflow-y: auto; /* Thanh cuộn dọc cho nội dung bảng */
+}
+
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* Giữ cột cố định độ rộng */
+}
+
+thead, tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* Giữ các cột thẳng hàng */
+}
+
+
+
+.product-management-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2c3e50; /* Màu chữ */
+  text-align: center;
+  margin-top:  2px; /* Khoảng cách trên dưới */
+  text-transform: uppercase; /* Chuyển chữ thành in hoa */
+}
+
+
+.add-btn {
+  margin: 0 5px;
+  padding: 5px 10px;
+  background-color: #2a77c9;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  width: 150px;
+  height: 60px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Form và input */
+.form-container {
+  margin-top: 20px;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+/* Thông báo lỗi */
+.error-message {
+  color: red;
+  font-weight: bold;
+}
+
+/* Thông báo thành công */
+.success-toast {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Phân trang */
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+  position: sticky; /* Giữ cố định phân trang nếu cần */
+  bottom: 0;
+  z-index: 2; /* Đảm bảo phân trang nổi trên bảng */
+  background: #fff; /* Màu nền để phân biệt */
+}
+
+.pagination button {
+  margin: 20px 5px;
+  padding: 8px 16px;
+  background-color: #17a954;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+.product-modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.product-modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}

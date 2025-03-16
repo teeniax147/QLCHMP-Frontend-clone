@@ -1,0 +1,127 @@
+/* src/components/CategoryManagement.css */
+
+.category-management {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .category-management h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+  
+  button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .edit-button {
+    background-color: #4CAF50;
+  }
+  
+  .delete-button {
+    background-color: #f44336;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+/* Nền mờ phía sau modal */
+.custom-modal-overlay {
+    position: fixed; /* Giữ overlay cố định */
+    top: 0; /* Căn từ trên cùng */
+    left: 0; /* Căn từ bên trái */
+    width: 100%; /* Chiều rộng toàn màn hình */
+    height: 100%; /* Chiều cao toàn màn hình */
+    background: rgba(0, 0, 0, 0.5); /* Màu nền mờ */
+    z-index: 999; /* Hiển thị trên tất cả */
+  }
+  
+  /* Modal chính giữa */
+  .custom-modal {
+    position: fixed; /* Modal cố định */
+    top: 50%; /* Căn giữa theo chiều dọc */
+    left: 50%; /* Căn giữa theo chiều ngang */
+    transform: translate(-50%, -50%); /* Canh giữa hoàn hảo */
+    background: white; /* Màu nền trắng */
+    padding: 20px; /* Khoảng cách nội dung bên trong */
+    width: 400px; /* Chiều rộng modal */
+    max-width: 90%; /* Đảm bảo không vượt quá màn hình nhỏ */
+    border-radius: 8px; /* Bo góc */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+    z-index: 1000; /* Hiển thị trên overlay */
+  }
+  
+  /* Tiêu đề modal */
+  .custom-modal-title {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #333; /* Màu chữ */
+    text-align: center;
+  }
+  
+  /* Input và textarea trong modal */
+  .custom-modal-input,
+  .custom-modal-select,
+  .custom-modal-textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  /* Nút trong modal */
+  .custom-modal-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0 5px;
+  }
+  
+  .custom-modal-button-save {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .custom-modal-button-cancel {
+    background-color: #dc3545;
+    color: white;
+  }
+  

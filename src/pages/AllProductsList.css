@@ -1,0 +1,447 @@
+/* Container chính của trang sản phẩm */
+.product-container-all {
+  font-family: "Inter", sans-serif;
+
+
+  /* max-width: 1200px;
+  padding: 10px;
+ margin-top: 170px;
+ margin-left: 20px; */
+ width: 100%;
+ height: auto;
+ margin-left: auto;
+ margin-right: auto;
+margin-top: 170px;
+max-width: 1200px;
+}
+
+.product-header-banner-all img {
+  width: 100%;
+  height: 325px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  margin-top: -90px;
+}
+
+.product-title-all {
+  text-align: left;
+  font-size: 28px;
+  color: #333;
+
+  margin-top: -5px;
+  font-weight: bold;
+  margin-left: 22px;
+}
+.price-and-discount-container {
+  display: flex;
+  justify-content: center;
+  /* Căn giữa nội dung */
+  align-items: center;
+  /* Căn chỉnh theo chiều dọc */
+  gap: 10px;
+  /* Khoảng cách giữa giá gốc và tag giảm giá */
+  flex-wrap: nowrap;
+  /* Đảm bảo chúng không xuống dòng */
+  margin: -2px auto;
+  /* Căn giữa container */
+}
+/* Giá gốc */
+.product-original-price2 {
+  font-size: 15px;
+  color: #999;
+  text-decoration: line-through;
+  
+}
+
+/* Tag giảm giá */
+.discount-tag {
+  background-color: #94c83d;
+  /* Màu nền xanh */
+  /* color: white;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 5px 15px;
+  border-radius: 4px; */
+  /* Bo tròn các góc nhiều hơn */
+  /* position: relative;
+  display: flex;
+  height: 20px;
+  width: 30px; */
+    height: 20px;
+      width: 33px;
+      position: relative;
+      margin-left: 16px;
+      border-radius: 3px;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      font-weight: bold;
+        font-size: 12px;
+        color: white;
+       
+}
+.discount-tag::before {
+  left: -19px;
+  border-style: solid;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-image: initial;
+  content: "";
+  height: 0px;
+  width: 0px;
+  position: absolute;
+  border-width: 10px;
+  border-right-color: #94c83d;
+}
+
+.filter-section-all {
+  padding: 10px;
+  margin-top: -10px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.filter-label-all {
+  font-size: 16px;
+  margin-bottom: 8px;
+  display: block;
+}
+/* Xếp ngang 2 ô lọc giá */
+.price-filters2 {
+  display: flex;
+  gap: 15px; /* Khoảng cách giữa các input */
+  flex: 1;
+  max-width: 200px;
+  
+  padding: 10px;
+
+  font-weight: bold;
+}
+.product-text-all {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 2px;
+}
+.price-filters2 label {
+  display: flex;
+  flex-direction: column; /* Lọc và input theo chiều dọc */
+  width: 48%; /* Mỗi ô chiếm 48% chiều rộng */
+}
+
+.price-filters2 input[type="number"] {
+  padding: 6px;
+  margin-top: -20px;
+  margin-left: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 180%; /* Chiếm hết chiều rộng của label */
+ 
+}
+.product-text {
+
+  margin-top:-20px;
+  margin-left: 64px;
+}
+.sort-section-all {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.sort-section-all select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.sort-section-all button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  
+}
+
+.sort-section-all button:hover {
+  background-color: #218838;
+}
+
+/* Container chính */
+.product-page-container {
+  display: flex; /* Chia bố cục ngang */
+  gap: 20px; /* Khoảng cách giữa phần lọc và danh sách sản phẩm */
+  align-items: flex-start; /* Căn đều trên theo chiều dọc */
+}
+
+/* Phần lọc sản phẩm */
+.filters-all {
+  flex: 0 0 300px; /* Chiều rộng cố định của phần lọc */
+  border-radius: 8px;
+  padding: 20px;
+
+}
+
+/* Danh sách sản phẩm */
+.product-grid-all {
+  flex-grow: 1; /* Chiếm toàn bộ không gian còn lại */
+  display: grid; /* Sử dụng grid để chia cột */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Chia cột tự động */
+  gap: 20px; /* Khoảng cách giữa các sản phẩm */
+}
+
+
+
+
+/* Phân trang */
+.pagination-all {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.page-button-all1 {
+  padding: 8px 12px;
+  margin: -10px 5px;
+  border: none;
+  background-color: #35ae57;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: #ffffff;
+}
+.page-button-all1.active-all {
+  background-color: #54d179;
+  color: white;
+}
+.page-button-all1:hover {
+  background-color: #40c165;
+}
+.page-button-all1:focus {
+  outline: none;
+}
+
+/* Thẻ sản phẩm */
+.product-card-all {
+  position: relative; /* Cần thiết để nút favorite-icon định vị đúng */
+  background: #fff;
+ 
+  border-radius: 10px; /* Tăng bo góc */
+ 
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  text-align: center;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px; /* Tăng khoảng cách bên trong */
+  width: 200px; /* Tăng kích thước khung */
+  height: 322px;
+}
+
+.product-card-all:hover {
+  transform: scale(1.05);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hình ảnh sản phẩm */
+.product-image-all {
+  width: auto;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  margin-top: -5px; 
+  text-align: center;
+}
+
+/* Tên sản phẩm */
+.product-name-all {
+  font-size: 14px;
+  
+
+  color: #000000;
+  white-space: normal;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-top: -29px;
+}
+
+
+
+.product-price-all {
+  font-size: 15px;
+  color: #12853e;
+  font-weight: bold;
+  margin-top: -9px;
+  margin-bottom: 2px;
+}
+
+
+
+.product-rating-stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.product-star {
+  font-size: 15px;
+  color: #ddd;
+  /* Màu sao trống */
+  margin-right: -2px;
+  /* Khoảng cách giữa các sao */
+}
+
+.product-star.filled {
+  color: #0b0702;
+  /* Màu sao được đánh giá */
+}
+
+.product-rating-stars span {
+  margin-left: 5px;
+  /* Khoảng cách giữa các sao và số */
+  font-size: 14px;
+  /* Kích thước chữ của số đánh giá */
+}
+/* Số lượng tồn kho */
+.product-stock-custom {
+  font-size: 14px;
+  color: #555;
+  margin-top: 2px;
+}
+
+/* Nút yêu thích */
+.product-favorite-icon {
+  position: absolute;
+  top: 2px;
+  right: 12px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.product-favorite-icon:hover {
+  color: red;
+}
+
+/* Phân trang */
+.pagination-all {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+/* Thương hiệu */
+.product-brand-all {
+  font-weight: bold; /* In đậm phần thương hiệu */
+  margin-top: -5px;
+  font-size: 17px;
+  color: #0b0702;
+}
+.product-title-search{
+  font-size: 15px;
+  margin-top: -10px;
+  margin-left: 375px;
+}
+
+
+
+/* Các checkbox trong price-range */
+.price-range-checkbox-section {
+  display: flex;
+  flex-direction: column;
+  /* Các checkbox sẽ xếp theo chiều dọc */
+  gap: 8px;
+  /* Khoảng cách giữa các checkbox */
+  margin-top: -5px;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  /* Đảm bảo chiều rộng cho checkbox */
+  height: 20px;
+  /* Đảm bảo chiều cao cho checkbox */
+  margin-right: 10px;
+  /* Khoảng cách giữa checkbox và chữ */
+  cursor: pointer;
+  /* Thêm con trỏ tay khi hover */
+  appearance: none;
+  /* Loại bỏ kiểu mặc định của checkbox */
+  border: 1px solid #ccc;
+  /* Đặt màu viền cho checkbox */
+  border-radius: 4px;
+  /* Làm tròn các góc viền */
+
+  /* Màu nền của checkbox */
+  transition: background-color 0.3s, border-color 0.3s;
+  position: relative;
+  /* Để dễ dàng thêm dấu tích */
+  vertical-align: middle;
+  /* Đảm bảo checkbox được căn giữa với chữ */
+}
+/* Khi checkbox được chọn */
+input[type="checkbox"]:checked {
+  background-color: #4caf50;
+  /* Màu nền khi được chọn */
+  border-color: #4caf50;
+  /* Màu viền khi được chọn */
+}
+
+/* Dấu tích trong checkbox khi được chọn */
+input[type="checkbox"]:checked::after {
+  content: '✔';
+  /* Thêm dấu tick khi checkbox được chọn */
+  color: white;
+  /* Màu của dấu tick */
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Cải thiện hiệu ứng hover cho checkbox */
+input[type="checkbox"]:hover {
+  border-color: #4caf50;
+  /* Thay đổi màu viền khi hover */
+}
+
+/* Định dạng cho nhãn checkbox */
+label {
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  display: inline-block;
+  line-height: 20px;
+  /* Đảm bảo chữ căn giữa với checkbox */
+  vertical-align: middle;
+  /* Căn chỉnh chữ và checkbox ngang nhau */
+}
+
+/* Thêm khoảng cách giữa các checkbox */
+.price-range-checkbox {
+margin-bottom: -5px;
+  display: flex;
+  align-items: center;
+  /* Căn giữa checkbox và nhãn */
+}
+
+/* Các phần tử con của các checkbox */
+.product-range-label {
+  margin-left: 8px;
+  /* Thêm khoảng cách giữa checkbox và nhãn */
+}

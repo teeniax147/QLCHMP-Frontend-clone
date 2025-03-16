@@ -1,0 +1,154 @@
+.cart-container {
+  /* max-width: 800px;
+  margin: 40px auto 30px !important; */
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  text-align: center; /* Căn giữa toàn bộ nội dung */
+  width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  max-width: 1000px;
+}
+
+.cart-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cart-table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  table-layout: fixed; /* Đảm bảo các cột có chiều rộng cố định */
+}
+
+.cart-table th,
+.cart-table td {
+  padding: 15px;
+  text-align: center; /* Căn giữa nội dung trong ô */
+  border: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+.cart-table th:nth-child(1),
+.cart-table td:nth-child(1) {
+  width: 20%; /* Cột hình ảnh sản phẩm */
+}
+
+.cart-table th:nth-child(2),
+.cart-table td:nth-child(2) {
+  width: 60%; /* Cột tên sản phẩm */
+}
+
+.cart-table th:nth-child(3),
+.cart-table td:nth-child(3) {
+  width: 20%; /* Cột số lượng */
+}
+
+.cart-table th:nth-child(4),
+.cart-table td:nth-child(4) {
+  width: 28%; /* Cột giá */
+}
+
+.cart-table th:nth-child(5),
+.cart-table td:nth-child(5) {
+  width: 24%; /* Cột hành động */
+}
+
+.cart-item-image {
+  width: 90px; /* Tăng kích thước ảnh */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.product-name2 {
+  font-weight: bold;
+  color: #333;
+  white-space: normal; /* Cho phép xuống dòng */
+  word-wrap: break-word; /* Ngắt dòng nếu quá dài */
+  text-align: justify; 
+}
+
+.quantity,
+.price,
+.total {
+  text-align: center;
+}
+
+.delete-button {
+  background-color: #d12121;
+  color: #ffffff;
+  padding: 7px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+}
+
+.delete-button:hover {
+  background-color: #e60000;
+}
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* Căn các nút sang phải */
+  gap: 10px; /* Khoảng cách giữa các nút */
+  margin-top: 20px;
+}
+.delete-all-button,
+.checkout-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.delete-all-button {
+  padding: 12px 24px;
+  background-color: #ff4d4d;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+}
+
+.delete-all-button:hover {
+  background-color: #e60000;
+}
+.checkout-button {
+  padding: 12px 24px;
+  background-color: #28a745;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+}
+.checkout-button:hover {
+  background-color: #218838;
+}
+.cart-total {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: right;
+  padding: 10px;
+}

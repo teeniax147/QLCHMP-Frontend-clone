@@ -1,0 +1,134 @@
+.user-profile-container {
+  max-width: 600px;
+
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 100px;
+  width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+   
+}
+
+.user-profile-container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.user-error-message, .user-success-message {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.user-error-message {
+  color: #dc3545;
+}
+
+.user-success-message {
+  color: #28a745;
+}
+
+.user-input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Tăng khoảng cách giữa các hàng */
+  margin-top: 20px;
+}
+
+.user-input-section .user-row input{
+  padding-left: 7px;
+}
+
+.user-row {
+  display: flex;
+  gap: 15px;
+}
+
+.user-row div {
+  flex: 1;
+}
+
+.user-row label {
+  font-size: 15px;
+  color: #464646;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+ text-align: left;
+
+}
+
+.user-input-section input,
+.user-row input {
+  width: 100%;
+  padding: 10px 1px; /* Tăng thêm padding cho các ô nhập liệu */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+}
+
+.user-input-section input:focus,
+.user-row input:focus {
+  outline: none;
+  border-color: #5bbf5b;
+  background-color: #fff;
+}
+
+.user-save-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 30px;
+  background-color: #5bbf5b;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.user-save-button:hover {
+  background-color: #4cae4c;
+}
+
+.user-save-button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+/* Thông báo thành công */
+.custom-success-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #5bbf5b;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: fadeInOut 3s forwards;
+}
+.user-save-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 0px black;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-10px); }
+}

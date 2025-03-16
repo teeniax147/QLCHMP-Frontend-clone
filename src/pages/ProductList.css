@@ -1,0 +1,184 @@
+/* Container chính của trang sản phẩm */
+.product-container-custom {
+  font-family: "Inter", sans-serif;
+    color: #333;
+  
+width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 170px;
+  max-width: 1200px;
+}
+
+.product-header-banner-custom img {
+  width: 100%;
+    height: 325px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    margin-top: -90px;
+}
+
+.product-title-custom {
+  text-align: left;
+    font-size: 28px;
+    color: #333;
+    margin-top: 5px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+/* Bố cục chính: Filters + Grid sản phẩm */
+.product-content-custom {
+  display: flex;
+  gap: 20px;
+}
+
+
+/* Grid sản phẩm */
+.product-grid-custom {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* Thẻ sản phẩm */
+.product-card-custom {
+  position: relative;
+    /* Cần thiết để nút favorite-icon định vị đúng */
+    background: #fff;
+  
+    border-radius: 10px;
+    /* Tăng bo góc */
+  
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    text-align: center;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    /* Tăng khoảng cách bên trong */
+    width: 200px;
+    /* Tăng kích thước khung */
+    height: 322px;
+  }
+
+.product-card-custom:hover {
+  transform: scale(1.05);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-custom {
+  width: auto;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    text-align: center;
+  }
+
+
+
+/* Thông tin sản phẩm */
+.product-details-custom {
+  padding: 10px;
+}
+
+.product-name-custom {
+  font-size: 14px;
+    color: #000000;
+    white-space: normal;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-top: -29px;
+}
+
+/* Thương hiệu được đặt dưới hình ảnh */
+.product-brand-custom {
+  font-weight: bold;
+    /* In đậm phần thương hiệu */
+    margin-top: -10px;
+    font-size: 17px;
+    color: #0b0702;
+}
+
+.product-price-custom {
+  font-size: 15px;
+    color: #12853e;
+    font-weight: bold;
+    margin-top: -9px;
+    margin-bottom: 2px;
+}
+.product-original-price3 {
+  font-size: 15px;
+    color: #999;
+    text-decoration: line-through;
+}
+/* Sao đánh giá */
+.product-rating-stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -2px;
+}
+
+.product-star {
+  font-size: 14px;
+  color: #ddd;
+  /* Màu sao trống */
+}
+
+.product-star.filled {
+  color: #0b0702;
+  /* Màu sao được đánh giá */
+}
+
+/* Số lượng tồn kho */
+.product-stock-custom {
+  font-size: 14px;
+  color: #555;
+  margin-top: 2px;
+}
+/* Phần hiển thị khuyến mãi nếu có */
+.promotion-badge-custom {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #28ad39;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
+.product-categories-custom {
+  color: #007bff;
+  font-size: 0.9em;
+}
+
+.product-rating-custom {
+  color: #f39c12;
+  font-size: 0.9em;
+}
+.favorite-icon {
+  position: absolute;
+    top: 2px;
+    right: 12px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.favorite-icon:hover {
+  color: red;
+}

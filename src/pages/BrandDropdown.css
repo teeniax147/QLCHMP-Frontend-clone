@@ -1,0 +1,61 @@
+.brand-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.brand-dropdown-button {
+  background: none;
+  border: none;
+  color: #5a9a5a !important;
+  cursor: pointer;
+  font-weight: bold;
+  outline: none !important;
+  box-shadow: none !important;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  transition: color 0.3s ease !important; /* Hiệu ứng chuyển màu mượt mà */
+}
+
+.brand-dropdown-button:hover, 
+.brand-dropdown-button:active {
+color: #3e7e3e !important; /* Màu đậm hơn khi di chuột và chạm vào */
+background: transparent !important;
+}
+
+.brand-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #e6f7e6;
+  width: 100%;
+  z-index: 1;
+  padding: 10px 0;
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  gap: 5px;
+  justify-content: center; /* Căn giữa toàn bộ nội dung */
+  align-items: flex-start;
+  left: 50%; /* Căn chỉnh giữa màn hình */
+  transform: translateX(-50%); /* Di chuyển sang trái 50% để căn giữa */
+}
+
+.brand-dropdown:hover .brand-dropdown-content {
+  display: block;
+}
+
+.brand-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 18px;
+  text-decoration: none;
+  color: #096e09 !important;
+  font-size: 14px;
+  font-weight: bold; /* Đảm bảo chữ luôn đậm */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Hiệu ứng khi hover */
+  justify-content: center;
+}
+
+.brand-item:hover {
+  color: #3f9862 !important; /* Màu chữ khi hover */
+ /* Màu nền khi hover */
+}

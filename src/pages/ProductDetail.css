@@ -1,0 +1,214 @@
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.product-detail-container {
+  max-width: 1100px;
+  margin: 70px auto 30px;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  gap: 80px; /* Tạo khoảng cách giữa hình và nội dung */
+}
+
+.product-detail-image {
+  max-width: 380px; /* Điều chỉnh kích thước ảnh để nhỏ lại */
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column; /* Đặt các phần tử bên trong theo chiều dọc */
+  gap: 2px;
+  flex: 1; /* Chiếm toàn bộ chiều ngang còn lại */
+  align-items: flex-start; /* Căn các phần tử theo bên trái */
+}
+
+.custom-product-title {
+  font-size: 24px; /* Kích thước chữ mong muốn */
+  margin-bottom: 10px;
+  line-height: 1.4;
+  word-break: break-word;
+  text-align: justify;
+}
+
+/* Container chứa giá gốc và tag giảm giá */
+.price-and-discount-container-custom {
+  display: flex;
+  align-items: baseline;
+  /* Căn chỉnh theo đường cơ bản, giúp phần tử cùng chiều cao */
+  gap: 10px;
+  /* Khoảng cách giữa giá gốc và tag giảm giá */
+  flex-wrap: nowrap;
+  /* Đảm bảo không xuống dòng */
+}
+
+/* Giá sản phẩm */
+.custom-product-price {
+  font-size: 24px;
+  color: #12853e;
+  font-weight: bold;
+  margin: 0;
+  /* Loại bỏ margin để các phần tử căn chỉnh đều */
+}
+
+/* Giá gốc */
+.product-original-price2-custom {
+  font-size: 20px;
+  color: #999;
+  text-decoration: line-through;
+  margin: 0;
+  /* Loại bỏ margin để các phần tử căn chỉnh đều */
+}
+
+/* Tag giảm giá */
+.discount-tag-custom {
+  background-color: #94c83d;
+  /* Màu nền xanh */
+  height: 20px;
+  width: 33px;
+  position: relative;
+  margin-left: 16px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Căn giữa nội dung trong tag */
+  font-weight: bold;
+  font-size: 12px;
+  color: white;
+ 
+  /* Thêm padding để tạo khoảng cách */
+  
+}
+
+/* Mũi nhọn cho tag giảm giá */
+.discount-tag-custom::before {
+  left: -19px;
+  border-style: solid;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  content: "";
+  height: 0px;
+  width: 0px;
+  position: absolute;
+  border-width: 10px;
+  border-right-color: #94c83d;
+}
+.introduce {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.custom-product-description {
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: justify; /* Canh đều hai bên */
+  margin-top: -5px;
+}
+
+
+.product-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  /* Khoảng cách giữa các thành phần trong product-actions */
+  margin-top: 20px;
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.quantity-container button,
+.quantity-container .quantity-display {
+  width: 35px;
+  height: 35px;
+  background-color: #f1f1f1;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  box-shadow: none;
+  border-radius: 0;
+
+}
+
+/* Đảm bảo không có viền xanh khi hover */
+.quantity-container button:hover,
+.quantity-container .quantity-display:hover {
+  outline: none;
+  box-shadow: none;
+  border-color: #f8f8f8;
+}
+
+/* Chỉ hiển thị viền khi phần tử được focus (nhấn vào) */
+.quantity-container button:focus,
+.quantity-container .quantity-display:focus {
+  box-shadow: none;
+  /* Không có bóng đổ */
+}
+
+.quantity-container .quantity-display {
+  cursor: default;
+}
+.custom-add-to-cart-button,
+.custom-buy-now-button {
+  padding: 8px 16px;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: rgb(255, 255, 255); /* Đặt màu chữ trắng */
+  outline: none; /* Loại bỏ viền đen khi bấm vào */
+  font-weight: bold;
+}
+.custom-add-to-cart-button:focus,
+.custom-buy-now-button:focus,
+.quantity-container button:focus,
+.quantity-container .quantity-display:focus {
+  outline: none; /* Đảm bảo viền đen không xuất hiện khi bấm vào */
+  border-color: transparent; 
+}
+
+.custom-add-to-cart-button {
+  background-color: #084616;
+}
+
+.custom-buy-now-button {
+  background-color: #06c58c;
+}
+
+.custom-add-to-cart-button:hover {
+  background-color: #0f8629;
+}
+
+.custom-buy-now-button:hover {
+  background-color: #109069;
+}
+.buttons-container {
+  display: flex;
+  gap: 10px; /* Khoảng cách giữa các nút */
+}
+.product-favorite-icon1 {
+  font-size: 30px;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.product-favorite-icon1:hover {
+  color: #ff6666; /* Màu sáng hơn khi hover */
+}

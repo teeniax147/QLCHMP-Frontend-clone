@@ -1,0 +1,41 @@
+.custom-button1 {
+    border-radius: 5px; /* Góc bo tròn */
+    transition: all 0.3s ease-in-out; /* Hiệu ứng chuyển đổi */
+  }
+  
+  .custom-button-contained1 {
+    background-color: #1976d2; /* Màu nền ban đầu (xanh dương) */
+    color: white;
+  }
+  
+  .custom-button-contained1:hover {
+    background-color: #145ea8; /* Màu nền khi hover */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Hiệu ứng shadow */
+  }
+  
+  .custom-button-contained1:focus {
+    outline: none !important; /* Loại bỏ viền đen với !important */
+    box-shadow: 0px 0px 6px #1976d2; /* Hiệu ứng viền sáng khi focus */
+  }
+  
+  .custom-button-outlined6 {
+  
+    border: 2px solid #d203f7;
+    background-color: transparent;
+    color: #d500f9;
+  }
+  
+  .custom-button-outlined6:hover {
+    background-color: transparent;
+    box-shadow: 0px 4px 8px rgba(255, 0, 255, 0.4); /* Hiệu ứng hover */
+    border: 2px solid #d500f9;
+  }
+  
+  .custom-button-outlined6:focus {
+    outline: none !important; /* Loại bỏ viền xanh */
+    box-shadow: none !important; /* Loại bỏ hiệu ứng viền xanh */
+  }
+  .custom-button6 {
+    border-radius: 5px; /* Góc bo tròn */
+    transition: all 0.3s ease-in-out; /* Hiệu ứng chuyển đổi */
+  }

@@ -1,0 +1,77 @@
+/* Container chính cho form thêm danh mục */
+.add-category-container {
+    max-width: 600px; /* Chiều rộng tối đa */
+    margin: 50px auto; /* Canh giữa dọc và ngang */
+    padding: 20px; /* Khoảng cách bên trong */
+    background: #ffffff; /* Nền trắng */
+    border-radius: 8px; /* Bo góc */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+    font-family: Arial, sans-serif; /* Font chữ */
+  }
+  
+  /* Tiêu đề chính */
+  .add-category-title {
+    font-size: 24px; /* Kích thước chữ */
+    margin-bottom: 20px; /* Khoảng cách dưới */
+    text-align: center; /* Căn giữa */
+    color: #333333; /* Màu chữ */
+  }
+  
+  /* Nhãn của các trường form */
+  .add-category-label {
+    display: block; /* Hiển thị mỗi nhãn trên một dòng */
+    font-weight: bold; /* Chữ đậm */
+    margin-bottom: 8px; /* Khoảng cách dưới */
+    color: #555555; /* Màu nhãn */
+  }
+  
+  /* Input và Textarea */
+  .add-category-input,
+  .add-category-textarea,
+  .add-category-select {
+    width: 100%; /* Chiều rộng 100% */
+    padding: 10px; /* Khoảng cách bên trong */
+    margin-bottom: 20px; /* Khoảng cách dưới */
+    border: 1px solid #cccccc; /* Viền nhạt */
+    border-radius: 5px; /* Bo góc */
+    font-size: 14px; /* Kích thước chữ */
+  }
+  
+  /* Nút thêm và hủy */
+  .add-category-btn-submit,
+  .add-category-btn-cancel {
+    display: inline-block; /* Hiển thị cùng hàng */
+    padding: 10px 20px; /* Khoảng cách trong */
+    margin: 0 5px; /* Khoảng cách giữa các nút */
+    border: none; /* Không viền */
+    border-radius: 5px; /* Bo góc */
+    cursor: pointer; /* Con trỏ chuột */
+    font-size: 14px; /* Kích thước chữ */
+  }
+  
+  .add-category-btn-submit {
+    background-color: #28a745; /* Màu xanh lá */
+    color: #ffffff; /* Màu chữ trắng */
+  }
+  
+  .add-category-btn-submit:hover {
+    background-color: #218838; /* Màu xanh đậm hơn khi hover */
+  }
+  
+  .add-category-btn-cancel {
+    background-color: #dc3545; /* Màu đỏ */
+    color: #ffffff; /* Màu chữ trắng */
+  }
+  
+  .add-category-btn-cancel:hover {
+    background-color: #c82333; /* Màu đỏ đậm hơn khi hover */
+  }
+  
+  /* Phần lỗi */
+  .add-category-error {
+    color: #dc3545; /* Màu đỏ */
+    margin-bottom: 20px; /* Khoảng cách dưới */
+    font-size: 14px; /* Kích thước chữ */
+    font-weight: bold; /* Chữ đậm */
+  }
+  

@@ -1,0 +1,83 @@
+/* Dropdown trong Layout.css */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    
+}
+
+.dropdown-button {
+    background: none;
+    border: none;
+    color: #5a9a5a;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: color 0.3s ease; /* Hiệu ứng chuyển màu mượt mà */
+}
+.dropdown-button:hover, 
+.dropdown-button:active {
+  color: #3e7e3e !important; /* Màu đậm hơn khi di chuột và chạm vào */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #e6f7e6;
+    width: 560%;
+    z-index: 1;
+    padding: 10px 0;
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    gap: 5px;
+    justify-content: space-around;
+    align-items: flex-start;
+    left: 50%; /* Căn chỉnh giữa màn hình */
+    transform: translateX(-50%); /* Di chuyển sang trái 50% để căn giữa */
+}
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+.category-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 150px;
+}
+
+.category-group h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #096e09;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.category-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block; /* Đặt display là block để các mục con nằm dọc */
+}
+
+.category-group ul li {
+    margin-bottom: 10px; /* Tăng khoảng cách giữa các mục con */
+}
+
+.category-group ul li a {
+    text-decoration: none;
+    color: #2b9b54;
+    font-size: 13px;
+}
+
+.category-group ul li a:hover {
+    color: #3f9862
+}

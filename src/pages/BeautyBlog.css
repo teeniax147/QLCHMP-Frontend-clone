@@ -1,0 +1,109 @@
+.beauty-blog-contained {
+width: 100%;
+ height: auto;
+ margin-left: auto;
+ margin-right: auto;
+margin-top: 50px;
+max-width: 1000px;
+padding: 10px;
+
+   
+}
+
+.beauty-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.beauty-header h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.beauty-header p {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.beauty-featured-section {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.beauty-featured-blog {
+    background-color: #f0f8f0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.beauty-featured-image {
+    width: 50%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.beauty-featured-content {
+    padding: 20px;
+    width: 50%;
+}
+
+.beauty-featured-content h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.beauty-featured-content p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.beauty-other-blogs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.beauty-blog-item {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.beauty-blog-item:hover {
+    transform: scale(1.03);
+}
+
+.beauty-blog-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.beauty-blog-content {
+    padding: 15px;
+}
+
+.beauty-blog-content h3 {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.beauty-blog-content p {
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.beauty-category {
+    color: #8bc34a;
+    font-size: 0.9rem;
+    font-weight: bold;
+}

@@ -1,0 +1,240 @@
+/* Container chính của trang yêu thích */
+.favorites-container {
+    font-family: Arial, sans-serif;
+      color: #333;
+      max-width: 1200px;
+    
+      width: 100%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 170px;
+        max-width: 1200px;
+  }
+  
+  
+  
+  .favorites-title {
+    text-align: left;
+    font-size: 24px;
+    color: #333;
+    margin-top: -80px;
+    margin-left: 25px;
+    text-align: center;
+    color: #0a6727;
+    font-weight: bold;
+  }
+  
+ 
+ /* Grid sản phẩm yêu thích */
+ .favorites-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+   gap: 26px;
+   justify-content: center;
+   width: 100%;
+   margin-top: 20px;
+ }
+
+ /* Thẻ sản phẩm yêu thích */
+ .favorites-card {
+   position: relative;
+   background: #fff;
+   border: 1px solid #ddd;
+   border-radius: 15px;
+   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+   overflow: hidden;
+   transition: transform 0.2s ease-in-out;
+   text-align: center;
+   margin: 10px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   padding: 10px;
+   width: 220px;
+   height: 380px;
+ }
+
+ .favorites-card:hover {
+   transform: scale(1.03);
+   /* Tăng kích thước khi hover */
+ }
+
+ .favorites-image {
+   width: auto;
+   height: 200px;
+   object-fit: contain;
+   margin-bottom: 10px;
+   margin-top: 15px;
+ }
+
+ .favorites-card:hover .favorites-image {
+   transform: scale(1.0);
+ }
+
+ /* Thông tin sản phẩm */
+ .favorites-details {
+   padding: 10px;
+ }
+
+ .favorites-name {
+   font-size: 16px;
+   font-weight: bold;
+   margin: 8px 0 5px;
+   color: #333;
+   white-space: normal;
+   overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   margin-top: -25px;
+ }
+
+ .favorites-brand {
+   font-size: 18px;
+   color: #666;
+   margin-top: -10px;
+   font-weight: bold;
+ }
+
+ .favorites-price {
+   font-size: 17px;
+   color: #12853e;
+   font-weight: bold;
+   margin-top: 5px;
+   margin-bottom: 2px;
+ }
+
+ .favorites-original-price {
+   font-size: 18px;
+   color: #999;
+   text-decoration: line-through;
+   margin-bottom: -90px;
+ }
+
+ /* Sao đánh giá */
+ .favorites-rating-stars {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: -2px;
+ }
+
+ .favorite-star {
+   font-size: 14px;
+   color: #ddd;
+   /* Màu sao trống */
+ }
+
+ .favorite-star.filled {
+   color: #0b0702;
+   /* Màu sao được đánh giá */
+ }
+
+ .favorite-review-count {
+   margin-left: 5px;
+   font-size: 14px;
+   color: #555;
+ }
+
+ /* Số lượng tồn kho */
+ .favorites-stock {
+   font-size: 14px;
+   color: #555;
+   margin-top: 2px;
+ }
+
+ /* Phần hiển thị khuyến mãi nếu có */
+ .favorites-promotion-badge {
+   position: absolute;
+   top: 10px;
+   left: 10px;
+   background: #28ad39;
+   color: #fff;
+   padding: 5px 10px;
+   border-radius: 8px;
+   font-size: 12px;
+   font-weight: bold;
+ }
+
+ /* Các nút yêu thích */
+ .favorite-button,
+ .favorited {
+   background: none;
+   border: none;
+   cursor: pointer;
+   font-size: 14px;
+   color: #333;
+   margin-top: 10px;
+ }
+
+ .favorited {
+   color: red;
+ }
+
+ .favorite-button:hover,
+ .favorited:hover {
+   color: #ff6b6b;
+ }
+
+ .favorite-icon {
+   position: absolute;
+   top: -2px;
+   right: 9px;
+   font-size: 28px;
+   cursor: pointer;
+   color: #aaa;
+   transition: color 0.3s ease;
+   z-index: 10;
+ }
+
+ .favorite-icon:hover {
+   color: red;
+ }
+
+ /* Nút xóa sản phẩm khỏi yêu thích */
+ .favorite-remove-icon {
+   position: absolute;
+   top: -2px;
+   right: 9px;
+   font-size: 28px;
+   cursor: pointer;
+   color: red;
+   /* Đặt màu trái tim luôn là đỏ */
+   transition: color 0.3s ease;
+   z-index: 10;
+   /* Đảm bảo hiển thị trên các thành phần khác */
+ }
+
+ .favorite-remove-icon:hover {
+   color: red;
+   /* Giữ màu đỏ khi hover */
+ }
+
+ /* Trạng thái sau khi sản phẩm đã xóa */
+ .favorite-remove-icon.removed {
+   color: #ddd;
+   /* Màu bình thường khi đã xóa */
+ }
+/* Nút xóa sản phẩm khỏi yêu thích */
+.favorite-remove-icon {
+    position: absolute;
+    top: -2px;
+    right: 9px;
+    font-size: 28px;
+    cursor: pointer;
+    color: red; /* Đặt màu trái tim luôn là đỏ */
+    transition: color 0.3s ease;
+    z-index: 10; /* Đảm bảo hiển thị trên các thành phần khác */
+  }
+  
+  .favorite-remove-icon:hover {
+    color: red; /* Giữ màu đỏ khi hover */
+  }
+  
+  /* Trạng thái sau khi sản phẩm đã xóa */
+  .favorite-remove-icon.removed {
+    color: #ddd; /* Màu bình thường khi đã xóa */
+  }
+  

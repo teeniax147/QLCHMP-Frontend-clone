@@ -1,0 +1,35 @@
+.order-success-container {
+    text-align: center;
+    padding: 50px;
+    margin-top: 60px;
+
+  }
+
+  .order-success-message {
+    font-size: 26px;
+    color: #28a745;
+    margin-bottom: 20px;
+  }
+  .order-message {
+    font-size: 16px;
+    color: #5e5a5a;
+    margin-bottom: 20px;
+    margin-top: -10px;
+  }
+  .back-to-home-button {
+    padding: 10px 20px;
+    background-color: #179831;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: -1000px;
+    margin-top: 80px;
+
+  }
+  
+  .back-to-home-button:hover {
+    background-color: #18d664;
+  }
+  

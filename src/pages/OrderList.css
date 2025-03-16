@@ -1,0 +1,16 @@
+
+        .order-action-buttons {
+          display: flex;
+          flex-direction: column;
+          /* Đặt nút theo cột */
+          align-items: center;
+          /* Căn giữa theo chiều ngang */
+          gap: 10px;
+          /* Tăng khoảng cách giữa các nút */
+        }
+    
+        /* Đảm bảo nút có cùng kích thước */
+        .order-action-buttons .MuiButton-root {
+          width: 150px;
+          text-align: center;
+        }

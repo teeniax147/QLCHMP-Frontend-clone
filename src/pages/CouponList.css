@@ -1,0 +1,248 @@
+.coupon-list h1 {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #0a6727;
+  width: 100%;
+ margin-top: 20px;
+  /* Căn giữa theo chiều ngang */
+  text-align: center;
+  /* Căn giữa theo chiều ngang */
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  /* Căn giữa nội dung trong container */
+  align-items: center;
+  /* Căn giữa theo chiều dọc nếu cần */
+}
+.error {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.coupon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  /* Điều chỉnh cột phù hợp */
+  gap: 50px;
+  margin-top: 30px;
+margin-left: -8px;
+  margin-right: auto;
+}
+
+.coupon-list {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto 50px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.coupon-card {
+  display: flex;
+  flex-direction: column;
+  /* Đảm bảo phần xanh bên trái nằm ngang trên đầu */
+
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  align-items: stretch;
+  padding: 10px;
+  /* Thêm padding cho khoảng cách xung quanh */
+  width: 273px;
+  /* Điều chỉnh chiều rộng của toàn bộ thẻ */
+  height: 180px;
+  /* Điều chỉnh chiều cao của toàn bộ thẻ */
+  position: relative;
+  overflow: visible;
+    /* Cho phép các phần tử con vượt ra ngoài */
+}
+.coupon-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 100%;
+  background: repeating-linear-gradient(5deg, transparent, transparent 10px, #ebebeb 10px, #ebebeb 20px);
+  /* Tạo đường zíc zắc */
+
+}
+.coupon-left {
+
+  /* Màu nền xanh lá */
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  display: flex;
+  align-items: left;
+ 
+ 
+  text-align: center;
+  font-size: 14px;
+  /* Giảm kích thước chữ */
+  font-weight: normal;
+
+}
+
+.coupon-right {
+  padding: 10px;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.quantity-tag {
+  background-color: #1da734;
+  color: #ffffff;
+  font-size: 7px;
+  padding: 3px 8px;
+  border-radius: 1px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  width: 30px;
+margin-top: -40px;
+margin-left: -30px;
+  width: 15px;
+    /* Giảm chiều rộng */
+    height: 10px;
+    /* Giảm chiều cao */
+}
+.quantity-tag::after {
+left: -7px;
+top: 173px;
+    border-style: solid;
+    border-top-color: transparent;
+    border-bottom-color: #1da734;
+    border-left-color: transparent;
+  z-index: 1000;
+    border-image: initial;
+    content: "";
+    height: 0px;
+    width: 0px;
+    position: absolute;
+    border-width: 7px;
+    border-right-color: transparent;
+transform: rotate(45deg);
+}
+.copy-btn {
+  background-color: transparent;
+  /* Không có nền */
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+
+  /* Đảm bảo hình ảnh nằm trong nút */
+text-align: right;
+}
+
+.copy-btn:hover {
+  outline: none;
+
+}
+.copy-btn:focus {
+  outline: none;
+
+}
+.copy-icon {
+  width: 15px;
+  /* Điều chỉnh kích thước của biểu tượng sao chép */
+  height: 15px;
+}
+.coupon-code {
+  font-weight: bold;
+  font-size: 14px;
+  text-align: right;
+  /* Căn code sang phải */
+  margin-bottom: 10px;
+
+}
+
+  .coupon-code2 {
+      display: flex;
+      justify-content: space-between;
+      /* Căn giữa hoặc tạo khoảng cách giữa các phần tử */
+      align-items: center;
+      /* Căn chỉnh theo chiều dọc */
+    }
+
+.coupon-discount {
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+.coupon-divider {
+  border: none;
+  /* Loại bỏ viền mặc định */
+  border-top: 1px solid #e0e0e0a0;
+  /* Tạo đường kẻ ngang với màu xám nhạt */
+  margin: -5px 0;
+  /* Thêm khoảng cách phía trên và dưới của đường kẻ */
+  width: 100%;
+  /* Đảm bảo đường kẻ kéo dài toàn bộ chiều rộng của footer */
+}
+.coupon-header {
+  display: flex;
+  justify-content: space-between;
+  /* Căn trái phải */
+  align-items: center;
+  margin-bottom: 10px;
+  /* Khoảng cách giữa tiêu đề và phần thông tin */
+}
+.min-order {
+  color: #555;
+  font-size: 12px;
+  margin: -30px 0;
+}
+
+.expiry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #000000;
+  margin-top: 4px;
+}
+.expiry span:first-child,
+.expiry span:nth-child(3) {
+  font-weight: bold;
+  /* In đậm chữ "Hiệu lực từ" và "Hết hạn" */
+}
+.use-later {
+  background-color: white;
+  color: red;
+  border: 1px solid red;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.use-later:hover {
+  background-color: red;
+  color: white;
+}
+
+.coupon-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  /* Tăng hiệu ứng khi hover */
+}
+
+.coupon-left .logo4 {
+  font-size: 12px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.coupon-right .coupon-code {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+}

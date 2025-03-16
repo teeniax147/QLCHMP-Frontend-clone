@@ -1,0 +1,301 @@
+/* Đảm bảo bố cục toàn màn hình */
+.admin-layout-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden; /* Loại bỏ thanh cuộn toàn trang */
+}
+
+/* Sidebar bên trái */
+.admin-sidebar {
+  width: 250px;
+  background-color: #52accc;
+  /* Màu xanh đậm */
+  color: white;
+  padding-top: 20px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.admin-sidebar h2 {
+  font-size: 24px;
+  margin: 20px;
+  font-weight: bold;
+}
+
+.admin-sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-sidebar nav ul li {
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding-left: 10px;
+  
+}
+
+.admin-sidebar nav ul li a {
+  color: #f3f4f6;
+  /* Màu sáng */
+  text-decoration: none;
+  display: block;
+  padding: 10px 20px;
+  border-radius: 1px;
+  font-weight: normal;
+  position: relative;
+  /* Để tạo thanh dọc */
+  
+}
+
+/* Hiệu ứng hover */
+.admin-sidebar nav ul li a:hover {
+  background-color: #4493b0;
+  /* Màu nền khi hover */
+  color: white;
+  /* Màu chữ khi hover */
+  font-weight: bold;
+  /* Làm đậm chữ khi hover */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  left: -10px;
+    top: 0;
+   
+}
+
+/* Thanh dọc ở đầu nút khi hover, sát bên trái */
+.admin-sidebar nav ul li a:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -1px;
+  /* Điều chỉnh để thanh dọc sát bên trái hoàn toàn */
+  width: 5px;
+  height: 100%;
+  background-color: #2c5b6c;
+  /* Màu thanh dọc */
+  
+}
+
+/* Nút khi được chọn (active) */
+.admin-sidebar nav ul li a.active {
+  background-color: #52accc;
+  /* Màu nền khi chọn */
+  font-weight: bold;
+  color: white;
+  
+}
+/* Phần header ngang */
+.admin-header {
+  background-color: #52accc;
+  color: white;
+  padding: 20px 20px;
+  position: fixed;
+  top: 0;
+  left: 250px;
+  height: 30px;
+  width: calc(100% - 250px);
+  display: flex;
+  align-items: center;
+  z-index: 999;
+}
+
+.logoheader3 {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+.logoheader3 img {
+  height: 120px;
+  margin-left: 50px;
+  margin-top: -10px;
+}
+
+.icon2 {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  margin-right: 125px;
+}
+
+
+
+.admin-header input {
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  width: 200px;
+  margin: 0 auto;
+}
+
+/* Căn chỉnh icon người dùng */
+.icon2 {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.icon2 img {
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+}
+
+/* Cập nhật lại CSS cho phần content */
+.admin-content {
+  margin-top: -50px; /* Dành không gian cho header */
+  margin-left: 250px; /* Dành không gian cho sidebar */
+  width: calc(100% - 250px);
+  height: calc(100% - 60px);
+  overflow-y: auto; /* Thêm thuộc tính cuộn dọc */
+  padding: 110px 20px 0 20px; /* Thêm khoảng đệm cho nội dung */
+ 
+}
+
+
+
+/* Submenu cho sidebar */
+.sub-menu {
+  padding-left: 20px;
+}
+
+.sub-menu li {
+  font-weight: normal;
+  margin-top: 5px;
+}
+
+.sub-menu li a {
+  padding: 5px 10px;
+  color: #c2c2c2;
+  font-size: 14px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.sub-menu li a:hover {
+  background-color: #3e6b47;
+  color: white;
+}
+
+/* Dropdown menu trong header */
+.user-menu-trigger1 {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+
+}
+
+.user-dropdown-menu1 {
+  position: absolute;
+  top: 100%;
+  right: 45px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  padding: 16px;
+  z-index: 1000;
+  font-family: 'Arial', sans-serif;
+}
+
+.user-dropdown-menu1 p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+
+}
+
+/* Thêm gạch ngang phân cách */
+.user-dropdown-menu1 p + ul {
+  border-top: 1px solid #eaeaea;
+  padding-top: 12px;
+  margin-top: 12px;
+}
+
+.user-dropdown-menu1 ul {
+  list-style: none;
+  padding: 0;
+}
+
+.user-dropdown-menu1 li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  border-top: 1px solid #eaeaea; /* Gạch ngang giữa các mục */
+  padding-top: 12px;
+}
+
+.user-dropdown-menu1 li:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.user-dropdown-menu1 a,
+.user-dropdown-menu1 button {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  display: block;
+  flex-grow: 1;
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-align: left;
+}
+
+.user-dropdown-menu1 button {
+  font-weight: normal;
+}
+
+.user-dropdown-menu1 a:hover,
+.user-dropdown-menu1 button:hover {
+  color: #5de7a2;
+}
+
+.user-dropdown-menu1 .icon {
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f2f2f2; /* Màu nền sáng */
+  border-radius: 50px; /* Tăng độ bo tròn để tạo hiệu ứng mềm mại hơn */
+  padding: 2px 15px; /* Giảm padding để phần rộng thu nhỏ */
+  max-width: 350px; /* Giảm chiều ngang để thanh tìm kiếm dài hơn nhưng không quá to */
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #ddd; /* Đường viền nhẹ */
+  height: 30px; /* Thu nhỏ chiều cao của thanh */
+}
+
+.search-bar2 input {
+  border: none;
+  background-color: transparent;
+  padding: 5px 10px;
+  flex: 1;
+  font-size: 14px;
+  outline: none;
+  height: 100%; /* Chiều cao của input khớp với thanh tìm kiếm */
+}
+
+.search-bar2 button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

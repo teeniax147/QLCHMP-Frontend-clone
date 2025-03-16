@@ -1,0 +1,590 @@
+.carousel-container {
+  width: 100%;
+  max-width: 1150px;
+  margin: -60px auto;
+  position: relative;
+  overflow: hidden;
+  margin-top: 80px;
+}
+
+.carousel-slide {
+  position: relative;
+  display: flex;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  /* transition: transform 0.5s ease-in-out; */
+  transition: opacity 1s ease-in-out !important;
+}
+
+.carousel-next {
+  position: absolute;
+  top: 0;
+  right: -25%; /* Đặt ra ngoài slide hiện tại */
+  width: 20%; /* Kích thước nhỏ hơn của hình ảnh mờ */
+  height: 100%;
+  opacity: 0.5; /* Làm mờ hình ảnh */
+  z-index: 1; /* Đặt dưới slide hiện tại */
+  pointer-events: none; /* Không tương tác với hình ảnh mờ */
+}
+
+.carousel-slide img {
+  position: relative;
+  z-index: 2;
+}
+
+.carousel-dots {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 7px 5px;
+  background-color: #c1c1c19a; /* Màu mặc định cho nút */
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Hiệu ứng chuyển đổi màu */
+}
+
+.dot.active {
+  background-color: #717171; /* Màu đậm hơn khi active */
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-80%);
+  background-color: rgba(255, 255, 255, 0.8); /* Giữ màu trắng ban đầu */
+  color: black; /* Màu mũi tên */
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%; /* Hình tròn */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng nhẹ */
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none; /* Loại bỏ viền khi bấm vào */
+  transition: background-color 0.3s ease; /* Hiệu ứng chuyển mượt */
+}
+
+.carousel-arrow:focus, .carousel-arrow:active {
+  background-color: rgba(255, 255, 255, 0.8); /* Giữ nguyên màu trắng khi bấm vào */
+  color: black; /* Giữ màu mũi tên khi bấm vào */
+  outline: none; /* Loại bỏ viền focus hoặc viền active */
+
+}
+
+.carousel-arrow:hover {
+  background-color: rgb(255, 255, 255); /* Chỉ thay đổi màu khi hover */
+  outline: none;
+    box-shadow: none;
+    border-color: #ffffff;
+}
+
+.left-arrow {
+  left: 15px;
+}
+
+.right-arrow {
+  right: 15px;
+}
+/* Cấu trúc hiện có của bạn ở trên */
+
+.brand-section {
+  display: flex;
+  justify-content: space-between; /* Căn đều các thương hiệu */
+  margin: 45px auto; /* Lùi xuống 40px */
+  max-width: 1000px; /* Chiều rộng tối đa */
+  padding: 20px 0; /* Thêm khoảng trống ở trên và dưới */
+}
+
+.brand-link {
+  display: block;
+  width: 200px; /* Kích thước hình ảnh */
+  transition: transform 0.3s ease; /* Hiệu ứng khi hover */
+}
+
+.brand-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px; /* Bo góc nhẹ cho hình ảnh */
+  border: 2px solid white; /* Bo viền trắng cho hình ảnh */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ */
+}
+
+.brand-link:hover {
+  transform: scale(1.05); /* Phóng to khi hover */
+}
+.store-system-section {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #fff; /* Nếu bạn muốn có nền màu khác */
+  text-align: center; /* Đảm bảo tiêu đề được căn giữa */
+}
+
+.store-system-title {
+  margin-top: 8px; /* Giảm khoảng cách trên cùng của tiêu đề */
+  font-size: 16px;
+  font-weight: bold;
+  color: #805b36;
+  padding: 10px 60px;
+  border: 2px solid #805b36;
+  display: inline-block;
+}
+
+/* Điều chỉnh CSS cho container bản đồ */
+.map-container {
+  margin: 0;  /* Loại bỏ margin xung quanh bản đồ */
+  padding: 0; /* Loại bỏ padding xung quanh bản đồ */
+  overflow: hidden; /* Ngăn chặn bất kỳ nội dung nào tràn ra */
+}
+.banner-container {
+  width: auto; /* Adjust the width as necessary */
+  text-align: center; /* Center the image if needed */
+
+}
+
+.banner-image {
+  max-width: 90%; /* Ensures the image is responsive and fits the container */
+  height: 600px; /* Maintains the aspect ratio */
+  margin-top: 35px;
+  object-fit: cover;
+}
+.brand-section-title {
+  text-align: center; /* Căn giữa tiêu đề */
+  margin: 0 auto; /* Căn giữa phần tử */
+  padding: 20px; /* Thêm đệm để cân bằng */
+}
+.featured-products-section {
+  text-align: center;
+  padding: 20px;
+  margin: 0 auto;
+  font-size: 24px; /* Kích thước chữ */
+}
+
+.featured-products-title {
+  font-size: 26px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 17px;
+  margin-top: -60px;
+}
+
+.featured-product-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Tạo 5 cột */
+  gap: 20px; /* Khoảng cách giữa các sản phẩm */
+  justify-items: center; /* Căn giữa các sản phẩm */
+  align-items: stretch; /* Đảm bảo các thẻ sản phẩm cao bằng nhau */
+  max-width: 1200px; /* Đặt chiều rộng tối đa cho danh sách sản phẩm */
+  margin: 0 auto; /* Căn giữa danh sách sản phẩm */
+}
+.featured-product-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 100%; /* Đặt chiều rộng đầy đủ trong cột */
+  max-width: 190px; /* Chiều rộng tối đa nhỏ hơn để phù hợp */
+  color: #333;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s;
+  margin-top: 23px;
+}
+.featured-product-card:hover {
+  transform: scale(1.05); /* Phóng to nhẹ khi hover */
+}
+
+.featured-products-title::before,
+.featured-products-title::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 5px auto; /* Khoảng cách giữa tiêu đề và đường ngang */
+}
+
+.category-options {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-top: -25px;
+}
+
+.category-active {
+  font-weight: bold;
+  cursor: pointer;
+  color: #4caf50; /* Màu xanh lá cho chữ "Chăm sóc da" */
+  font-size: 15px;
+}
+
+.category-inactive {
+  color: #888; /* Màu xám cho chữ "Trang điểm" */
+  font-size: 15px;
+}
+
+.featured-products-section {
+  padding: 20px;
+  margin-bottom: 40px; /* Tạo khoảng cách giữa phần sản phẩm và phần tiếp theo */
+}
+
+.skin-condition-product-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cột */
+  gap: 20px; /* Khoảng cách giữa các sản phẩm */
+  justify-items: center; /* Căn giữa các sản phẩm */
+  max-width: 900px; /* Đặt chiều rộng tối đa */
+  margin: 0 auto; /* Căn giữa toàn bộ danh sách */
+}
+.products-section {
+  flex: 1; /* Phần sản phẩm chiếm không gian còn lại */
+}
+.skin-condition-product-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* Đảm bảo chiều cao khung sản phẩm bằng nhau */
+}
+.skin-condition-product-card:hover {
+  transform: scale(1.05);
+}
+.product-brand {
+  font-size: 15px; /* Kích thước chữ */
+  font-weight: bold;
+  text-transform: uppercase; /* In hoa */
+  color: #333;
+  margin: 5px 0; /* Khoảng cách giữa thương hiệu và tên sản phẩm */
+}
+.product-title {
+  font-size: 12px;
+  font-weight:normal;
+  color: #333;
+  margin: 5px 0;
+  line-height: 1.2; /* Điều chỉnh khoảng cách dòng */
+}
+.product-name {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.badge {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: #4caf50;
+  color: white;
+  padding: 2px 6px; /* Giảm padding để làm cho badge nhỏ hơn */
+  border-radius: 5px; /* Có thể điều chỉnh để làm badge gọn hơn */
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.product-price {
+  font-size: 20px;
+  color: #27ae60;
+  font-weight: bold;
+  margin-top: 5px;
+}
+.original-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 0.5em;
+  font-size: 16px;
+}
+
+.discounted-price {
+  color: #28a745;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+/* Đánh giá sao */
+.rating {
+  font-size: 14px;
+  color: #000;
+  margin-top: 5px;
+}
+.view-all-button {
+  padding: 10px 20px;
+  background-color: white; /* Màu nền trắng ban đầu */
+  color: black; /* Chữ đen ban đầu */
+  font-size: 16px;
+  border: 2px solid black; /* Viền màu đen */
+  border-radius: 25px; /* Bo góc tròn */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng mượt */
+  margin-top: 20px; /* Khoảng cách trên nút */
+  display: inline-block; /* Để nút không chiếm toàn bộ chiều rộng */
+}
+
+.view-all-button:hover {
+  background-color: #8bc34a; /* Chuyển sang màu xanh nhạt khi hover */
+  color: white; /* Chữ chuyển sang trắng khi hover */
+  border: 2px solid white; /* Viền chuyển sang màu trắng khi hover */
+  transform: scale(1.05); /* Phóng to nhẹ khi hover */
+}
+
+.view-all-button:focus {
+  outline: none; /* Loại bỏ viền focus mặc định */
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Đảm bảo nút chiếm toàn bộ chiều rộng */
+}
+
+/* Phần bộ lọc tình trạng da */
+.skin-condition-section {
+  width: 250px; /* Đặt chiều rộng cố định cho phần bộ lọc */
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+}
+.skin-condition-section h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+  .section-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center; /* Căn chỉnh tiêu đề sang trái */
+    margin-left: 5px; /* Tạo khoảng cách để căn thẳng với khung bộ lọc */
+  }
+
+.skin-condition-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Tăng khoảng cách giữa checkbox và nhãn */
+  margin-bottom: 30px; /* Tạo khoảng cách thưa hơn giữa các mục */
+  font-size: 30px; /* Tăng kích thước chữ */
+  font-weight: bold;
+}
+.filter-item input[type="checkbox"] {
+  display: none;
+}
+
+.filter-item label {
+  position: relative;
+  padding-left: 25px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.filter-item label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #00A859; /* Border color */
+  background-color: #fff; /* Background color */
+  border-radius: 3px; /* Rounded corners */
+}
+
+.filter-item input[type="checkbox"]:checked + label::after {
+  content: "✔";
+  position: absolute;
+  left: 3px;
+  top: -1px;
+  font-size: 14px;
+  color: #333; /* Checkmark color */
+}
+.skin-condition-filters {
+  flex: 1;
+  max-width: 200px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight:bold
+}
+.search-box {
+  margin-bottom: 20px; 
+  /* Tăng khoảng cách giữa ô tìm kiếm và danh sách bộ lọc */
+}
+.search-box .search-input {
+  width: 93%; /* Đặt chiều rộng 100% để căn vừa khung */
+  padding: 8px; /* Tăng padding cho ô tìm kiếm để dễ nhìn hơn */
+  border: 1px solid #00A859;
+  border-radius: 5px;
+  background-color: #EFFFEF;
+  color: #000;
+  font-size: 14px;
+}
+
+.search-box .search-input::placeholder {
+  color: #000; /* Chữ placeholder màu đen */
+}
+.filter-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.filter-and-product-section {
+  display: flex;
+  align-items: flex-start; /* Căn chỉnh theo trục dọc */
+  gap: 30px; /* Khoảng cách giữa bộ lọc và danh sách sản phẩm */
+  width: 100%;
+  padding: 3px;
+  margin-left: 30px;
+  box-sizing: border-box;
+}
+.price-filters {
+  flex: 1;
+  max-width: 200px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight:bold
+}
+.skin-condition-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.skin-condition-item input {
+  margin-right: 10px;
+}
+
+.products-by-skin-condition-section {
+  flex: 1; /* Phần sản phẩm chiếm không gian còn lại */
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng nhẹ */
+}
+.products-by-skin-condition-section .section-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: left;
+}
+.products-by-skin-condition-section .product-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cột */
+  gap: 20px; /* Khoảng cách giữa các sản phẩm */
+  justify-items: center;
+}
+.skin-condition-product-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s;
+  width: 100%;
+  max-width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.skin-condition-product-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 3 cột */
+  gap: 50px; /* Khoảng cách giữa các sản phẩm */
+  justify-items: center;
+  padding: 10px;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+.price-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.product-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.product-title {
+  font-size: 12px; /* Kích thước chữ nhỏ hơn */
+  font-weight: bold;
+  color: #333;
+  margin: 5px 0;
+  line-height: 1.2; /* Chiều cao dòng ngắn hơn để giảm khoảng cách */
+}
+
+.product-price {
+  font-size: 14px;
+  color: #28a745;
+  font-weight: bold;
+}
+.fixed-icon {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.fixed-icon.messenger {
+  background-color: #0084FF;
+}
+
+.fixed-icon.zalo {
+  background-color: #0068FF;
+  left: 80px; /* Đặt Zalo cách Messenger */
+}
+
+.fixed-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.fixed-icon:hover {
+  transform: scale(1.1);
+}
+

@@ -1,0 +1,127 @@
+/* Nút Thêm - màu xanh lá */
+.brand-add-button {
+    color: #28a745; /* Màu chữ xanh lá */
+    border: 1px solid #28a745; /* Viền xanh lá */
+    background-color: transparent; /* Nền trong suốt */
+    transition: all 0.3s ease-in-out; /* Hiệu ứng mượt khi hover */
+  }
+  
+  .brand-add-button:hover {
+    color: white; /* Chữ chuyển thành trắng khi hover */
+    background-color: #28a745; /* Nền xanh lá khi hover */
+    border-color: #28a745;
+  }
+  
+  /* Nút Xóa - màu đỏ */
+  .brand-delete-button {
+    color: #dc3545; /* Màu chữ đỏ */
+    border: 1px solid #dc3545; /* Viền đỏ */
+    background-color: transparent; /* Nền trong suốt */
+    transition: all 0.3s ease-in-out; /* Hiệu ứng mượt khi hover */
+  }
+  
+  .brand-delete-button:hover {
+    color: white; /* Chữ chuyển thành trắng khi hover */
+    background-color: #dc3545; /* Nền đỏ khi hover */
+    border-color: #dc3545;
+  }
+  
+  /* Nút Sửa - màu cam */
+  .brand-edit-button {
+    color: #ffc107; /* Màu chữ cam */
+    border: 1px solid #ffc107; /* Viền cam */
+    background-color: transparent; /* Nền trong suốt */
+    transition: all 0.3s ease-in-out; /* Hiệu ứng mượt khi hover */
+  }
+  
+  .brand-edit-button:hover {
+    color: white; /* Chữ chuyển thành trắng khi hover */
+    background-color: #ffc107; /* Nền cam khi hover */
+    border-color: #ffc107;
+  }
+  
+  .brand-add-button:focus {
+    outline: none; /* Loại bỏ viền focus */
+  }
+  
+  .brand-edit-button:focus,
+  .brand-delete-button:focus {
+    outline: none; /* Loại bỏ viền focus */
+  }
+  .brand-action-buttons button {
+    margin-right: 10px; /* Thêm khoảng cách giữa các nút */
+  }
+  
+  .brand-action-buttons button:last-child {
+    margin-right: 0; /* Xóa khoảng cách cho nút cuối cùng */
+  }
+/* Nút Thêm - màu xanh lá */
+.brand-modal-add-button {
+    color: #28a745; /* Màu chữ xanh lá */
+    border: 1px solid #28a745; /* Viền xanh lá */
+    background-color: transparent; /* Nền trong suốt */
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .brand-modal-add-button:hover {
+    color: white;
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
+  .brand-modal-add-button:focus {
+    outline: none; /* Loại bỏ viền focus */
+  }
+  
+  /* Nút Cập Nhật - màu cam */
+  .brand-modal-edit-button {
+    color: #ffc107; /* Màu chữ cam */
+    border: 1px solid #ffc107; /* Viền cam */
+    background-color: transparent; /* Nền trong suốt */
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .brand-modal-edit-button:hover {
+    color: white;
+    background-color: #ffc107;
+    border-color: #ffc107;
+  }
+  
+  .brand-modal-edit-button:focus {
+    outline: none; /* Loại bỏ viền focus */
+  }
+  
+  /* Nút Xóa - màu đỏ */
+.brand-modal-delete-button {
+    color: #ffffff; /* Màu chữ đỏ */
+
+    background-color: #dc3545; /* Nền trong suốt */
+    transition: all 0.3s ease-in-out; /* Hiệu ứng mượt khi hover */
+  }
+  
+  .brand-modal-delete-button:hover {
+    color: white; /* Chữ chuyển thành trắng khi hover */
+    background-color: #dc3545; /* Nền đỏ khi hover */
+    border-color: #dc3545;
+  }
+  .brand-modal-delete-button:focus {
+    outline: none; /* Loại bỏ viền focus */
+  }
+  /* Nút Hủy - màu đỏ nhạt */
+  .brand-modal-cancel-button {
+    color: #ff6b6b; /* Màu chữ đỏ nhạt */
+    border: 1px solid #ff6b6b; /* Viền đỏ nhạt */
+    background-color: transparent; /* Nền trong suốt */
+    transition: all 0.3s ease-in-out; /* Hiệu ứng mượt khi hover */
+  }
+  
+  .brand-modal-cancel-button:hover {
+    color: white; /* Chữ chuyển thành trắng khi hover */
+    background-color: #ff6b6b; /* Nền đỏ nhạt khi hover */
+    border-color: #ff6b6b;
+  }
+  
+  .brand-modal-cancel-button:focus {
+    outline: none; /* Loại bỏ viền focus */
+  }
+  
