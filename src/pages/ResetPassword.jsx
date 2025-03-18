@@ -67,8 +67,8 @@ const ResetPassword = () => {
   return (
     <div className="reset-password-wrapper">
       <div className="reset-password-form">
-      <div className="logo">
-              <img src="/imgs/Icons/logo1.png" alt="Glamour Cosmic Logo" />
+      <div className="logo1">
+              <img src="/imgs/logo1.png" alt="Glamour Cosmic Logo" />
             </div>
         <h2>Đặt Lại Mật Khẩu</h2>
         <form onSubmit={handleSubmit}>

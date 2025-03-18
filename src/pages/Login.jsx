@@ -77,8 +77,8 @@ const Login = () => {
       <div className="login-page">
         <div className="login-container">
           <div className="login-form">
-            <div className="logo">
-              <img src="/imgs/Icons/logo1.png" alt="Glamour Cosmic Logo" />
+            <div className="logo1">
+              <img src="/imgs/logo1.png" alt="Glamour Cosmic Logo" />
             </div>
             <h2>ĐĂNG NHẬP</h2>
             <form onSubmit={handleSubmit}>
@@ -112,7 +112,8 @@ const Login = () => {
                 {loading ? 'Đang đăng nhập...' : 'Đăng Nhập'}
               </button>
             </form>
-            <p>Chưa có tài khoản? <Link to="/register">Đăng ký ngay</Link></p>
+            <p class="register-text">Chưa có tài khoản? <Link to="/register" class="register-link">Đăng ký ngay</Link></p>
+
           </div>
         </div>
       </div>

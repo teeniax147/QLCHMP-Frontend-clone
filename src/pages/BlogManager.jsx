@@ -41,7 +41,7 @@ const BlogManager = () => {
         author: blog.Author || "Không có tác giả",
         category: blog.Category?.Name || "Không có danh mục",
         featuredImage: blog.FeaturedImage
-          ? `https://api.glamour.io.vn${blog.FeaturedImage}`
+          ? `https://localhost:5001${blog.FeaturedImage}`
           : null,
         createdAt: blog.CreatedAt || "",
         updatedAt: blog.UpdatedAt || "",

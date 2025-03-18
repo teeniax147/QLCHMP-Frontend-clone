@@ -9,7 +9,7 @@
 .dropdown-button {
     background: none;
     border: none;
-    color: #5a9a5a;
+    color: #fe60a2;
     cursor: pointer;
     font-weight: bold;
     outline: none !important;
@@ -21,17 +21,17 @@
 }
 .dropdown-button:hover, 
 .dropdown-button:active {
-  color: #3e7e3e !important; /* Màu đậm hơn khi di chuột và chạm vào */
+  color: #fa83b5 !important; /* Màu đậm hơn khi di chuột và chạm vào */
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #e6f7e6;
+    background-color: #fddde2;
     width: 560%;
     z-index: 1;
     padding: 10px 0;
-    border-radius: 8px;
+    border-radius: 2px;
     border: none;
     display: flex;
     gap: 5px;
@@ -55,7 +55,7 @@
     margin: 0;
     font-size: 14px;
     font-weight: bold;
-    color: #096e09;
+    color: #fe60a2;
     margin-bottom: 10px;
     text-transform: uppercase;
     text-align: center;
@@ -74,10 +74,10 @@
 
 .category-group ul li a {
     text-decoration: none;
-    color: #2b9b54;
+    color: #fe60a2;
     font-size: 13px;
 }
 
 .category-group ul li a:hover {
-    color: #3f9862
+    color: #fa83b5
 }

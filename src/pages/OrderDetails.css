@@ -111,14 +111,14 @@ margin-bottom: 10px;
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 8px;
-    background-color: #4caf50;
+    background-color: #fe60a2;
     color: white;
     border: none;
     cursor: pointer;
 }
 
 .action-buttons button:hover {
-    background-color: #45a049;
+    background-color: #fa83b5;
 }
 .modal-overlay {
     position: fixed;

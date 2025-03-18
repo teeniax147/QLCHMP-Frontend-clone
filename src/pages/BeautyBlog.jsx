@@ -19,7 +19,7 @@ const BeautyBlog = () => {
           content: blog.Content || "Nội dung không có sẵn",
           author: blog.Author || "Không rõ",
           featuredImage: blog.FeaturedImage
-            ? `https://api.glamour.io.vn/${blog.FeaturedImage}`
+            ? `https://localhost:5001/${blog.FeaturedImage}`
             : "default-image.jpg",
         }));
         setBlogs(cleanedBlogs);

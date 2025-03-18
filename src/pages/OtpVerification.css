@@ -71,7 +71,7 @@ h2 {
 
 .otp-input-group input:focus {
     outline: none;
-    border-color: #3e7e3e;
+    border-color: #ec65a0;
 }
 
 .expiry-text {
@@ -108,13 +108,13 @@ h2 {
 }
 
 .confirm-button {
-    background-color: #3e7e3e;
+    background-color: #ed7bad;
     border: none;
     color: white;
 }
 
 .confirm-button:hover {
-    background-color: #2e5e2e;
+    background-color: #ec65a0;
 }
 
 .cancel-button {

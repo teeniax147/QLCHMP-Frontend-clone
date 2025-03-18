@@ -17,12 +17,13 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const StyledTableCell = styled(TableCell)({
-  textAlign: "center",
-  fontWeight: "bold",
-  fontSize: "16px",
-});
 
+// Add a new styled component for the content cells with justify alignment
+const StyledTableCell = styled(TableCell)({
+  textAlign: "center", // This aligns text evenly on both sides
+  fontSize: "16px",
+ fontWeight: "bold",
+});
 const StyledButton = styled(Button)(({ variant }) => ({
   marginRight: "10px",
   ...(variant === "add" && {
@@ -214,7 +215,7 @@ const CategoryManagement = () => {
 
     return validCategories.map((category, index) => (
       <tr key={index}>
-        <td>{index + 1}</td>
+        <td >{index + 1}</td>
         <td>{category.Name}</td>
         <td>{category.Description}</td>
         <td>{category.ParentName}</td>
@@ -251,12 +252,12 @@ const CategoryManagement = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <StyledTableCell>STT</StyledTableCell>
-            <StyledTableCell>Tên danh mục</StyledTableCell>
-            <StyledTableCell>Mô tả</StyledTableCell>
-            <StyledTableCell>Danh mục cha</StyledTableCell>
-            <StyledTableCell>Danh mục con</StyledTableCell>
-            <StyledTableCell>Hành động</StyledTableCell>
+            <StyledTableCell align="justify">STT</StyledTableCell>
+            <StyledTableCell align="justify">Tên danh mục</StyledTableCell>
+            <StyledTableCell align="justify">Mô tả</StyledTableCell>
+            <StyledTableCell align="justify">Danh mục cha</StyledTableCell>
+            <StyledTableCell align="justify">Danh mục con</StyledTableCell>
+            <StyledTableCell align="justify">Hành động</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>{renderCategories()}</TableBody>

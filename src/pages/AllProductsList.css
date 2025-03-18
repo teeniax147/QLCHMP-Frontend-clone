@@ -17,7 +17,7 @@ max-width: 1200px;
 
 .product-header-banner-all img {
   width: 100%;
-  height: 325px;
+  height: auto;
   margin-bottom: 20px;
   border-radius: 15px;
   margin-top: -90px;
@@ -55,7 +55,7 @@ max-width: 1200px;
 
 /* Tag giảm giá */
 .discount-tag {
-  background-color: #94c83d;
+  background-color: #fe60a2;
   /* Màu nền xanh */
   /* color: white;
   font-weight: bold;
@@ -92,7 +92,7 @@ max-width: 1200px;
   width: 0px;
   position: absolute;
   border-width: 10px;
-  border-right-color: #94c83d;
+  border-right-color: #fe60a2;
 }
 
 .filter-section-all {
@@ -213,18 +213,18 @@ max-width: 1200px;
   padding: 8px 12px;
   margin: -10px 5px;
   border: none;
-  background-color: #35ae57;
+  background-color: #fe60a7;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
   color: #ffffff;
 }
 .page-button-all1.active-all {
-  background-color: #54d179;
+  background-color: #fa83b5;
   color: white;
 }
 .page-button-all1:hover {
-  background-color: #40c165;
+  background-color: #fe60a2;
 }
 .page-button-all1:focus {
   outline: none;
@@ -283,7 +283,7 @@ max-width: 1200px;
 
 .product-price-all {
   font-size: 15px;
-  color: #12853e;
+  color: #ef4a8f;
   font-weight: bold;
   margin-top: -9px;
   margin-bottom: 2px;

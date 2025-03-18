@@ -94,13 +94,13 @@ const Layout = () => {
     <>
       <header className="home">
         <div className="header-top">
-          <span className="freeship-info">FREESHIP 15K ĐƠN TỪ 199K</span>
-          <span className="store-info">Mua online nhận nhanh tại cửa hàng</span>
+         
+          <span className="store-info">Mua online nhận nhiều ưu đãi hấp dẫn</span>
         </div>
 
         <div className="header-main">
           <Link to="/" className="logoheader">
-            <img src="/imgs/Logo.png" alt="Glamour Cosmic Logo" />
+            <img src="/imgs/Icons/logo.png" alt="Glamour Cosmic Logo" />
           </Link>
 
           {/* Thanh tìm kiếm */}
@@ -119,14 +119,7 @@ const Layout = () => {
           </form>
 
           <div className="header-icons">
-            <span className="icon">
-
-              <Link to="/beauty-blog" className='link-blog'>
-                <img src="/imgs/Icons/blog.png" alt="Blog Icon" />
-                Blog làm đẹp
-              </Link>
-
-            </span>
+         
             <a href="https://info.glamour.io.vn/" target="_blank" rel="noopener noreferrer" className="link-blog">
               <span className="icon">
                 <img src="/imgs/Icons/trungtamhotro.png" alt="Support Icon" />
@@ -195,9 +188,9 @@ const Layout = () => {
             <li><Link to="/">TRANG CHỦ</Link></li>
             <li><Link to="/all-products">SẢN PHẨM</Link></li>
             <li>
-              <CategoryDropdown title="DƯỠNG DA" parentId={2} />
+              <CategoryDropdown title="BỘ SƯU TẬP" parentId={2} />
             </li>
-            <li><CategoryDropdown title="TRANG ĐIỂM" parentId={1} /></li> {/* Truyền parentId tương ứng */}
+          
             <li><BrandDropdown title="THƯƠNG HIỆU" /></li>
 
             <li><Link to="/coupons">MÃ ƯU ĐÃI</Link></li>
@@ -210,24 +203,20 @@ const Layout = () => {
       <main>
         <Outlet />
       </main>
-
+      <a href="https://m.me/yourpage" className="fixed-icon messenger" target="_blank" rel="noopener noreferrer" aria-label="Messenger Chat">
+        <img src="https://res.cloudinary.com/dpqdfe1al/image/upload/v1706522050/messenger_zyke2c.png" alt="Messenger Icon" />
+      </a>
       <footer className="footer">
         <div className="newsletter-section">
-          <div className="newsletter-content">
-            <h2>Đăng ký nhận tin tức ưu đãi của chúng tôi</h2>
-            <p>Hàng ngàn ưu đãi hấp dẫn đang chờ bạn!</p>
-          </div>
-          <div className="newsletter-subscribe">
-            <input type="email" placeholder="Điền email của bạn" />
-            <button>ĐĂNG KÝ</button>
-          </div>
+        
+          
         </div>
 
         <div className="footer-middle">
           {/* Phần nội dung footer */}
           <div className="footer-logo-social">
             <div className="footer-logo">
-              <img src="/imgs/Icons/logo1.png" alt="Glamour Cosmic Logo" />
+              <img src="/imgs/Icons/logo.png" alt="Cutexiu" />
             </div>
             <div className="footer-social">
               <h4>THEO DÕI CHÚNG TÔI TRÊN</h4>
@@ -257,17 +246,17 @@ const Layout = () => {
               <h4>CHĂM SÓC KHÁCH HÀNG</h4>
               <ul>
                 <li><a href="#">Đăng ký tài khoản thành viên</a></li>
-                <li><a href="#">Hướng dẫn mua hàng online</a></li>
+                <li><a href="#">Hướng dẫn mua ốp lưng online</a></li>
                 <li><a href="#">Quyền lợi thành viên</a></li>
                 <li><a href="#">Giao hàng và thanh toán</a></li>
                 <li><a href="#">Chính sách đổi hàng</a></li>
-                <li><a href="#">Điều khoản mua bán hàng hóa</a></li>
+                <li><a href="#">Điều khoản mua bán ốp lưng</a></li>
               </ul>
             </div>
             <div className="footer-section">
               <h4>ĐỐI TÁC - LIÊN KẾT</h4>
               <ul>
-                <li><a href="#">Glamour cẩm nang</a></li>
+                <li><a href="#">Ốp lưng Cutexiu</a></li>
               </ul>
             </div>
           </div>
@@ -275,8 +264,8 @@ const Layout = () => {
         <hr className="footer-divider" />  {/* Đường gạch ngang */}
         <div className="footer-bottom">
 
-          <p>® glamour.io.vn thuộc quyền sở hữu của Công ty TNHH Mỹ Phẩm Glamour Cosmic, được cấp Giấy phép kinh doanh số 0316789123 vào ngày 02/03/2025 bởi Sở Kế hoạch & Đầu tư TP. Hồ Chí Minh.
-          </p>
+          <p>® cutexiu.io.vn thuộc quyền sở hữu của Công ty TNHH Ốp Lưng Cutexiu, được cấp Giấy phép kinh doanh số 0316789123 vào ngày 02/03/2025 bởi Sở Kế hoạch & Đầu tư TP. Hồ Chí Minh.</p>
+
           <div className="certification-icons">
 
             <div class="payment">

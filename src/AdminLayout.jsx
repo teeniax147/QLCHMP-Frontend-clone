@@ -62,24 +62,33 @@ const AdminLayout = () => {
       return;
     }
 
-    console.log("Từ khóa tìm kiếm:", searchKeyword); // Kiểm tra từ khóa tìm kiếm
-
     try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Vui lòng đăng nhập lại!");
+        navigate('/login');
+        return;
+      }
+
       const response = await axios.get(`${API_BASE_URL}/Products/tim-kiem`, {
         params: { Keyword: searchKeyword },
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
       });
 
-      console.log("Phản hồi từ API:", response.data); // Kiểm tra phản hồi từ API
+      console.log("Phản hồi từ API:", response.data);
 
       if (!response.data || response.data.TotalProducts === 0) {
         alert("Không tìm thấy sản phẩm nào phù hợp.");
         return;
       }
 
-      navigate("/admin/products", { state: { products: response.data.Products.$values || [] } });
+      navigate("/admin/products", {
+        state: {
+          products: response.data.Products?.$values || []
+        }
+      });
 
     } catch (error) {
       console.error("Lỗi khi gọi API tìm kiếm:", error);
@@ -95,7 +104,7 @@ const AdminLayout = () => {
         isAdminLogin ? <div className="admin-layout-container">
           <aside className="admin-sidebar">
             <div className="logoheader3">
-              <img src="/imgs/Icons/logo6.png" alt="Glamour Cosmic Logo" />
+              <img src="/imgs/logo1.png" alt="Glamour Cosmic Logo" />
             </div>
             <nav>
               <ul>
@@ -113,11 +122,8 @@ const AdminLayout = () => {
                 </li>
                 {isManagementOpen && (
                   <ul className="sub-menu">
-                    <li><Link to="/admin/blogs"><span>✏️</span> Bài viết blog</Link></li>
                     <li><Link to="/admin/brands"><span>🏷️</span> Thương hiệu</Link></li>
-                   
                     <li><Link to="/admin/revenue-report"><span>📑</span> Thống kê - Báo cáo</Link></li>
-                   
                    <li><Link to="/admin/orders"><span>🛒</span> Đơn hàng</Link></li>
                     <li><Link to="/admin/customers"><span><FontAwesomeIcon icon={faUser} /></span> Tài khoản khách hàng</Link></li>
                     <li><Link to="/admin/categories"><span>📂</span> Danh mục</Link></li>
@@ -155,12 +161,15 @@ const AdminLayout = () => {
               </button>
             </form>
             <span className="icon2">
-              {userName && (
-                <div onClick={handleDropdownToggle} className="user-menu-trigger1">
-                  <FontAwesomeIcon icon={faUser} />
-                  <span>{userName} </span>
-                </div>
-              )}
+           
+                {userName && (
+                  <div onClick={handleDropdownToggle} className="user-menu-trigger1">
+                    <FontAwesomeIcon icon={faUser} />
+                    <span className="icon-name">{userName}</span> {/* Add class here */}
+                  </div>
+                )}
+      
+
               {userName && showDropdown && (
                 <div className="user-dropdown-menu1">
                   <p>{greeting} {userName}!</p>

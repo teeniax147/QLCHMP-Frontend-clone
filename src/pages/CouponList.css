@@ -1,7 +1,7 @@
 .coupon-list h1 {
   font-size: 26px;
   margin-bottom: 20px;
-  color: #0a6727;
+  color: #ef4a8f;
   width: 100%;
  margin-top: 20px;
   /* Căn giữa theo chiều ngang */
@@ -94,7 +94,7 @@ margin-left: -8px;
 }
 
 .quantity-tag {
-  background-color: #1da734;
+  background-color: #fe60a2;
   color: #ffffff;
   font-size: 7px;
   padding: 3px 8px;
@@ -117,7 +117,7 @@ left: -7px;
 top: 173px;
     border-style: solid;
     border-top-color: transparent;
-    border-bottom-color: #1da734;
+    border-bottom-color: #fe60a2;
     border-left-color: transparent;
   z-index: 1000;
     border-image: initial;

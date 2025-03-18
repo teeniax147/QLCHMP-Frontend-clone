@@ -9,9 +9,9 @@
 /* Sidebar bên trái */
 .admin-sidebar {
   width: 250px;
-  background-color: #52accc;
+  background-color: #f8c8db;
   /* Màu xanh đậm */
-  color: white;
+  color: #ba1258;
   padding-top: 20px;
   height: 100vh;
   position: fixed;
@@ -40,7 +40,7 @@
 }
 
 .admin-sidebar nav ul li a {
-  color: #f3f4f6;
+  color: #ba1258;
   /* Màu sáng */
   text-decoration: none;
   display: block;
@@ -54,9 +54,9 @@
 
 /* Hiệu ứng hover */
 .admin-sidebar nav ul li a:hover {
-  background-color: #4493b0;
+  background-color: #f3abc9;
   /* Màu nền khi hover */
-  color: white;
+  color: #ba1258;
   /* Màu chữ khi hover */
   font-weight: bold;
   /* Làm đậm chữ khi hover */
@@ -75,14 +75,14 @@
   /* Điều chỉnh để thanh dọc sát bên trái hoàn toàn */
   width: 5px;
   height: 100%;
-  background-color: #2c5b6c;
+  background-color: #f35b98;
   /* Màu thanh dọc */
   
 }
 
 /* Nút khi được chọn (active) */
 .admin-sidebar nav ul li a.active {
-  background-color: #52accc;
+  background-color: #f8c8db;
   /* Màu nền khi chọn */
   font-weight: bold;
   color: white;
@@ -90,8 +90,8 @@
 }
 /* Phần header ngang */
 .admin-header {
-  background-color: #52accc;
-  color: white;
+  background-color: #f8c8db;
+  color: #ba1258;
   padding: 20px 20px;
   position: fixed;
   top: 0;
@@ -120,11 +120,15 @@
   align-items: center;
   font-size: 15px;
   cursor: pointer;
-  color: rgb(255, 255, 255);
+  color: #ba1258;
   margin-right: 125px;
 }
 
-
+.icon-name {
+  margin-left: 5px;
+  /* Adjust the space between the icon and the name */
+  font-size: 14px;
+}
 
 .admin-header input {
   padding: 5px;

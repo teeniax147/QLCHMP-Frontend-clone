@@ -4,7 +4,7 @@
         padding: 0;
         width: 100vw;
         min-height: 100vh;
-        background-color: #d3f8d3;
+        background-color: #fddde2;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -92,13 +92,13 @@ h2 {
 }
 .input-group input:focus {
     outline: none;
-    border-color: #3e7e3e;
+    border-color: #fddde2;
 }
 
 .login-button {
     width: 100%;
     padding: 12px;
-    background-color: #3e7e3e;
+    background-color: #ec65a0;
     border: none;
     color: white;
     font-weight: bold;
@@ -107,7 +107,7 @@ h2 {
 }
 
 .login-button:hover {
-    background-color: #2e5e2e;
+    background-color: #ed7bad;
 }
 
 /* Căn phải cho liên kết Quên mật khẩu */
@@ -116,10 +116,29 @@ h2 {
     margin-bottom: 5px;
 }
 
-.forgot-password a {
-    color: #3e7e3e;
-    text-decoration: none;
+.register-text {
+    color: #333;
+    /* Màu của đoạn văn bản */
 }
+
+.register-link {
+    color: #ec65a0;
+    /* Màu của liên kết */
+    text-decoration: none;
+    /* Xóa gạch chân */
+}
+
+.register-link:hover {
+    color: #ea5596;
+    /* Màu khi hover */
+}
+.forgot-password a {
+    color: #ea5596;
+    text-decoration: none;
+    font-size: 15px;
+  
+}
+
 
 .forgot-password a:hover {
     text-decoration: underline;
@@ -132,7 +151,7 @@ p {
 }
 
 p a {
-    color: #3e7e3e;
+    color: #692d07;
     text-decoration: none;
 }
 

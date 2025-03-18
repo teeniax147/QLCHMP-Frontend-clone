@@ -111,7 +111,7 @@
 
 .brand-link {
   display: block;
-  width: 200px; /* Kích thước hình ảnh */
+  width: 150px; /* Kích thước hình ảnh */
   transition: transform 0.3s ease; /* Hiệu ứng khi hover */
 }
 
@@ -137,9 +137,9 @@
   margin-top: 8px; /* Giảm khoảng cách trên cùng của tiêu đề */
   font-size: 16px;
   font-weight: bold;
-  color: #805b36;
+  color: #fe7ab1;
   padding: 10px 60px;
-  border: 2px solid #805b36;
+  border: 2px solid #fe7ab1;
   display: inline-block;
 }
 
@@ -156,9 +156,9 @@
 }
 
 .banner-image {
-  max-width: 90%; /* Ensures the image is responsive and fits the container */
-  height: 600px; /* Maintains the aspect ratio */
-  margin-top: 35px;
+  max-width: 100%; /* Ensures the image is responsive and fits the container */
+  height: auto; /* Maintains the aspect ratio */
+  margin-top: -30px;
   object-fit: cover;
 }
 .brand-section-title {
@@ -559,7 +559,7 @@
 .fixed-icon {
   position: fixed;
   bottom: 20px;
-  left: 20px;
+ right: 20px;
   z-index: 1000;
   width: 50px;
   height: 50px;

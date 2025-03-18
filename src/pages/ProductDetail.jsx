@@ -16,15 +16,22 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    console.log('loading get count cart');
-    
     const fetchProductDetail = async () => {
       setLoading(true);
       try {
         const response = await axios.get(
           `${API_BASE_URL}/Products/chi-tiet/${id}`
         );
-        setProduct(response.data);
+
+        // Clean and handle the product image URL
+        const cleanedProduct = {
+          ...response.data,
+          ImageUrl: response.data.ImageUrl
+            ? `https://localhost:5001/${response.data.ImageUrl}` // Add base URL for image path
+            : "default-image.jpg", // Fallback image if no image URL
+        };
+
+        setProduct(cleanedProduct);
       } catch (err) {
         console.error("Lỗi khi tải chi tiết sản phẩm:", err);
         setError("Không thể tải chi tiết sản phẩm.");
@@ -35,6 +42,9 @@ const ProductDetail = () => {
 
     fetchProductDetail();
   }, [id]);
+
+
+   
   const handleAddToFavorites = async (productId) => {
     const token = localStorage.getItem("token"); // Lấy token từ localStorage
     console.log("Token từ localStorage:", token);
@@ -134,7 +144,7 @@ const ProductDetail = () => {
   return (
     <div className="product-detail-container">
       <img
-        src={product?.ImageUrl || "https://via.placeholder.com/500"}
+        src={product?.ImageUrl}
         alt={product?.Name}
         className="product-detail-image"
       />

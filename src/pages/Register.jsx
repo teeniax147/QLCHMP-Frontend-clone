@@ -121,8 +121,8 @@ const Register = () => {
   return (
     <div className="register-wrapper">
       <div className="register-form">
-        <div className="logo">
-          <img src="/imgs/Icons/logo1.png" alt="Glamour Cosmic Logo" />
+        <div className="logo1">
+          <img src="/imgs/logo1.png" alt="Glamour Cosmic Logo" />
         </div>
         <h2>Đăng Ký Tài Khoản</h2>
         <form onSubmit={handleSubmit} style={{ width: "100%" }}>
@@ -212,7 +212,8 @@ const Register = () => {
             Đăng Ký
           </button>
         </form>
-        <p>Đã có tài khoản? <Link to="/login">Đăng nhập</Link></p>
+        <p class="login-text">Đã có tài khoản? <Link to="/login" class="login-link">Đăng nhập</Link></p>
+
       </div>
     </div>
   );

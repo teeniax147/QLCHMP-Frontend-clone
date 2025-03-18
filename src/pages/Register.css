@@ -4,7 +4,7 @@
     padding: 0;
     width: 100vw;
     min-height: 100vh;
-    background-color: #d3f8d3;
+    background-color: #fddde2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,11 +14,11 @@
         margin-right: auto;
 }
 
-.logo img {
-    width: 140px;
-    height: auto;
+.logo1 img {
+    width: 160px;
+    height: 160px;
     display: block;
-    margin: 0 auto;
+    margin: -20px auto;
   }
 
 .register-page {
@@ -47,6 +47,7 @@ h2 {
     text-align: center;
     margin-bottom: 35px;
     color: #333;
+    margin-top: 10px;
 }
 
 .input-group {
@@ -83,13 +84,13 @@ h2 {
 
 .input-group input:focus {
     outline: none;
-    border-color: #3e7e3e;
+    border-color: #692d07;
 }
 
 .register-button {
     width: 100%;
     padding: 12px;
-    background-color: #3e7e3e;
+    background-color: #ec65a0;
     border: none;
     color: white;
     font-weight: bold;
@@ -98,7 +99,7 @@ h2 {
 }
 
 .register-button:hover {
-    background-color: #2e5e2e;
+    background-color: #ed7bad;
 }
 
 p {
@@ -108,10 +109,27 @@ p {
 }
 
 p a {
-    color: #3e7e3e;
+    color: #ed7bad;
     text-decoration: none;
 }
 
 p a:hover {
     text-decoration: underline;
+}
+
+.login-text {
+    color: #333;
+    /* Màu của đoạn văn bản */
+}
+
+.login-link {
+    color: #ec65a0;
+    /* Màu của liên kết */
+    text-decoration: none;
+    /* Xóa gạch chân */
+}
+
+.login-link:hover {
+    color: #ea5596;
+    /* Màu khi hover */
 }

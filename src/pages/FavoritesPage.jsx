@@ -24,12 +24,25 @@ const FavoritesPage = () => {
         }
       );
       console.log("Dữ liệu yêu thích:", response.data); // Log dữ liệu trả về
-      setFavorites(response.data.$values || response.data); // Cập nhật danh sách yêu thích
+
+      // Clean product image URLs and set favorites
+      const cleanedFavorites = response.data.$values.map((favorite) => ({
+        ...favorite,
+        ImageUrl: favorite.ImageUrl
+          ? `https://localhost:5001/${favorite.ImageUrl}` // Add base URL for product images
+          : "default-image.jpg", // Fallback image if no image available
+      }));
+
+      setFavorites(cleanedFavorites); // Cập nhật danh sách yêu thích
     } catch (error) {
       console.error("Lỗi khi lấy danh sách yêu thích:", error);
       setError("Không thể tải danh sách yêu thích."); // Cập nhật trạng thái lỗi
     }
   };
+
+  useEffect(() => {
+    fetchFavorites(); // Lấy danh sách yêu thích khi load trang
+  }, []);
 
   useEffect(() => {
     fetchFavorites(); // Lấy danh sách yêu thích khi load trang
@@ -79,7 +92,7 @@ const FavoritesPage = () => {
         {favorites.map((favorite) => (
           <div className="favorites-card" key={favorite.Id}>
             <img
-              src={favorite.ImageUrl || "https://via.placeholder.com/150"} // Hình ảnh sản phẩm hoặc placeholder
+              src={favorite.ImageUrl} // Hình ảnh sản phẩm hoặc placeholder
               alt={favorite.Name}
               className="favorites-image"
             />
@@ -90,20 +103,29 @@ const FavoritesPage = () => {
               <h3 className="favorites-name">{favorite.Name}</h3>
             
            
-                {favorite.Price ? (
-                  <>
-                    <p className="favorites-price">
-                      {`${favorite.Price.toLocaleString()}đ`}
-                    </p>
+              {favorite.Price ? (
+                <>
+                  <p className="favorites-price">
+                    {favorite.Price ? `${favorite.Price.toLocaleString()}đ` : "Liên hệ"}
+                  </p>
+                  <div className="price-and-discount-container">
+                    {/* Hiển thị giá gốc và tag giảm giá cùng một dòng */}
                     {favorite.OriginalPrice && favorite.OriginalPrice > favorite.Price && (
-                      <span className="favorites-original-price">
-                        {`${favorite.OriginalPrice.toLocaleString()}đ`}
-                      </span>
+                      <>
+                        <span className="favorites-original-price">
+                          {favorite.OriginalPrice.toLocaleString()}đ
+                        </span>
+                        <div className="discount-tag">
+                          -{Math.round(((favorite.OriginalPrice - favorite.Price) / favorite.OriginalPrice) * 100)}%
+                        </div>
+                      </>
                     )}
-                  </>
-                ) : (
-                  <p className="favorites-price">Liên hệ</p>
-                )}
+                  </div>
+                </>
+              ) : (
+                <p className="favorites-price">Liên hệ</p>
+              )}
+
             
 
               

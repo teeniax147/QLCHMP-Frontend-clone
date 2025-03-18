@@ -22,7 +22,7 @@
     }
  .brand-product-header-banner img {
    width: 100%;
-   height: 325px;
+   height: auto;
    margin-bottom: 20px;
    border-radius: 15px;
    margin-top: -90px;
@@ -154,7 +154,7 @@
 
  .brand-product-price {
   font-size: 15px;
-    color: #12853e;
+    color: #ef4a8f;
     font-weight: bold;
     margin-top: -9px;
     margin-bottom: 2px;
@@ -180,7 +180,7 @@
  }
 /* Tag giảm giá */
 .discount-tag-brand {
-  background-color: #94c83d;
+  background-color: #fe60a2;
   /* Màu nền xanh */
   /* color: white;
   font-weight: bold;
@@ -218,7 +218,7 @@
   width: 0px;
   position: absolute;
   border-width: 10px;
-  border-right-color: #94c83d;
+  border-right-color: #fe60a2;
 }
  /* Sao đánh giá */
  .brand-product-rating-stars {

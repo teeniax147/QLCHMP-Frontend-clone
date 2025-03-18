@@ -36,6 +36,10 @@ const CartPage = () => {
       if (response.data && response.data.CartItems) {
         const cartItemsWithTotalPrice = response.data.CartItems.$values.map(item => ({
           ...item,
+          // Clean and handle the product image URL
+          ImageUrl: item.ImageUrl
+            ? `https://localhost:5001/${item.ImageUrl}` // Append base URL for image path
+            : "default-image.jpg", // Fallback image if no image URL
           TotalPrice: item.Quantity * item.UnitPrice // Tính toán giá sản phẩm ban đầu
         }));
         setCartItems(cartItemsWithTotalPrice);

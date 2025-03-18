@@ -47,16 +47,19 @@ const AddButton = styled(Button)({
   },
 });
 
-// Modal Style
+// Update the modalStyle object to handle overflow properly
 const modalStyle = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
+  maxHeight: "80vh", // Set maximum height to 80% of viewport height
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
+  overflow: "auto", // Enable scrolling for the modal content
+  borderRadius: "8px", // Optional: makes the modal look nicer
 };
 
 const ProductManager = () => {
@@ -73,6 +76,8 @@ const ProductManager = () => {
   const [brands, setBrands] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]); // Đảm bảo là mảng
   const [selectedCategories, setSelectedCategories] = useState([]); // Đảm bảo là mảng
+  const [categories, setCategories] = useState([]); // Khai báo categories
+
   const [currentProduct, setCurrentProduct] = useState({
     Name: "",
     Price: "",
@@ -109,23 +114,26 @@ const ProductManager = () => {
   const flattenCategories = (categories) => {
     let flatList = [];
     categories.forEach((category) => {
-      flatList.push({
-        Id: category?.Id || "Không có ID",
-        Name: category?.Name || "Không có tên",
-        Description: category?.Description || "Không có mô tả",
-        ParentName: category?.Parent?.Name || "Không có",
-        SubCategories:
-          category?.InverseParent?.$values
-            ?.map((sub) => sub.Name)
-            .join(", ") || "Không có",
-      });
+      if (category?.Name && category?.Name !== "Không có tên") { // Filter out invalid categories
+        flatList.push({
+          Id: category?.Id || "Không có ID",
+          Name: category?.Name || "Không có tên",
+          Description: category?.Description || "Không có mô tả",
+          ParentName: category?.Parent?.Name || "Không có",
+          SubCategories:
+            category?.InverseParent?.$values
+              ?.map((sub) => sub.Name)
+              .join(", ") || "Không có",
+        });
 
-      if (category?.InverseParent?.$values?.length > 0) {
-        flatList = flatList.concat(flattenCategories(category.InverseParent.$values));
+        if (category?.InverseParent?.$values?.length > 0) {
+          flatList = flatList.concat(flattenCategories(category.InverseParent.$values));
+        }
       }
     });
     return flatList;
   };
+
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -141,7 +149,6 @@ const ProductManager = () => {
       });
 
       if (response.status === 200 && response.data) {
-        // console.log("Dữ liệu trả về từ API:", response.data);
         const flatCategories = flattenCategories(response.data.$values || []);
         setCategories(flatCategories);
       } else {
@@ -157,6 +164,8 @@ const ProductManager = () => {
       setLoading(false);
     }
   };
+
+
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -173,15 +182,27 @@ const ProductManager = () => {
       // Log dữ liệu trả về từ API để kiểm tra
       console.log('Dữ liệu sản phẩm trả về:', response.data?.DanhSachSanPham?.$values);
 
-      setProducts(response.data?.DanhSachSanPham?.$values || []);
+      // Process and clean the products data
+      const productsData = response.data?.DanhSachSanPham?.$values || [];
+      const cleanedProducts = productsData.map((product) => ({
+        ...product, // Keep existing product data
+        ImageUrl: product.ImageUrl
+          ? `https://localhost:5001/${product.ImageUrl}`  // Ensure image URL is correct
+          : "default-image.jpg",  // Provide a default image if not available
+      }));
+
+      // Set the cleaned product data to state
+      setProducts(cleanedProducts);
       setTotalProducts(response.data?.TongSoSanPham || 0);
       setCurrentPage(page);
     } catch (error) {
+      console.error("Lỗi khi tải danh sách sản phẩm:", error);
       setError("Không thể tải danh sách sản phẩm. Vui lòng thử lại!");
     } finally {
       setLoading(false);
     }
   };
+
 
   useEffect(() => {
     fetchProducts(currentPage);
@@ -198,7 +219,7 @@ const ProductManager = () => {
         Description: "",
         ImageFile: "",
         Brand: "",
-        Categories:"",
+        Categories: "",
       }
     );
     setPreviewImage(null); // Reset ảnh xem trước
@@ -209,51 +230,60 @@ const ProductManager = () => {
 
 
   const handleAddProduct = async () => {
-    console.log('Adding product with the following data:');
-    console.log({
-      Name: currentProduct.Name,
-      Price: currentProduct.Price,
-      OriginalPrice: currentProduct.OriginalPrice,
-      Description: currentProduct.Description,
-      selectedBrands,
-      selectedCategories,
-      selectedFile,
+    const formData = new FormData();
+
+    // Basic validation
+    if (!currentProduct.Name || !currentProduct.Price) {
+      alert("Vui lòng nhập đầy đủ thông tin sản phẩm");
+      return;
+    }
+
+    // Check if categories are valid
+    if (!selectedCategories || selectedCategories.length === 0) {
+      alert("Vui lòng chọn ít nhất một danh mục");
+      return;
+    }
+
+    // Add text fields
+    formData.append("Name", currentProduct.Name);
+    formData.append("Price", parseFloat(currentProduct.Price));
+    formData.append("OriginalPrice", parseFloat(currentProduct.OriginalPrice));
+    formData.append("Description", currentProduct.Description);
+
+    // Add arrays properly - important fix
+    selectedBrands.forEach(brandId => {
+      formData.append("BrandIds", brandId);
     });
 
-    const formData = new FormData();
-    formData.append("Name", currentProduct.Name);
-    formData.append("Price", currentProduct.Price);
-    formData.append("OriginalPrice", currentProduct.OriginalPrice);
-    formData.append("Description", currentProduct.Description);
-    formData.append("BrandIds", JSON.stringify(selectedBrands));
-    formData.append("Categories", JSON.stringify(selectedCategories));
+    selectedCategories.forEach(categoryId => {
+      formData.append("Categories", categoryId);
+    });
+
+    // Add image if selected
     if (selectedFile) {
       formData.append("ImageFile", selectedFile);
     }
 
     try {
       const token = localStorage.getItem("token");
+      if (!token) throw new Error("Token không tồn tại.");
+
       const response = await axios.post(`${API_BASE_URL}/Products/them-moi`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("Response Data:", response.data);
-      fetchProducts(currentPage);
-      alert("Thêm sản phẩm thành công!");
-    } catch (error) {
-      console.error("Lỗi khi thêm sản phẩm:", error.response?.data || error.message);
-      alert("Lỗi khi thêm sản phẩm. Vui lòng kiểm tra lại!");
-    
 
+      alert("Thêm sản phẩm thành công!");
+      fetchProducts(currentPage);
+    } catch (error) {
+      console.error("Lỗi khi thêm sản phẩm:", error);
+      alert(`Lỗi khi thêm sản phẩm: ${error.response?.data?.message || error.message}`);
     } finally {
       setModalVisible(false);
     }
   };
-
-
-
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -261,7 +291,7 @@ const ProductManager = () => {
       setSelectedFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPreviewImage(reader.result);  // Hiển thị ảnh xem trước
+        setPreviewImage(reader.result); // Show image preview
       };
       reader.readAsDataURL(file);
     }
@@ -269,31 +299,60 @@ const ProductManager = () => {
 
 
 
-  // Hàm xử lý cập nhật sản phẩm
+  
+
+
   const handleEditProduct = async () => {
-    console.log("Dữ liệu gửi đi:", currentProduct); // Log để kiểm tra dữ liệu trước khi gửi
     try {
       const token = localStorage.getItem("token");
-      await axios.put(
+      if (!token) throw new Error("Token không tồn tại.");
+
+      // Create FormData for multipart submission
+      const formData = new FormData();
+
+      // Add basic product fields
+      formData.append("Id", currentProduct.Id);
+      formData.append("Name", currentProduct.Name);
+      formData.append("Price", parseFloat(currentProduct.Price));
+      formData.append("OriginalPrice", parseFloat(currentProduct.OriginalPrice));
+      formData.append("Description", currentProduct.Description);
+
+      // Add selected brands
+      selectedBrands.forEach(brandId => {
+        formData.append("BrandIds", brandId);
+      });
+
+      // Add selected categories
+      selectedCategories.forEach(categoryId => {
+        formData.append("Categories", categoryId);
+      });
+
+      // Add image if a new one was selected
+      if (selectedFile) {
+        formData.append("ImageFile", selectedFile);
+      }
+
+      // Make the PUT request with FormData
+      const response = await axios.put(
         `${API_BASE_URL}/Products/cap-nhat/${currentProduct.Id}`,
-        currentProduct,
+        formData,
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
           },
         }
       );
+
       fetchProducts(currentPage);
       alert("Cập nhật sản phẩm thành công!");
     } catch (error) {
       console.error("Lỗi khi cập nhật sản phẩm:", error.response?.data || error.message);
-      alert("Lỗi khi cập nhật sản phẩm.");
+      alert(`Lỗi khi cập nhật sản phẩm: ${error.response?.data?.message || error.message}`);
     } finally {
       setModalVisible(false);
     }
   };
-
   // Hàm xử lý xóa sản phẩm
   const handleDeleteProduct = async () => {
     try {
@@ -330,7 +389,7 @@ const ProductManager = () => {
       </AddButton>
       {error && <div style={{ color: "red" }}>{error}</div>}
       <TableContainer
-       
+
       >
         <Table stickyHeader>
           <TableHead>
@@ -364,8 +423,8 @@ const ProductManager = () => {
                 <TableRow key={product.Id}>
                   <TableCell align="center">{index + 1}</TableCell>
                   <TableCell align="center">{product.Name}</TableCell>
-                  <TableCell align="center">{product.Price.toLocaleString()} VND</TableCell>
-                  <TableCell align="center">{product.OriginalPrice.toLocaleString()} VND</TableCell>
+                  <TableCell align="center">{product.Price.toLocaleString()}đ</TableCell>
+                  <TableCell align="center">{product.OriginalPrice.toLocaleString()}đ</TableCell>
                   <TableCell align="justify">{product.Description || "Không có mô tả"}</TableCell>
                   <TableCell align="center">{product.BrandName || "Không có thương hiệu"}</TableCell>
                   <TableCell align="center">
@@ -377,7 +436,7 @@ const ProductManager = () => {
 
 
 
-                 
+
 
                   <TableCell align="center">
                     <img src={product.ImageUrl} alt={product.Name || "Hình ảnh sản phẩm"} style={{ width: "50px", height: "50px" }} />
@@ -428,85 +487,100 @@ const ProductManager = () => {
         aria-describedby="modal-description"
       >
         <Box sx={modalStyle}>
-          <Typography
-            id="modal-title"
-            variant="h6"
-            component="h2"
-            sx={{ marginBottom: 2 }}
-          >
-            {modalType === "add"
-              ? "Thêm sản phẩm"
-              : modalType === "edit"
-                ? "Sửa sản phẩm"
-                : "Xóa sản phẩm"}
+          <Typography id="modal-title" variant="h6" component="h2" sx={{ marginBottom: 2 }}>
+            {modalType === "add" ? "Thêm sản phẩm" : modalType === "edit" ? "Sửa sản phẩm" : "Xóa sản phẩm"}
           </Typography>
-          {modalType === "delete" ? (
-            <Typography id="modal-description" sx={{ mb: 2 }}>
-              Bạn có chắc chắn muốn xóa sản phẩm này không?
-            </Typography>
-          ) : (
-            <>
-              <TextField
-                label="Tên sản phẩm"
-                fullWidth
-                sx={{ mb: 2 }}
-                value={currentProduct.Name}
-                onChange={(e) =>
-                  setCurrentProduct({
-                    ...currentProduct,
-                    Name: e.target.value,
-                  })
-                }
-              />
-              <TextField
-                label="Giá bán"
-                fullWidth
-                sx={{ mb: 2 }}
-                value={currentProduct.Price}
-                onChange={(e) =>
-                  setCurrentProduct({
-                    ...currentProduct,
-                    Price: e.target.value,
-                  })
-                }
-              />
-              <TextField
-                label="Giá gốc"
-                fullWidth
-                sx={{ mb: 2 }}
-                value={currentProduct.OriginalPrice}
-                onChange={(e) =>
-                  setCurrentProduct({
-                    ...currentProduct,
-                    OriginalPrice: e.target.value,
-                  })
-                }
-              />
-              <TextField
-                label="Mô tả"
-                fullWidth
-                sx={{ mb: 2 }}
-                value={currentProduct.Description}
-                onChange={(e) =>
-                  setCurrentProduct({
-                    ...currentProduct,
-                    Description: e.target.value,
-                  })
-                }
-              />
-               
 
-               
+          <Box sx={{ overflowY: "auto" }}> {/* This inner box will handle scrolling for form content */}
+            {modalType === "delete" ? (
+              <Typography id="modal-description" sx={{ mb: 2 }}>
+                Bạn có chắc chắn muốn xóa sản phẩm này không?
+              </Typography>
+            ) : (
+              <>
+                <TextField
+                  label="Tên sản phẩm"
+                  fullWidth
+                  sx={{ mb: 2 }}
+                  value={currentProduct.Name}
+                  onChange={(e) => setCurrentProduct({ ...currentProduct, Name: e.target.value })}
+                />
+                <TextField
+                  label="Giá bán"
+                  fullWidth
+                  sx={{ mb: 2 }}
+                  value={currentProduct.Price}
+                  onChange={(e) => setCurrentProduct({ ...currentProduct, Price: e.target.value })}
+                />
+                <TextField
+                  label="Giá gốc"
+                  fullWidth
+                  sx={{ mb: 2 }}
+                  value={currentProduct.OriginalPrice}
+                  onChange={(e) => setCurrentProduct({ ...currentProduct, OriginalPrice: e.target.value })}
+                />
+                <TextField
+                  label="Mô tả"
+                  fullWidth
+                  sx={{ mb: 2 }}
+                  value={currentProduct.Description}
+                  onChange={(e) => setCurrentProduct({ ...currentProduct, Description: e.target.value })}
+                />
 
-              {/* Xem trước ảnh */}
-              {previewImage && (
-                <img src={previewImage} alt="Hình ảnh xem trước" style={{ width: "30%", height: "auto", marginBottom: "10px", borderRadius: "5px" }} />
-              )}
-              <TextField fullWidth type="file" onChange={handleImageChange} style={{ marginBottom: "10px" }} />
-            </>
-          )}
-            
-          <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
+                <div style={{ marginBottom: "16px" }}>
+                  <Typography variant="subtitle1" gutterBottom>Chọn Thương Hiệu:</Typography>
+                  <select
+                    multiple
+                    style={{ width: "100%", padding: "8px", border: "1px solid #ccc", borderRadius: "4px" }}
+                    onChange={(e) => setSelectedBrands([...e.target.selectedOptions].map(opt => parseInt(opt.value)))}
+                  >
+                    {brands.map(brand => (
+                      <option key={brand.Id} value={brand.Id}>{brand.Name}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div style={{ marginBottom: "16px" }}>
+                  <Typography variant="subtitle1" gutterBottom>Chọn Danh Mục:</Typography>
+                  <select
+                    multiple
+                    size={5} // Reduced size to fit better in the modal
+                    style={{
+                      width: "100%",
+                      padding: "8px",
+                      border: "1px solid #ccc",
+                      borderRadius: "4px"
+                    }}
+                    onChange={(e) => {
+                      const selectedValues = [...e.target.selectedOptions].map(opt => {
+                        return parseInt(opt.value);
+                      }).filter(id => !isNaN(id));
+                      console.log("Selected categories:", selectedValues);
+                      setSelectedCategories(selectedValues);
+                    }}
+                  >
+                    {categories && categories.length > 0 ? (
+                      categories.map((category) => (
+                        <option key={category.Id} value={category.Id}>
+                          {category.Name}
+                        </option>
+                      ))
+                    ) : (
+                      <option value="">Không có danh mục</option>
+                    )}
+                  </select>
+                </div>
+
+                <div style={{ marginBottom: "16px" }}>
+                  <Typography variant="subtitle1" gutterBottom>Hình ảnh sản phẩm:</Typography>
+                  <input type="file" onChange={handleImageChange} />
+                  {previewImage && <img src={previewImage} alt="Preview" style={{ width: '100%', marginTop: '10px' }} />}
+                </div>
+              </>
+            )}
+          </Box>
+
+          <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2, mt: 2, pt: 2, borderTop: "1px solid #eee" }}>
             <Button
               variant="contained"
               color="primary"
@@ -520,11 +594,7 @@ const ProductManager = () => {
             >
               {modalType === "delete" ? "Xóa" : "Lưu"}
             </Button>
-            <Button
-              variant="outlined"
-              color="warning"
-              onClick={() => setModalVisible(false)}
-            >
+            <Button variant="outlined" color="warning" onClick={() => setModalVisible(false)}>
               Hủy
             </Button>
           </Box>

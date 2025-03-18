@@ -48,7 +48,7 @@ body {
 /* Giá sản phẩm */
 .custom-product-price {
   font-size: 24px;
-  color: #12853e;
+  color: #ef4a8f;
   font-weight: bold;
   margin: 0;
   /* Loại bỏ margin để các phần tử căn chỉnh đều */
@@ -65,7 +65,7 @@ body {
 
 /* Tag giảm giá */
 .discount-tag-custom {
-  background-color: #94c83d;
+  background-color: #fe60a2;
   /* Màu nền xanh */
   height: 20px;
   width: 33px;
@@ -96,7 +96,7 @@ body {
   width: 0px;
   position: absolute;
   border-width: 10px;
-  border-right-color: #94c83d;
+  border-right-color: #fe60a2;
 }
 .introduce {
   font-size: 24px;
@@ -184,19 +184,19 @@ body {
 }
 
 .custom-add-to-cart-button {
-  background-color: #084616;
+  background-color: #e82576;
 }
 
 .custom-buy-now-button {
-  background-color: #06c58c;
+  background-color: #f475aa;
 }
 
 .custom-add-to-cart-button:hover {
-  background-color: #0f8629;
+  background-color: #ef5494;
 }
 
 .custom-buy-now-button:hover {
-  background-color: #109069;
+  background-color: #f487b4;
 }
 .buttons-container {
   display: flex;

@@ -11,26 +11,36 @@ const BrandProducts = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate(); // Điều hướng
 
-  useEffect(() => {
-    const fetchBrandProducts = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(`${API_BASE_URL}/thuong-hieu/${brandId}`);
-        const data = response.data;
-        setBrandInfo({
-          Name: data.Name,
-          LogoUrl: data.LogoUrl ? `https://api.glamour.io.vn${data.LogoUrl}` : null, // Thêm domain nếu cần
-          Description: data.Description,
-        });
-        setProducts(data.Products.$values || []);
-      } catch (error) {
-        console.error("Lỗi khi tải sản phẩm theo thương hiệu:", error);
-        setError("Không thể tải sản phẩm. Vui lòng thử lại sau.");
-      } finally {
-        setLoading(false);
-      }
-    };
+    useEffect(() => {
+      const fetchBrandProducts = async () => {
+        setLoading(true);
+        try {
+          const response = await axios.get(`${API_BASE_URL}/thuong-hieu/${brandId}`);
+          const data = response.data;
 
+          // Set brand information
+          setBrandInfo({
+            Name: data.Name,
+            LogoUrl: data.LogoUrl ? `https://localhost:5001${data.LogoUrl}` : null, // Add domain if needed
+            Description: data.Description,
+          });
+
+          // Clean the product data, handling image URLs
+          const cleanedProducts = data.Products.$values.map((product) => ({
+            ...product,
+            ImageUrl: product.ImageUrl
+              ? `https://localhost:5001/${product.ImageUrl}` // Append base URL to image path
+              : "default-image.jpg", // Provide default image if not available
+          }));
+
+          setProducts(cleanedProducts); // Set cleaned products
+        } catch (error) {
+          console.error("Lỗi khi tải sản phẩm theo thương hiệu:", error);
+          setError("Không thể tải sản phẩm. Vui lòng thử lại sau.");
+        } finally {
+          setLoading(false);
+        }
+      };
     fetchBrandProducts();
   }, [brandId]);
 
@@ -65,7 +75,7 @@ const BrandProducts = () => {
   return (
     <div className="brand-product-container">
       <div className="brand-product-header-banner">
-        <img src="http://localhost:5173/imgs/Icons/hinh5.png" alt="Banner" />
+        <img src="http://localhost:5173/imgs/banner5.png" alt="Banner" />
       </div>
       <div className="brand-product-header">
         {brandInfo.LogoUrl ? (

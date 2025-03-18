@@ -50,8 +50,8 @@ const ForgotPassword = () => {
   return (
     <div className="forgot-password-wrapper">
       <div className="forgot-password-form">
-      <div className="logo">
-              <img src="/imgs/Icons/logo1.png" alt="Glamour Cosmic Logo" />
+      <div className="logo1">
+              <img src="/imgs/logo1.png" alt="Glamour Cosmic Logo" />
             </div>
         <h2>Quên Mật Khẩu</h2>
         <p>Vui lòng nhập địa chỉ email của bạn để nhận mã OTP khôi phục mật khẩu.</p>
