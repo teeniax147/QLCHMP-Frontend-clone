@@ -13,7 +13,7 @@ import {
   Button,
   Tabs,
   Tab,
- 
+
 } from "@mui/material";
 import { API_BASE_URL } from '../config'
 import "./OrderList.css";
@@ -25,7 +25,7 @@ const OrderList = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
 
@@ -89,41 +89,41 @@ const OrderList = () => {
     fetchOrders();
   }, []);
 
-const cancelOrder = async (orderId, orderStatus) => {
+  const cancelOrder = async (orderId, orderStatus) => {
     if (!window.confirm('Bạn có muốn hủy đơn hàng không?')) {
-        return;
+      return;
     }
 
     if (orderStatus !== "Chờ Xác Nhận") {
-        alert("Chỉ có thể hủy các đơn hàng đang ở trạng thái Chờ Xác Nhận.");
-        return;
+      alert("Chỉ có thể hủy các đơn hàng đang ở trạng thái Chờ Xác Nhận.");
+      return;
     }
 
     try {
-        const response = await axios.put(
-            `${API_BASE_URL}/Orders/${orderId}/cancel`,
-            {},
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            }
-        );
-        alert(response.data);
+      const response = await axios.put(
+        `${API_BASE_URL}/Orders/${orderId}/cancel`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      alert(response.data);
 
-        // Cập nhật danh sách đơn hàng ngay lập tức
-        setOrders((prevOrders) =>
-            prevOrders.map((order) =>
-                order.Id === orderId ? { ...order, Status: "Đã Hủy" } : order
-            )
-        );
+      // Cập nhật danh sách đơn hàng ngay lập tức
+      setOrders((prevOrders) =>
+        prevOrders.map((order) =>
+          order.Id === orderId ? { ...order, Status: "Đã Hủy" } : order
+        )
+      );
     } catch (err) {
-        console.error("Error canceling order:", err.response?.data || err.message);
-        alert(err.response?.data || "Có lỗi xảy ra khi hủy đơn hàng.");
+      console.error("Error canceling order:", err.response?.data || err.message);
+      alert(err.response?.data || "Có lỗi xảy ra khi hủy đơn hàng.");
     }
-};
+  };
 
-  
+
 
   // **Gửi đánh giá sản phẩm**
   const submitFeedback = async () => {
@@ -251,11 +251,11 @@ const cancelOrder = async (orderId, orderStatus) => {
         </TableContainer>
       )}
 
-      
 
-      
 
-     
+
+
+
     </div>
   );
 };

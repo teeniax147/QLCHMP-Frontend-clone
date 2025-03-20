@@ -135,39 +135,50 @@ const AllProductsList = () => {
     setPage(newPage);
   };
 
-const applyFilters = () => {
-  setLoading(true);
+  const applyFilters = () => {
+    setLoading(true);
 
-  // Chỉ gửi các tham số hợp lệ, bỏ qua giá trị null hoặc undefined
-  const validParams = {
-    pageNumber: page,
-    pageSize: pageSize,
-    ...(filters.minPrice && { minPrice: filters.minPrice }),
-    ...(filters.maxPrice && { maxPrice: filters.maxPrice }),
-    ...(filters.brandId && { brandId: filters.brandId }),
-    ...(filters.isOnSale !== null && { isOnSale: filters.isOnSale }),
-    ...(sortOrder && { sortByPrice: sortOrder }),
+    // Chỉ gửi các tham số hợp lệ, bỏ qua giá trị null hoặc undefined
+    const validParams = {
+      pageNumber: page,
+      pageSize: pageSize,
+      ...(filters.minPrice && { minPrice: filters.minPrice }),
+      ...(filters.maxPrice && { maxPrice: filters.maxPrice }),
+      ...(filters.brandId && { brandId: filters.brandId }),
+      ...(filters.isOnSale !== null && { isOnSale: filters.isOnSale }),
+      ...(sortOrder && { sortByPrice: sortOrder }),
+    };
+
+    axios
+      .get(`${API_BASE_URL}/Products/loc`, { params: validParams })
+      .then((response) => {
+        const data = response.data.DanhSachSanPham?.$values || [];
+        // Loại bỏ sản phẩm trùng lặp
+        const uniqueProducts = Array.from(new Map(data.map(item => [item.Id, item])).values());
+
+        // Clean and handle the product image URL
+        const cleanedProducts = uniqueProducts.map((product) => ({
+          ...product,
+          ImageUrl: product.ImageUrl
+            ? `https://localhost:5001/${product.ImageUrl}`
+            : "default-image.jpg", // Provide default image if not available
+        }));
+
+        console.log("Cleaned Products:", cleanedProducts); // Log to see the updated products
+
+        setProducts(cleanedProducts); // Cập nhật danh sách sản phẩm
+        setNoProductsFound(cleanedProducts.length === 0); // Cập nhật trạng thái không có sản phẩm
+        setTotalPages(Math.ceil(response.data.TongSoSanPham / pageSize)); // Cập nhật số trang
+      })
+      .catch((error) => {
+        console.error("Lỗi khi gọi API:", error);
+        setError("Lỗi từ server: " + error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
-  axios
-    .get(`${API_BASE_URL}/Products/loc`, { params: validParams })
-    .then((response) => {
-      const data = response.data.DanhSachSanPham?.$values || [];
-      // Loại bỏ sản phẩm trùng lặp
-      const uniqueProducts = Array.from(new Map(data.map(item => [item.Id, item])).values());
-
-      setProducts(uniqueProducts); // Cập nhật danh sách sản phẩm
-      setNoProductsFound(uniqueProducts.length === 0); // Cập nhật trạng thái không có sản phẩm
-      setTotalPages(Math.ceil(response.data.TongSoSanPham / pageSize)); // Cập nhật số trang
-    })
-    .catch((error) => {
-      console.error("Lỗi khi gọi API:", error);
-      setError("Lỗi từ server: " + error.message);
-    })
-    .finally(() => {
-      setLoading(false);
-    });
-};
 
   const handleAddToFavorites = async (productId) => {
     const token = localStorage.getItem("token"); // Lấy token từ localStorage
