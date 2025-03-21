@@ -5,6 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../config'
 
 const CartPreviewPage = () => {
+  // Helper function to format discount rate properly
+  const formatDiscountRate = (rate) => {
+    if (rate === null || rate === undefined) return 0;
+    // Check if the rate is already in percentage (0-100) or in decimal (0-1)
+    return rate > 1 ? rate : (rate * 100).toFixed(0);
+  };
   const [previewData, setPreviewData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,17 +19,19 @@ const CartPreviewPage = () => {
   const [shippingCompanies, setShippingCompanies] = useState([]);
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [userAddress, setUserAddress] = useState('');
+  const [email, setEmail] = useState('');
   const [couponCode, setCouponCode] = useState('');
   const [selectedShippingCompany, setSelectedShippingCompany] = useState('');
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
-  const [membershipLevel, setMembershipLevel] = useState(null);
+  const [membershipInfo, setMembershipInfo] = useState(null);
 
   useEffect(() => {
     fetchInitialData();
     fetchUserInfo();
+    fetchMembershipInfo();
   }, []);
 
   const fetchInitialData = async () => {
@@ -72,15 +80,31 @@ const CartPreviewPage = () => {
         setFirstName(response.data.FirstName || '');
         setLastName(response.data.LastName || '');
         setPhone(response.data.PhoneNumber || '');
-
-        // Lấy thông tin thứ hạng thành viên
-        if (response.data.MembershipLevel) {
-          setMembershipLevel(response.data.MembershipLevel);
-        }
+        setEmail(response.data.Email || '');
       }
     } catch (err) {
       console.error("Fetch User Info Error:", err.response ? err.response.data : err.message);
       setError("Không thể tải thông tin người dùng.");
+    }
+  };
+
+  const fetchMembershipInfo = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return;
+    }
+
+    try {
+      const response = await axios.get(`${API_BASE_URL}/MembershipLevels/CustomerMembershipInfo`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      if (response.data) {
+        console.log("Membership info received:", response.data); // Debug log
+        setMembershipInfo(response.data);
+      }
+    } catch (err) {
+      console.error("Fetch Membership Info Error:", err.response ? err.response.data : err.message);
     }
   };
 
@@ -144,7 +168,7 @@ const CartPreviewPage = () => {
           PaymentMethodId: parseInt(selectedPaymentMethod) || null,
           ShippingAddress: userAddress,
           PhoneNumber: phone,
-          MembershipLevelId: membershipLevel ? membershipLevel.Id : null // Thêm thông tin thứ hạng thành viên  
+          Email: email
         },
         {
           headers: {
@@ -254,6 +278,14 @@ const CartPreviewPage = () => {
           onBlur={handleAddressBlur}
         />
 
+        <label>Email:</label>
+        <input
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          disabled
+        />
+
         <label>Mã giảm giá:</label>
         <input
           type="text"
@@ -300,20 +332,17 @@ const CartPreviewPage = () => {
         <button onClick={fetchPreviewOrder} className="preview-button">XEM TRƯỚC ĐƠN HÀNG</button>
       </div>
 
-      {membershipLevel && (
-        <div className="membership-info">
-          <p>Thứ hạng thành viên: {membershipLevel.Name}</p>
-          <p>Giảm giá: {membershipLevel.DiscountRate}%</p>
-        </div>
-      )}
+
 
       {previewData && (
         <div className="preview-details">
-      
-          <p>Tổng giá trị đơn hàng: {previewData.OriginalTotalAmount.toLocaleString()} VND</p>
-          <p>Giảm giá: {previewData.DiscountAmount.toLocaleString()} VND</p>
-          <p>Tổng tiền ship: {previewData.ShippingCost.toLocaleString()} VND</p>
-          <p>Tổng (Đã bao gồm VAT): {previewData.TotalAmount.toLocaleString()} VND</p>
+
+          <p>Tổng giá trị đơn hàng: {previewData.OriginalTotalAmount.toLocaleString()}đ</p>
+          <p>Giảm giá: {previewData.DiscountAmount.toLocaleString()}đ</p>
+          <p>Tổng tiền ship: {previewData.ShippingCost.toLocaleString()}đ</p>
+          <p>Tổng (Đã bao gồm VAT): {previewData.TotalAmount.toLocaleString()}
+
+          </p>
         </div>
       )}
 

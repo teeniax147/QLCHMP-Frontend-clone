@@ -8,7 +8,13 @@ const OrderSuccessPage = () => {
   return (
     <div className="order-success-container">
       <h2 className="order-success-message">ĐẶT HÀNG THÀNH CÔNG</h2>
-      <h3 className="order-message">Cùng Glamour Cosmic bảo vệ quyền lợi của bạn - KHÔNG CHUYỂN TIỀN TRƯỚC cho Shipper khi đơn hàng chưa được giao tới với bất kỳ lý do gì</h3>
+      <h3 className="order-message">
+        <img
+          src="https://c.tenor.com/fD3pE4xVh8oAAAAj/love-heart.gif"
+          alt="Order Confirmation GIF"
+        />
+      </h3>
+
       <button onClick={() => navigate('/')} className="back-to-home-button">Quay lại Trang chủ</button>
     </div>
   );
