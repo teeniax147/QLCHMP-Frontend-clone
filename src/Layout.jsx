@@ -94,7 +94,7 @@ const Layout = () => {
     <>
       <header className="home">
         <div className="header-top">
-         
+
           <span className="store-info">Mua online nhận nhiều ưu đãi hấp dẫn</span>
         </div>
 
@@ -119,8 +119,8 @@ const Layout = () => {
           </form>
 
           <div className="header-icons">
-         
-            <a href="https://info.glamour.io.vn/" target="_blank" rel="noopener noreferrer" className="link-blog">
+
+            <a href="https://info.cutexiu.teeniax.io.vn/" target="_blank" rel="noopener noreferrer" className="link-blog">
               <span className="icon">
                 <img src="/imgs/Icons/trungtamhotro.png" alt="Support Icon" />
                 Trung tâm hỗ trợ
@@ -190,7 +190,7 @@ const Layout = () => {
             <li>
               <CategoryDropdown title="BỘ SƯU TẬP" parentId={2} />
             </li>
-          
+
             <li><BrandDropdown title="THƯƠNG HIỆU" /></li>
 
             <li><Link to="/coupons">MÃ ƯU ĐÃI</Link></li>
@@ -208,8 +208,8 @@ const Layout = () => {
       </a>
       <footer className="footer">
         <div className="newsletter-section">
-        
-          
+
+
         </div>
 
         <div className="footer-middle">

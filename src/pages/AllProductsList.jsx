@@ -209,7 +209,7 @@ const AllProductsList = () => {
 
       <div className="product-header-banner-all">
         <img
-          src="imgs/Icons/hinh5.png"
+          src="imgs/banner5.png"
           alt="Banner"
         />
       </div>

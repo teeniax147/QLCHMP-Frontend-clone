@@ -86,7 +86,7 @@ const ProductList = () => {
     <div className="product-container-custom">
       <div className="product-header-banner-custom">
         <img
-          src="http://localhost:5173/imgs/Icons/hinh5.png"
+          src="http://localhost:5173/imgs/banner5.png"
           alt="Banner"
         />
       </div>
