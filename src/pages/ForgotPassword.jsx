@@ -36,7 +36,7 @@ const ForgotPassword = () => {
       const response = await axios.post(`${API_BASE_URL}/Users/forgot-password`, { email });
       console.log("Response:", response.data);
       alert("Mã OTP đã được gửi đến email của bạn. Vui lòng kiểm tra email để xác nhận.");
-      
+
       // Chuyển đến trang xác thực OTP với mục đích là "forgot-password"
       navigate('/otp', { state: { email, otpPurpose: 'forgot-password' } });
     } catch (error) {
@@ -50,9 +50,9 @@ const ForgotPassword = () => {
   return (
     <div className="forgot-password-wrapper">
       <div className="forgot-password-form">
-      <div className="logo1">
-              <img src="/imgs/logo1.png" alt="Glamour Cosmic Logo" />
-            </div>
+        <div className="logo">
+          <img src="/imgs/logo1.png" alt="Glamour Cosmic Logo" />
+        </div>
         <h2>Quên Mật Khẩu</h2>
         <p>Vui lòng nhập địa chỉ email của bạn để nhận mã OTP khôi phục mật khẩu.</p>
         <form onSubmit={handleSubmit}>

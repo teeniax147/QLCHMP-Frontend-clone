@@ -185,134 +185,131 @@ const UserProfile = () => {
 
   return (
     <div className="user-profile-container">
-      <h2>TÀI KHOẢN</h2>
-      {error && <p className="user-error-message">{error}</p>}
+      <div className="user-account-section">
+        <h2>TÀI KHOẢN</h2>
+        {error && <p className="user-error-message">{error}</p>}
 
-      {showSuccess && (
-        <div className="custom-success-toast">
-          Cập nhật thông tin thành công.
+        {showSuccess && (
+          <div className="custom-success-toast">
+            Cập nhật thông tin thành công.
+          </div>
+        )}
+
+        <div className="user-input-section">
+          <div className="user-row">
+            <div>
+              <label>Họ:</label>
+              <input
+                type="text"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div>
+              <label>Tên:</label>
+              <input
+                type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="user-row">
+            <div>
+              <label>Email:</label>
+              <input type="text" name="email" value={formData.email} disabled />
+            </div>
+
+            <div>
+              <label>Số điện thoại:</label>
+              <input
+                type="text"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="user-row">
+            <div>
+              <label>Tên người dùng:</label>
+              <input
+                type="text"
+                name="userName"
+                value={formData.userName}
+                disabled
+              />
+            </div>
+
+            <div>
+              <label>Địa chỉ:</label>
+              <input
+                type="text"
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
         </div>
-      )}
 
-      <div className="user-input-section">
-        <div className="user-row">
-          <div>
-            <label>Họ:</label>
-            <input
-              type="text"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div>
-            <label>Tên:</label>
-            <input
-              type="text"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-
-        <div className="user-row">
-          <div>
-            <label>Email:</label>
-            <input type="text" name="email" value={formData.email} disabled />
-          </div>
-
-          <div>
-            <label>Số điện thoại:</label>
-            <input
-              type="text"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-
-        <div className="user-row">
-          <div>
-            <label>Tên người dùng:</label>
-            <input
-              type="text"
-              name="userName"
-              value={formData.userName}
-              disabled
-            />
-          </div>
-
-          <div>
-            <label>Địa chỉ:</label>
-            <input
-              type="text"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
+        <button className="user-save-button" onClick={updateUserProfile}>
+          Lưu
+        </button>
       </div>
 
-      <button className="user-save-button" onClick={updateUserProfile}>
-        Lưu
-      </button>
-
-      <div className="membership-info-container">
-        <h2>THỨ HẠNG THÀNH VIÊN</h2>
-        {loading ? (
-          <div className="membership-loading">Đang tải thông tin thành viên...</div>
-        ) : membershipInfo ? (
-          <div className="membership-details">
-
-
-            <div className="membership-row">
-              <div className="membership-label">Cấp độ hiện tại: {membershipInfo.CurrentLevelName || "Thành Viên"}</div>
-
-            </div>
-
-            <div className="membership-row">
-              <div className="membership-label">Tổng chi tiêu: {formatCurrency(membershipInfo.TotalSpending)}</div>
-            </div>
-
-            <div className="membership-row">
-              <div className="membership-label">Tỷ lệ chiết khấu hiện tại: {formatPercentage(membershipInfo.CurrentDiscountRate)}</div>
-            </div>
-
-            {hasNextLevel() ? (
-              <>
-                <div className="membership-divider"></div>
-                <div className="next-level-section">
-                  <div className="membership-row">
-                    <div className="membership-label">Cấp độ tiếp theo: {membershipInfo.NextLevelName}</div>
-
-                  </div>
-
-                  <div className="membership-row">
-                    <div className="membership-label">Số tiền cần chi tiêu để lên cấp: {formatCurrency(membershipInfo.AmountToNextLevel)}</div>
-
-                  </div>
-
-                  <div className="membership-row">
-                    <div className="membership-label">Tỷ lệ chiết khấu cấp tiếp theo: {formatPercentage(membershipInfo.NextLevelDiscountRate)}</div>
-
-                  </div>
-                </div>
-
-              </>
-            ) : (
+      <div className="user-membership-section">
+        <div className="membership-info-container">
+          <h2>THỨ HẠNG THÀNH VIÊN</h2>
+          {loading ? (
+            <div className="membership-loading">Đang tải thông tin thành viên...</div>
+          ) : membershipInfo ? (
+            <div className="membership-details">
               <div className="membership-row">
-                <div className="membership-label">Trạng thái: Bạn đã đạt cấp thành viên cao nhất</div>
-
+                <div className="membership-label">Cấp độ hiện tại: {membershipInfo.CurrentLevelName || "Thành Viên"}</div>
               </div>
-            )}
-          </div>
-        ) : (
-          <div className="membership-error">Không thể tải thông tin thành viên</div>
-        )}
+
+              <div className="membership-row">
+                <div className="membership-label">Tổng chi tiêu: {formatCurrency(membershipInfo.TotalSpending)}</div>
+              </div>
+
+              <div className="membership-row">
+                <div className="membership-label">Tỷ lệ chiết khấu hiện tại: {formatPercentage(membershipInfo.CurrentDiscountRate)}</div>
+              </div>
+
+              {hasNextLevel() ? (
+                <>
+                  <div className="membership-divider"></div>
+                  <h2>THỨ HẠNG TIẾP THEO</h2>
+                  <div className="next-level-section">
+                    <div className="membership-row">
+                      <div className="membership-label">Cấp độ tiếp theo: {membershipInfo.NextLevelName}</div>
+                    </div>
+
+                    <div className="membership-row">
+                      <div className="membership-label">Số tiền cần chi tiêu để lên cấp: {formatCurrency(membershipInfo.AmountToNextLevel)}</div>
+                    </div>
+
+                    <div className="membership-row">
+                      <div className="membership-label">Tỷ lệ chiết khấu cấp tiếp theo: {formatPercentage(membershipInfo.NextLevelDiscountRate)}</div>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div className="membership-row">
+                  <div className="membership-label">Trạng thái: Bạn đã đạt cấp thành viên cao nhất</div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="membership-error">Không thể tải thông tin thành viên</div>
+          )}
+        </div>
       </div>
     </div>
   );

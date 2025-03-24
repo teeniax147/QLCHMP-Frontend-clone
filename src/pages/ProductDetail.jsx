@@ -14,6 +14,7 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [addingToCart, setAddingToCart] = useState(false);
 
   useEffect(() => {
     const fetchProductDetail = async () => {
@@ -27,7 +28,7 @@ const ProductDetail = () => {
         const cleanedProduct = {
           ...response.data,
           ImageUrl: response.data.ImageUrl
-            ? `https://localhost:5001/${response.data.ImageUrl}` // Add base URL for image path
+            ? `https://api.cutexiu.teeniax.io.vn/${response.data.ImageUrl}` // Add base URL for image path
             : "default-image.jpg", // Fallback image if no image URL
         };
 
@@ -44,93 +45,107 @@ const ProductDetail = () => {
   }, [id]);
 
 
-   
-  const handleAddToFavorites = async (productId) => {
-    const token = localStorage.getItem("token"); // Lấy token từ localStorage
-    console.log("Token từ localStorage:", token);
-
-    if (!token) {
-      alert("Bạn cần đăng nhập để thêm sản phẩm vào danh sách yêu thích.");
-      return;
-    }
-
-    try {
-      const response = await axios.post(
-        `${API_BASE_URL}/Favorites/add`,
-        { ProductId: productId },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      alert(response.data); // Hiển thị thông báo thành công từ server
-    } catch (error) {
-      console.error(
-        "Lỗi khi thêm sản phẩm yêu thích:",
-        error.response?.data || error.message
-      );
-      alert(error.response?.data || "Không thể thêm sản phẩm vào yêu thích.");
-    }
-  };
 
   const handleAddToCart = async (redirectToCart = false) => {
+    if (addingToCart) return; // Ngăn chặn gửi nhiều yêu cầu liên tiếp
+
+    setAddingToCart(true);
+
     try {
       const token = localStorage.getItem("token");
-      console.log("Token hiện tại:", token); // Kiểm tra token
-
-      if (!token) {
-        alert("Vui lòng đăng nhập trước khi thêm vào giỏ hàng.");
-        navigate("/login");
-        return;
-      }
-
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      };
 
       const requestData = {
         ProductId: parseInt(id, 10),
         Quantity: quantity,
       };
 
-      console.log("Dữ liệu gửi đi:", requestData);
+      console.log('Đang thêm vào giỏ hàng:', requestData);
 
-      const response = await axios.post(
-        `${API_BASE_URL}/Carts/add`,
-        requestData,
-        config
-      );
+      let response;
 
-   
+      if (!token) {
+        // Khách vãng lai - sử dụng session
+        response = await axios.post(
+          `${API_BASE_URL}/Carts/add-guest`,
+          requestData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true // Quan trọng: gửi và nhận cookie session
+          }
+        );
 
-      alert(response.data);
+        console.log('Phản hồi từ API giỏ hàng khách:', response.data);
+
+        // Kiểm tra và xử lý dữ liệu giỏ hàng
+        if (response.data && response.data.sessionData) {
+          try {
+            // Thử phân tích chuỗi JSON từ sessionData
+            const cartData = JSON.parse(response.data.sessionData);
+            if (Array.isArray(cartData)) {
+              // Tính tổng số lượng sản phẩm
+              const totalItems = cartData.reduce((sum, item) => sum + item.Quantity, 0);
+              localStorage.setItem('guestCartCount', totalItems.toString());
+            }
+          } catch (parseError) {
+            console.error("Lỗi phân tích dữ liệu giỏ hàng:", parseError);
+          }
+        }
+      } else {
+        // Người dùng đã đăng nhập - sử dụng token
+        response = await axios.post(
+          `${API_BASE_URL}/Carts/add`,
+          requestData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            withCredentials: true
+          }
+        );
+
+        console.log('Phản hồi từ API giỏ hàng người dùng:', response.data);
+      }
+
+      // Xử lý phản hồi từ server
+      let alertMessage;
+
+      if (typeof response.data === 'string') {
+        alertMessage = response.data;
+      } else if (response.data && response.data.message) {
+        alertMessage = response.data.message;
+      } else {
+        alertMessage = "Đã thêm sản phẩm vào giỏ hàng";
+      }
+
+      alert(alertMessage);
+
+      // Cập nhật số lượng sản phẩm trong giỏ hàng trên UI
+      getItemCount(dispatch);
+
       // Điều hướng đến giỏ hàng nếu người dùng chọn "Mua Ngay"
       if (redirectToCart) {
         navigate("/CartPage");
       }
-
-      getItemCount(dispatch);
     } catch (err) {
       console.error("Chi tiết lỗi:", err);
+      let errorMessage = "Đã xảy ra lỗi khi thêm sản phẩm vào giỏ hàng";
+
       if (err.response) {
-        console.error("Lỗi API:", err.response);
-        alert(
-          `Lỗi từ server: ${
-            err.response.data?.message || "Không thể xử lý yêu cầu"
-          }`
-        );
+        errorMessage = typeof err.response.data === 'string'
+          ? err.response.data
+          : (err.response.data?.message || "Không thể xử lý yêu cầu");
       } else if (err.request) {
-        console.error("Không có phản hồi từ server:", err.request);
-        alert("Không có phản hồi từ server. Vui lòng kiểm tra kết nối.");
+        errorMessage = "Không có phản hồi từ server. Vui lòng kiểm tra kết nối.";
       } else {
-        console.error("Lỗi khi thực hiện yêu cầu:", err.message);
-        alert(`Lỗi: ${err.message}`);
+        errorMessage = err.message;
       }
+
+      alert(`Lỗi: ${errorMessage}`);
+    } finally {
+      setAddingToCart(false);
     }
   };
 
@@ -138,28 +153,38 @@ const ProductDetail = () => {
     setQuantity((prev) => Math.max(1, prev + change));
   };
 
-  if (loading) return <p>Đang tải chi tiết sản phẩm...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <div className="loading-container"><p>Đang tải chi tiết sản phẩm...</p></div>;
+  if (error) return <div className="error-container"><p>{error}</p></div>;
+  if (!product) return <div className="error-container"><p>Không tìm thấy sản phẩm.</p></div>;
 
   return (
     <div className="product-detail-container">
       <img
-        src={product?.ImageUrl}
-        alt={product?.Name}
+        src={product.ImageUrl || "https://via.placeholder.com/500"}
+        alt={product.Name}
         className="product-detail-image"
       />
       <div className="product-details">
-        <h1 className="custom-product-title">{product?.Name}</h1>
+        <h1 className="custom-product-title">{product.Name}</h1>
+        <div className="product-rating-stars">
+          {Array.from({ length: 5 }, (_, index) => (
+            <span
+              key={index}
+              className={`product-star ${product.ReviewCount > 0 && index < Math.round(product.AverageRating || 0) ? "filled" : ""
+                }`}
+            >
+              ★
+            </span>
+          ))}
+          <span>({product.ReviewCount || 0})</span>
+        </div>
         <div className="price-and-discount-container-custom">
-        <p className="custom-product-price">
-          {" "}
-          {product?.Price?.toLocaleString()}đ
-        </p>
-       
-          {/* Hiển thị giá gốc và tag giảm giá cùng một dòng */}
+          <p className="custom-product-price">
+            {product.Price?.toLocaleString()}đ
+          </p>
+
           {product.OriginalPrice && product.OriginalPrice > product.Price && (
             <>
-            
               <span className="product-original-price2-custom">{product.OriginalPrice.toLocaleString()}đ</span>
               <div className="discount-tag-custom">-{Math.round(((product.OriginalPrice - product.Price) / product.OriginalPrice) * 100)}%</div>
             </>
@@ -167,15 +192,22 @@ const ProductDetail = () => {
         </div>
         <div className="product-actions">
           <div className="quantity-container">
-            <button onClick={() => handleQuantityChange(-1)}>-</button>
+            <button
+              onClick={() => handleQuantityChange(-1)}
+              disabled={quantity <= 1}
+            >-</button>
             <div className="quantity-display">{quantity}</div>
-            <button onClick={() => handleQuantityChange(1)}>+</button>
+            <button
+              onClick={() => handleQuantityChange(1)}
+              disabled={addingToCart}
+            >+</button>
           </div>
 
           <div className="buttons-container">
             <button
               className="custom-add-to-cart-button"
               onClick={() => handleAddToCart(false)}
+              disabled={addingToCart}
             >
               <img
                 src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=000000"
@@ -188,31 +220,31 @@ const ProductDetail = () => {
                   filter: "invert(1)",
                 }}
               />
-              Thêm Vào Giỏ Hàng
+              {addingToCart ? "Đang thêm..." : "Thêm Vào Giỏ Hàng"}
             </button>
 
             <button
               className="custom-buy-now-button"
               onClick={() => handleAddToCart(true)}
+              disabled={addingToCart}
             >
-              <span>Mua Ngay</span>
+              <span>{addingToCart ? "Đang xử lý..." : "Mua Ngay"}</span>
             </button>
 
-            {/* Nút yêu thích */}
             <div
               className="product-favorite-icon1"
               onClick={(e) => {
-                e.stopPropagation(); // Ngăn sự kiện click vào thẻ cha
-                handleAddToFavorites(product.Id); // Gọi API thêm vào danh sách yêu thích
+                e.stopPropagation();
+                handleAddToFavorites(product.Id);
               }}
             >
               ♡
             </div>
           </div>
         </div>
-        <p className="introduce">Giới thiệu:</p>
 
-        <p className="custom-product-description">{product?.Description}</p>
+        <p className="introduce">Giới thiệu:</p>
+        <p className="custom-product-description">{product.Description || "Không có mô tả chi tiết."}</p>
       </div>
     </div>
   );

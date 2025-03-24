@@ -21,7 +21,7 @@ const BrandProducts = () => {
           // Set brand information
           setBrandInfo({
             Name: data.Name,
-            LogoUrl: data.LogoUrl ? `https://localhost:5001${data.LogoUrl}` : null, // Add domain if needed
+            LogoUrl: data.LogoUrl ? `https://api.cutexiu.teeniax.io.vn/${data.LogoUrl}` : null, // Add domain if needed
             Description: data.Description,
           });
 
@@ -29,7 +29,7 @@ const BrandProducts = () => {
           const cleanedProducts = data.Products.$values.map((product) => ({
             ...product,
             ImageUrl: product.ImageUrl
-              ? `https://localhost:5001/${product.ImageUrl}` // Append base URL to image path
+              ? `https://api.cutexiu.teeniax.io.vn/${product.ImageUrl}` // Append base URL to image path
               : "default-image.jpg", // Provide default image if not available
           }));
 

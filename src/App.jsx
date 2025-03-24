@@ -9,7 +9,7 @@ import ProductDetail from "./pages/ProductDetail";
 import OtpVerification from './pages/OtpVerification';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
-import BeautyBlog from './pages/BeautyBlog';
+
 import ProductList from './pages/ProductList';
 import AllProductsList from './pages/AllProductsList';
 import BrandProducts from './pages/BrandProducts';
@@ -20,12 +20,12 @@ import FavoritesPage from "./pages/FavoritesPage";
 import CartPreviewPage from './pages/CartPreviewPage';
 import OrderSuccessPage from './pages/OrderSuccessPage';
 import AdminLayout from './AdminLayout';
-import HomeAdmin from './pages/HomeAdmin';
+
 import ProductManager from './pages/ProductManager';
 import CategoryManagement from './pages/CategoryManagement';
 import OrderManager from './pages/OrderManager';
 import OrderList from "./pages/OrderList";
-import AddCategory from './pages/AddCategory';
+
 import BrandManagement from './pages/BrandManagement';
 import CouponsManagement from "./pages/CouponsManagement";
 import InventoryManagement from "./pages/InventoryManagement";
@@ -37,6 +37,7 @@ import { Provider } from "react-redux"
 import { store } from "./redux/store";
 import OrderDetails from "./pages/OrderDetails";
 import MembershipLevelManager from './pages/MembershipLevelManager';
+import VnpayCallback from './pages/VnpayCallback';
 function App() {
 
 
@@ -74,7 +75,7 @@ function App() {
                         <Route path="user-profile" element={<UserProfile />} />
                         <Route path="coupons" element={<CouponList />} />
                         <Route path="/product-detail/:id" element={<ProductDetail />} />
-                        <Route path="/beauty-blog" element={<BeautyBlog />} />
+                        <Route path="/vnpay-callback" element={<VnpayCallback />} />
                         <Route path="products/:categoryId" element={<ProductList />} />
                         <Route path="all-products" element={<AllProductsList />} />
                         <Route path="/brand/:brandId" element={<BrandProducts />} />
@@ -98,7 +99,7 @@ function App() {
                         <Route path="orders" element={<OrderManager />} />
                         <Route path="products" element={<ProductManager />} />
                         <Route path="categories" element={<CategoryManagement />} />
-                        <Route path="add-category" element={<AddCategory />} />
+                       
                         <Route path="brands" element={<BrandManagement />} />
                         <Route path="coupons" element={<CouponsManagement />} />
                         <Route path="inventory" element={<InventoryManagement />} />

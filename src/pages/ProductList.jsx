@@ -32,7 +32,7 @@ const ProductList = () => {
         const cleanedProducts = productsList.map((product) => ({
           ...product,
           ImageUrl: product.ImageUrl
-            ? `https://localhost:5001/${product.ImageUrl}` // Append base URL to image path
+            ? `https://api.cutexiu.teeniax.io.vn/${product.ImageUrl}` // Append base URL to image path
             : "default-image.jpg", // Fallback image if no image URL
         }));
 
@@ -86,7 +86,7 @@ const ProductList = () => {
     <div className="product-container-custom">
       <div className="product-header-banner-custom">
         <img
-          src="http://localhost:5173/imgs/banner5.png"
+          src="http://localhost:5173/imgs/Icons/hinh5.png"
           alt="Banner"
         />
       </div>
@@ -136,7 +136,7 @@ const ProductList = () => {
                     </>
                   )}
                 </div>
-                
+
 
                 <div className="product-rating-stars">
                   {Array.from({ length: 5 }, (_, index) => (
@@ -151,7 +151,7 @@ const ProductList = () => {
                   <span>({product.ReviewCount || 0})</span>
                 </div>
 
-               
+
 
               </div>
             </div>

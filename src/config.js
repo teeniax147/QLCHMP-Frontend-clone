@@ -1,1 +1,1 @@
-export const API_BASE_URL = "https://localhost:5001/api";
+export const API_BASE_URL = "https://api.cutexiu.teeniax.io.vn/api";

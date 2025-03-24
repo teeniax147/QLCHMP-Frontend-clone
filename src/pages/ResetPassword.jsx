@@ -19,7 +19,7 @@ const ResetPassword = () => {
     return null;
   }
 
- 
+
 
   const validateForm = () => {
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$/;
@@ -67,9 +67,9 @@ const ResetPassword = () => {
   return (
     <div className="reset-password-wrapper">
       <div className="reset-password-form">
-      <div className="logo1">
-              <img src="/imgs/logo1.png" alt="Glamour Cosmic Logo" />
-            </div>
+        <div className="logo">
+          <img src="/imgs/logo1.png" alt="Glamour Cosmic Logo" />
+        </div>
         <h2>Đặt Lại Mật Khẩu</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-group">

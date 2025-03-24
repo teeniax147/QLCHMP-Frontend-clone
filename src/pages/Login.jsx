@@ -8,7 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
   const loginAPI = async (user, pass) => {
     try {
       const res = await axios.post(`${API_BASE_URL}/Users/login`, {
@@ -77,7 +77,7 @@ const Login = () => {
       <div className="login-page">
         <div className="login-container">
           <div className="login-form">
-            <div className="logo1">
+            <div className="logo">
               <img src="/imgs/logo1.png" alt="Glamour Cosmic Logo" />
             </div>
             <h2>ĐĂNG NHẬP</h2>
@@ -112,8 +112,8 @@ const Login = () => {
                 {loading ? 'Đang đăng nhập...' : 'Đăng Nhập'}
               </button>
             </form>
-            <p class="register-text">Chưa có tài khoản? <Link to="/register" class="register-link">Đăng ký ngay</Link></p>
-
+            
+            <p>Chưa có tài khoản? <Link to="/register" className="register-link">Đăng ký ngay</Link></p>
           </div>
         </div>
       </div>

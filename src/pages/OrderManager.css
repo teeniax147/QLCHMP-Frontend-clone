@@ -1,53 +1,60 @@
 .container {
-  padding: 20px; /* Khoảng cách giữa bảng và các thành phần khác */
+    padding: 20px;
+    /* Khoảng cách giữa bảng và các thành phần khác */
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .order-table {
-  width: 100%; /* Bảng chiếm toàn bộ chiều rộng */
-  border-collapse: collapse; /* Gộp các đường viền */
+    width: 100%;
+    /* Bảng chiếm toàn bộ chiều rộng */
+    border-collapse: collapse;
+    /* Gộp các đường viền */
 }
 
 .order-table th,
 .order-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-  text-align: left;
-  word-wrap: break-word; /* Đảm bảo nội dung không tràn */
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    word-wrap: break-word;
+    /* Đảm bảo nội dung không tràn */
 }
 
 .order-table th {
-  background-color: #f4f4f4; /* Màu nền tiêu đề */
-  font-weight: bold;
+    background-color: #f4f4f4;
+    /* Màu nền tiêu đề */
+    font-weight: bold;
 }
 
 .detail-btn {
-  padding: 5px 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
 
 .detail-btn:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
 .error-message {
-  color: red;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 10px;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
 }
 
 /* Thêm khoảng cách giữa các hàng nếu cần */
 .order-table tbody tr {
-  height: auto; /* Đảm bảo hàng tự động mở rộng theo nội dung */
+    height: auto;
+    /* Đảm bảo hàng tự động mở rộng theo nội dung */
 }
+
 .modal {
     position: fixed;
     top: 0;
@@ -59,47 +66,47 @@ h1 {
     align-items: center;
     justify-content: center;
     z-index: 1000;
-  }
-  
-  .modal-content {
+}
+
+.modal-content {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     width: 400px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  }
-  
-  .modal-content h2 {
+}
+
+.modal-content h2 {
     margin-bottom: 20px;
-  }
-  
-  .modal-content label {
+}
+
+.modal-content label {
     display: block;
     margin-bottom: 5px;
-  }
-  
-  .modal-content input {
+}
+
+.modal-content input {
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  .save-btn {
+}
+
+.save-btn {
     padding: 8px 15px;
     background-color: #28a745;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  .save-btn:hover {
+}
+
+.save-btn:hover {
     background-color: #218838;
-  }
-  
-  .cancel-btn {
+}
+
+.cancel-btn {
     padding: 8px 15px;
     background-color: #dc3545;
     color: white;
@@ -107,9 +114,262 @@ h1 {
     border-radius: 4px;
     cursor: pointer;
     margin-left: 10px;
-  }
-  
-  .cancel-btn:hover {
+}
+
+.cancel-btn:hover {
     background-color: #c82333;
-  }
-  
+}
+
+/* Thêm CSS cho OrderManager từ hình ảnh */
+.order-manager-container {
+    padding: 20px;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.status-tabs {
+    margin-bottom: 20px;
+}
+
+.pagination-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.order-table-container {
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.table-header {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.even-row {
+    background-color: #f9f9f9;
+}
+
+.odd-row {
+    background-color: #ffffff;
+}
+
+/* CSS cho các nút hành động trong hình ảnh */
+.action-buttons {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+/* Định dạng cho các trạng thái đơn hàng */
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.status-chờ-xác-nhận {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.status-chờ-lấy-hàng {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+.status-đang-giao-hàng {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.status-đã-giao {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.status-đã-hủy {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Định dạng cho các trạng thái thanh toán */
+.payment-status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.chưa-thanh-toán {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.đã-thanh-toán {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.đang-xử-lý {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+/* Modal style */
+.status-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cancel-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.order-details-container {
+    margin-bottom: 20px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* === Thêm CSS tối ưu kích thước bảng === */
+
+/* Tối ưu kích thước header và cell để hiển thị vừa màn hình */
+.MuiTableCell-root {
+    padding: 5px 6px !important;
+    font-size: 0.75rem !important;
+    /* Giảm cỡ chữ nhỏ hơn nữa */
+}
+
+/* Định vị kích thước cột */
+.MuiTableCell-root:nth-child(1) {
+    width: 40px;
+    /* STT */
+}
+
+.MuiTableCell-root:nth-child(2) {
+    width: 70px;
+    /* Mã đơn */
+}
+
+.MuiTableCell-root:nth-child(3) {
+    width: 100px;
+    /* Ngày đặt */
+}
+
+.MuiTableCell-root:nth-child(4),
+.MuiTableCell-root:nth-child(5) {
+    width: 100px;
+    /* Trạng thái và TT thanh toán */
+}
+
+.MuiTableCell-root:nth-child(6),
+.MuiTableCell-root:nth-child(7) {
+    width: 110px;
+    /* Khách hàng, Địa chỉ */
+}
+
+.MuiTableCell-root:nth-child(8) {
+    width: 90px;
+    /* SĐT */
+}
+
+/* Cho phép email xuống dòng */
+.MuiTableCell-root:nth-child(9) {
+    width: 110px;
+    white-space: normal !important;
+    word-break: break-word !important;
+    max-width: 110px;
+}
+
+.MuiTableCell-root:nth-child(10) {
+    width: 100px;
+    /* Tổng tiền */
+}
+
+.MuiTableCell-root:nth-child(11) {
+    width: 180px;
+    /* Hành động */
+}
+
+/* Tối ưu nút hành động */
+.action-buttons .MuiButton-root {
+    padding: 3px 6px !important;
+    font-size: 0.7rem !important;
+    min-width: 55px !important;
+}
+
+/* Giảm kích thước tabs */
+.status-tabs .MuiTab-root {
+    min-width: 100px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+}
+
+/* Giảm kích thước nút phân trang */
+.pagination-container .MuiPaginationItem-root {
+    min-width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+}
+
+/* Tối ưu chi tiết đơn hàng trong modal */
+.order-items-section .MuiTableCell-root {
+    padding: 4px 6px !important;
+    font-size: 0.8rem !important;
+}
+
+/* Status badge nhỏ hơn */
+.status-badge,
+.payment-status-badge {
+    padding: 3px 6px;
+    font-size: 0.75rem;
+}

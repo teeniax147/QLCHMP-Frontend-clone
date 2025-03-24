@@ -106,7 +106,7 @@ const OtpVerification = () => {
     <div className="otp-wrapper">
       <div className="otp-page">
         <div className="otp-form">
-          <div className="logo1">
+          <div className="logo">
             <img src="/imgs/logo1.png" alt="Glamour Cosmic Logo" />
           </div>
           <h2>Xác nhận OTP</h2>

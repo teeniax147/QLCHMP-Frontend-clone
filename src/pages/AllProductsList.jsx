@@ -69,7 +69,7 @@ const AllProductsList = () => {
         const cleanedProducts = productsList.map((product) => ({
           ...product,
           ImageUrl: product.ImageUrl
-            ? `https://localhost:5001/${product.ImageUrl}`
+            ? `https://api.cutexiu.teeniax.io.vn/${product.ImageUrl}`
             : "default-image.jpg", // Provide default image if not available
         }));
 
@@ -156,18 +156,8 @@ const AllProductsList = () => {
         // Loại bỏ sản phẩm trùng lặp
         const uniqueProducts = Array.from(new Map(data.map(item => [item.Id, item])).values());
 
-        // Clean and handle the product image URL
-        const cleanedProducts = uniqueProducts.map((product) => ({
-          ...product,
-          ImageUrl: product.ImageUrl
-            ? `https://localhost:5001/${product.ImageUrl}`
-            : "default-image.jpg", // Provide default image if not available
-        }));
-
-        console.log("Cleaned Products:", cleanedProducts); // Log to see the updated products
-
-        setProducts(cleanedProducts); // Cập nhật danh sách sản phẩm
-        setNoProductsFound(cleanedProducts.length === 0); // Cập nhật trạng thái không có sản phẩm
+        setProducts(uniqueProducts); // Cập nhật danh sách sản phẩm
+        setNoProductsFound(uniqueProducts.length === 0); // Cập nhật trạng thái không có sản phẩm
         setTotalPages(Math.ceil(response.data.TongSoSanPham / pageSize)); // Cập nhật số trang
       })
       .catch((error) => {
@@ -178,7 +168,6 @@ const AllProductsList = () => {
         setLoading(false);
       });
   };
-
 
   const handleAddToFavorites = async (productId) => {
     const token = localStorage.getItem("token"); // Lấy token từ localStorage
@@ -220,14 +209,14 @@ const AllProductsList = () => {
 
       <div className="product-header-banner-all">
         <img
-          src="imgs/banner5.png"
+          src="imgs/Icons/hinh5.png"
           alt="Banner"
         />
       </div>
-    
+
       <h1 className="product-title-all">Tất cả sản phẩm</h1>
       <div className="product-title-search">
-      {products.length} Kết quả
+        {products.length} Kết quả
       </div>
       <div className="product-page-container">
         <div className="filters-all">
@@ -256,23 +245,23 @@ const AllProductsList = () => {
                 />
               </label>
             </div>
-        
-          <div className="price-range-checkbox-section">
-            {priceRanges.map((range) => (
-              <div key={range.label} className="price-range-checkbox">
-                <label>
-                  <input
-                    type="checkbox"
-                    name="priceRange"
-                    value={range.label}
-                    onChange={handleFilterChange}
-                    checked={selectedPriceRange === range.label}
-                  />
-                  {range.label}
-                </label>
-              </div>
-            ))}
-          </div>
+
+            <div className="price-range-checkbox-section">
+              {priceRanges.map((range) => (
+                <div key={range.label} className="price-range-checkbox">
+                  <label>
+                    <input
+                      type="checkbox"
+                      name="priceRange"
+                      value={range.label}
+                      onChange={handleFilterChange}
+                      checked={selectedPriceRange === range.label}
+                    />
+                    {range.label}
+                  </label>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="apply-button-container">
             <button className="page-button-all1" onClick={applyFilters}>

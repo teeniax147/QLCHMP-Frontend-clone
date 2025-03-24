@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./FavoritesPage.css";
 import { API_BASE_URL } from '../config'
+
 const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]); // Danh sách yêu thích
   const [error, setError] = useState(null); // Trạng thái lỗi
@@ -29,7 +30,7 @@ const FavoritesPage = () => {
       const cleanedFavorites = response.data.$values.map((favorite) => ({
         ...favorite,
         ImageUrl: favorite.ImageUrl
-          ? `https://localhost:5001/${favorite.ImageUrl}` // Add base URL for product images
+          ? `https://api.cutexiu.teeniax.io.vn/${favorite.ImageUrl}` // Add base URL for product images
           : "default-image.jpg", // Fallback image if no image available
       }));
 
@@ -39,10 +40,6 @@ const FavoritesPage = () => {
       setError("Không thể tải danh sách yêu thích."); // Cập nhật trạng thái lỗi
     }
   };
-
-  useEffect(() => {
-    fetchFavorites(); // Lấy danh sách yêu thích khi load trang
-  }, []);
 
   useEffect(() => {
     fetchFavorites(); // Lấy danh sách yêu thích khi load trang
@@ -81,8 +78,17 @@ const FavoritesPage = () => {
     return <p>{error}</p>; // Hiển thị lỗi nếu có
   }
 
-  if (!favorites.length) {
-    return <p>Nhấn nút trái tim ở mỗi sản phẩm để lưu vào ưa thích</p>;
+  if (!favorites || favorites.length === 0) {
+    return (
+      <div className="empty-favorites-container">
+
+
+        <p>Nhấn nút trái tim ở mỗi sản phẩm để lưu vào ưa thích</p>
+
+
+
+      </div>
+    );
   }
 
   return (
@@ -101,8 +107,7 @@ const FavoritesPage = () => {
                 {favorite.BrandName || "Không rõ"}
               </p>
               <h3 className="favorites-name">{favorite.Name}</h3>
-            
-           
+
               {favorite.Price ? (
                 <>
                   <p className="favorites-price">
@@ -126,10 +131,6 @@ const FavoritesPage = () => {
                 <p className="favorites-price">Liên hệ</p>
               )}
 
-            
-
-              
-              
               <div className="favorites-rating-stars">
                 {Array.from({ length: 5 }, (_, index) => (
                   <span

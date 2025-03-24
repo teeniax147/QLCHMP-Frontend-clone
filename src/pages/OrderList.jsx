@@ -175,7 +175,7 @@ const OrderList = () => {
 
   return (
     <div style={{ padding: "20px", marginTop: "70px" }}>
-      <Typography variant="h4" align="center" fontSize={"30px"} fontWeight={"bold"} gutterBottom>
+      <Typography variant="h4" align="center" fontSize={"28px"} fontWeight={"bold"} gutterBottom>
         DANH SÁCH ĐƠN HÀNG
       </Typography>
 
@@ -186,10 +186,43 @@ const OrderList = () => {
         centered
         indicatorColor="primary"
         textColor="primary"
-        style={{ marginBottom: "20px" }}
+        sx={{
+          marginBottom: "20px",
+          '& .MuiTab-root': {
+            textTransform: 'none',
+            fontWeight: 500,
+            fontSize: '15px',
+            minWidth: 'auto',
+            padding: '12px 16px',
+            '&:focus': {
+              outline: 'none'
+            },
+            '&.Mui-selected': {
+              fontWeight: 600,
+              color: '#1976d2'
+            },
+            '&.Mui-focusVisible': {
+              outline: 'none',
+              backgroundColor: 'transparent'
+            }
+          },
+          '& .MuiTabs-indicator': {
+            height: '3px',
+            borderRadius: '1.5px 1.5px 0 0'
+          }
+        }}
       >
         {tabLabels.map((label, index) => (
-          <Tab key={index} label={label} />
+          <Tab
+            key={index}
+            label={label}
+            sx={{
+              '&:focus': {
+                outline: 'none'
+              }
+            }}
+            disableRipple
+          />
         ))}
       </Tabs>
 
@@ -203,7 +236,9 @@ const OrderList = () => {
           <Table>
             <TableHead>
               <TableRow>
+
                 <TableCell align="center" sx={{ fontWeight: "bold", width: "0%", fontSize: "16px" }}>STT</TableCell>
+                <TableCell align="center" sx={{ fontWeight: "bold", width: "5%", fontSize: "16px" }}>Mã đơn hàng</TableCell>
                 <TableCell align="center" sx={{ fontWeight: "bold", width: "5%", fontSize: "16px" }}>Ngày đặt</TableCell>
                 <TableCell align="center" sx={{ fontWeight: "bold", width: "7%", fontSize: "16px" }}>Trạng thái</TableCell>
                 <TableCell align="center" sx={{ fontWeight: "bold", width: "5%", fontSize: "16px" }}>Khách hàng</TableCell>
@@ -217,31 +252,90 @@ const OrderList = () => {
               {filteredOrders().map((order, index) => (
                 <TableRow key={order.Id}>
                   <TableCell align="center">{index + 1}</TableCell>
+                  <TableCell align="center">#{order.Id}</TableCell>
                   <TableCell align="center">{order.OrderDate}</TableCell>
                   <TableCell align="center">{order.Status}</TableCell>
                   <TableCell align="center">{order.CustomerName}</TableCell>
                   <TableCell align="center">{order.ShippingAddress}</TableCell>
-
-                  <TableCell align="center">{order.TotalAmount.toLocaleString()} VND</TableCell>
+                  <TableCell align="center">{order.TotalAmount.toLocaleString()}đ</TableCell>
                   <TableCell align="center">
-                    <div className="order-action-buttons">
+                    <div style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      gap: '8px',
+                      margin: '8px 0'
+                    }}>
                       <Button
                         variant="contained"
                         color="primary"
                         onClick={() => navigate(`/order-details/${order.Id}`)}
+                        sx={{
+                          boxShadow: 'none',
+                          textTransform: 'none',
+                          fontSize: '13px',
+                          fontWeight: 500,
+                          px: 2,
+                          py: 0.75,
+                          borderRadius: '4px',
+                          bgcolor: '#1976d2',
+                          height: '32px',
+                          minWidth: 'unset',
+                          '&:hover': {
+                            bgcolor: '#1565c0',
+                            boxShadow: 'none'
+                          },
+                          '&:focus': {
+                            outline: 'none'
+                          },
+                          '&:active': {
+                            outline: 'none',
+                            bgcolor: '#0d47a1'
+                          },
+                          '&.Mui-focusVisible': {
+                            outline: 'none'
+                          }
+                        }}
                       >
-                        Xem chi tiết
+                        Chi tiết
                       </Button>
                       {order.Status === "Chờ Xác Nhận" && (
                         <Button
                           variant="outlined"
-                          color="secondary"
                           onClick={() => cancelOrder(order.Id, order.Status)}
+                          sx={{
+                            color: '#d32f2f',
+                            borderColor: '#d32f2f',
+                            textTransform: 'none',
+                            fontSize: '13px',
+                            fontWeight: 500,
+                            px: 2,
+                            py: 0.75,
+                            borderRadius: '4px',
+                            height: '32px',
+                            minWidth: 'unset',
+                            '&:hover': {
+                              bgcolor: 'rgba(211, 47, 47, 0.08)',
+                              borderColor: '#b71c1c'
+                            },
+                            '&:focus': {
+                              outline: 'none'
+                            },
+                            '&:active': {
+                              outline: 'none',
+                              borderColor: '#b71c1c'
+                            },
+                            '&.Mui-focusVisible': {
+                              outline: 'none'
+                            }
+                          }}
                         >
-                          Hủy đơn hàng
+                          Hủy
                         </Button>
                       )}
                     </div>
+
+
                   </TableCell>
 
                 </TableRow>
