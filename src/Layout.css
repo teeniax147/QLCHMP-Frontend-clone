@@ -2,7 +2,7 @@
 .home {
   width: 100%;
   font-family: Arial, sans-serif;
-  background-color: #fff;
+  background-color: #ffffff;
   position: relative;
   /* top: -150px; */
   left: 0;
@@ -227,6 +227,7 @@ font-family: 'Inter', sans-serif;
 /* padding-top: 150px;  */
 overflow-x: hidden;
 min-height: 0 !important;
+background-color: #ffffff;
 }
 .container {
   max-width: 100%;
@@ -306,6 +307,7 @@ background-color: #f97aaf;
 .body-content {
 padding-top: 50px; /* Tạo khoảng trống giữa header và phần nội dung */
 padding-bottom: 50px; /* Tạo khoảng trống giữa nội dung và footer */
+background-color: #ffffff;
 }
 
 
