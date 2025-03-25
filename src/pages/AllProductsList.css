@@ -162,7 +162,7 @@ max-width: 1200px;
 }
 
 .sort-section-all button {
-  background-color: #28a745;
+  background-color: #fe60a2;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -173,7 +173,7 @@ max-width: 1200px;
 }
 
 .sort-section-all button:hover {
-  background-color: #218838;
+  background-color: #eb327f;
 }
 
 /* Container chính */
@@ -396,9 +396,9 @@ input[type="checkbox"] {
 }
 /* Khi checkbox được chọn */
 input[type="checkbox"]:checked {
-  background-color: #4caf50;
+  background-color: #fe60a2;
   /* Màu nền khi được chọn */
-  border-color: #4caf50;
+  border-color: #d84582;
   /* Màu viền khi được chọn */
 }
 
@@ -417,7 +417,7 @@ input[type="checkbox"]:checked::after {
 
 /* Cải thiện hiệu ứng hover cho checkbox */
 input[type="checkbox"]:hover {
-  border-color: #4caf50;
+  border-color: #f52b7f;
   /* Thay đổi màu viền khi hover */
 }
 
