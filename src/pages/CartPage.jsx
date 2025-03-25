@@ -46,7 +46,7 @@ const CartPage = () => {
           const processedItems = items.map(item => ({
             ...item,
             ImageUrl: item.ImageUrl
-              ? `https:/localhost:5001/${item.ImageUrl}` // Append base URL for image path
+              ? `https://api.cutexiu.teeniax.io.vn/${item.ImageUrl}` // Append base URL for image path
               : "default-image.jpg", // Fallback image if no image URL
           }));
 
