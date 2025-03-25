@@ -75,7 +75,7 @@ const BrandProducts = () => {
   return (
     <div className="brand-product-container">
       <div className="brand-product-header-banner">
-        <img src="https://api.cutexiu.teeniax.io.vn/imgs/banner5.png" alt="Banner" />
+        <img src="https://cutexiu.teeniax.io.vn/imgs/banner5.png" alt="Banner" />
       </div>
       <div className="brand-product-header">
         {brandInfo.LogoUrl ? (

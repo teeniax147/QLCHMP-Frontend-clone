@@ -38,11 +38,11 @@ const Home = () => {
   const nextIndex = currentIndex === banners.length - 1 ? 0 : currentIndex + 1;
 
   const brands = [
-    { name: 'Samsung', image: '/imgs/samsung.png', url: 'https://api.cutexiu.teeniax.io.vn/brand/1' },
-    { name: 'Oppo', image: '/imgs/oppo.png', url: 'https://api.cutexiu.teeniax.io.vn/brand/2' },
-    { name: 'ViVo', image: '/imgs/vivo.png', url: 'https://api.cutexiu.teeniax.io.vn/brand/3' },
-    { name: 'Iphone', image: '/imgs/iphone.png', url: 'https://api.cutexiu.teeniax.io.vn/brand/4' },
-    { name: 'Xiaomi', image: '/imgs/xiaomi.png', url: 'https://api.cutexiu.teeniax.io.vn/brand/5' }
+    { name: 'Samsung', image: '/imgs/samsung.png', url: 'https://cutexiu.teeniax.io.vn/brand/1' },
+    { name: 'Oppo', image: '/imgs/oppo.png', url: 'https://cutexiu.teeniax.io.vn/brand/2' },
+    { name: 'ViVo', image: '/imgs/vivo.png', url: 'https://cutexiu.teeniax.io.vn/brand/3' },
+    { name: 'Iphone', image: '/imgs/iphone.png', url: 'https://cutexiu.teeniax.io.vn/brand/4' },
+    { name: 'Xiaomi', image: '/imgs/xiaomi.png', url: 'https://cutexiu.teeniax.io.vn/brand/5' }
   ];
 
   
