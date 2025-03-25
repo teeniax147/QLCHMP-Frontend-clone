@@ -153,8 +153,19 @@ const AllProductsList = () => {
       .get(`${API_BASE_URL}/Products/loc`, { params: validParams })
       .then((response) => {
         const data = response.data.DanhSachSanPham?.$values || [];
+
+        // Xử lý URL hình ảnh cho các sản phẩm
+        const cleanedProducts = data.map((product) => ({
+          ...product,
+          ImageUrl: product.ImageUrl
+            ? `https://api.cutexiu.teeniax.io.vn/${product.ImageUrl}`
+            : "default-image.jpg", // Hình ảnh mặc định nếu không có
+        }));
+
         // Loại bỏ sản phẩm trùng lặp
-        const uniqueProducts = Array.from(new Map(data.map(item => [item.Id, item])).values());
+        const uniqueProducts = Array.from(
+          new Map(cleanedProducts.map(item => [item.Id, item])).values()
+        );
 
         setProducts(uniqueProducts); // Cập nhật danh sách sản phẩm
         setNoProductsFound(uniqueProducts.length === 0); // Cập nhật trạng thái không có sản phẩm

@@ -106,10 +106,23 @@ const RevenueReport = () => {
 
       // Kiểm tra cấu trúc dữ liệu trả về
       if (Array.isArray(response.data)) {
-        setOrderDetails(response.data);
+        // Xử lý đường dẫn hình ảnh cho mảng dữ liệu
+        const cleanedOrderDetails = response.data.map(item => ({
+          ...item,
+          ProductImage: item.ProductImage
+            ? `https://api.cutexiu.teeniax.io.vn/${item.ProductImage}` // Thêm base URL cho hình ảnh sản phẩm
+            : "default-image.jpg", // Hình ảnh mặc định nếu không có URL
+        }));
+        setOrderDetails(cleanedOrderDetails);
       } else if (response.data.$values && Array.isArray(response.data.$values)) {
         // Xử lý trường hợp kết quả nằm trong thuộc tính $values (định dạng ASP.NET)
-        setOrderDetails(response.data.$values);
+        const cleanedOrderDetails = response.data.$values.map(item => ({
+          ...item,
+          ProductImage: item.ProductImage
+            ? `https://api.cutexiu.teeniax.io.vn/${item.ProductImage}` // Thêm base URL cho hình ảnh sản phẩm
+            : "default-image.jpg", // Hình ảnh mặc định nếu không có URL
+        }));
+        setOrderDetails(cleanedOrderDetails);
       } else {
         console.error("Định dạng dữ liệu không như mong đợi:", response.data);
         setOrderDetails([]);
@@ -148,7 +161,6 @@ const RevenueReport = () => {
       setLoadingDetails(false);
     }
   };
-
   // Mở modal chi tiết đơn hàng
   const handleOpenOrderDetails = (orderId) => {
     setSelectedOrderId(orderId);
