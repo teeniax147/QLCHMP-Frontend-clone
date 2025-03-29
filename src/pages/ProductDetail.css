@@ -4,7 +4,7 @@ body {
 
 .product-detail-container {
   max-width: 1100px;
-  margin: 70px auto 30px;
+  margin: 60px auto 30px;
   padding: 20px;
   border-radius: 8px;
   display: flex;
@@ -211,4 +211,10 @@ body {
 
 .product-favorite-icon1:hover {
   color: #ff6666; /* Màu sáng hơn khi hover */
+}
+.product-brand-detail{
+  color: #464646;
+  margin-bottom: -10px;
+  font-size: 19px;
+  font-weight: bold;
 }

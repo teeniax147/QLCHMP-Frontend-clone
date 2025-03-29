@@ -190,6 +190,7 @@ const ProductDetail = () => {
         className="product-detail-image"
       />
       <div className="product-details">
+        <p className="product-brand-detail">{product.BrandName || "Không có thương hiệu"}</p>
         <h1 className="custom-product-title">{product.Name}</h1>
         <div className="product-rating-stars">
           {Array.from({ length: 5 }, (_, index) => (
