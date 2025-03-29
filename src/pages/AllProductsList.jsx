@@ -220,7 +220,7 @@ const AllProductsList = () => {
 
       <div className="product-header-banner-all">
         <img
-          src="imgs/banner5.png"
+          src="imgs/3.png"
           alt="Banner"
         />
       </div>

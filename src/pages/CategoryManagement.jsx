@@ -44,23 +44,23 @@ const StyledTableContainer = styled(Paper)(({ theme }) => ({
 }));
 
 const StyledTableHead = styled(TableHead)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: '#e91e63',
 }));
 
 const HeaderTableCell = styled(TableCell)(({ theme }) => ({
   textAlign: "center",
   fontWeight: "600",
   fontSize: "16px",
-  color: theme.palette.primary.contrastText,
+  color: "white",
   padding: theme.spacing(2),
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
-    backgroundColor: alpha(theme.palette.primary.light, 0.05),
+    backgroundColor: alpha('#e91e63', 0.05),
   },
   '&:hover': {
-    backgroundColor: alpha(theme.palette.primary.light, 0.1),
+    backgroundColor: alpha('#e91e63', 0.1),
     transition: 'all 0.2s ease',
   },
   transition: 'all 0.2s ease',
@@ -86,43 +86,43 @@ const StyledButton = styled(Button)(({ theme, customvariant }) => ({
   transition: 'all 0.2s ease',
 
   ...(customvariant === "add" && {
-    backgroundColor: theme.palette.success.main,
-    color: theme.palette.common.white,
+    backgroundColor: '#e91e63',
+    color: 'white',
     '&:hover': {
-      backgroundColor: theme.palette.success.dark,
-      boxShadow: `0 4px 12px ${alpha(theme.palette.success.main, 0.3)}`,
+      backgroundColor: '#c2185b',
+      boxShadow: `0 4px 12px ${alpha('#e91e63', 0.3)}`,
     },
   }),
   ...(customvariant === "edit" && {
-    color: theme.palette.primary.main,
-    border: `1px solid ${theme.palette.primary.main}`,
+    color: '#e91e63',
+    border: `1px solid #e91e63`,
     backgroundColor: 'transparent',
     '&:hover': {
-      backgroundColor: alpha(theme.palette.primary.main, 0.05),
+      backgroundColor: alpha('#e91e63', 0.05),
     },
   }),
   ...(customvariant === "delete" && {
-    color: theme.palette.error.main,
-    border: `1px solid ${theme.palette.error.main}`,
+    color: '#e91e63',
+    border: `1px solid #e91e63`,
     backgroundColor: 'transparent',
     '&:hover': {
-      backgroundColor: alpha(theme.palette.error.main, 0.05),
+      backgroundColor: alpha('#e91e63', 0.05),
     },
   }),
   ...(customvariant === "save" && {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
+    backgroundColor: '#e91e63',
+    color: 'white',
     '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
-      boxShadow: `0 4px 12px ${alpha(theme.palette.primary.main, 0.3)}`,
+      backgroundColor: '#c2185b',
+      boxShadow: `0 4px 12px ${alpha('#e91e63', 0.3)}`,
     },
   }),
   ...(customvariant === "cancel" && {
-    color: theme.palette.text.secondary,
-    border: `1px solid ${theme.palette.divider}`,
+    color: '#9e9e9e',
+    border: `1px solid #9e9e9e`,
     backgroundColor: 'transparent',
     '&:hover': {
-      backgroundColor: alpha(theme.palette.text.secondary, 0.05),
+      backgroundColor: alpha('#9e9e9e', 0.05),
     },
   }),
   '&:focus': {
@@ -139,20 +139,21 @@ const PageTitle = styled(Typography)(({ theme }) => ({
   alignItems: 'center',
   '& svg': {
     marginRight: theme.spacing(1),
-    color: theme.palette.primary.main,
+    color: '#e91e63',
   }
 }));
 
 const SubCategoryChip = styled(Chip)(({ theme }) => ({
   margin: '2px',
-  backgroundColor: alpha(theme.palette.secondary.light, 0.2),
-  border: `1px solid ${alpha(theme.palette.secondary.main, 0.3)}`,
+  backgroundColor: alpha('#e91e63', 0.1),
+  border: `1px solid ${alpha('#e91e63', 0.3)}`,
   fontSize: '0.8rem',
+  color: '#e91e63',
 }));
 
 const StyledDialogTitle = styled(DialogTitle)(({ theme, color }) => ({
-  backgroundColor: color === 'error' ? theme.palette.error.main : theme.palette.primary.main,
-  color: theme.palette.primary.contrastText,
+  backgroundColor: '#e91e63',
+  color: 'white',
   padding: theme.spacing(2),
 }));
 
@@ -166,7 +167,7 @@ const FormSectionTitle = styled(Typography)(({ theme }) => ({
   alignItems: 'center',
   '& svg': {
     marginRight: theme.spacing(1),
-    color: theme.palette.primary.main,
+    color: '#e91e63',
   }
 }));
 
@@ -409,13 +410,12 @@ const CategoryManagement = () => {
             <Tooltip title="Chỉnh sửa">
               <IconButton
                 size="small"
-                color="primary"
-                onClick={() => handleEdit(category)}
                 sx={{
-                  border: '1px solid',
-                  borderColor: 'primary.light',
-                  '&:hover': { backgroundColor: 'primary.lighter' }
+                  border: '1px solid #e91e63',
+                  color: '#e91e63',
+                  '&:hover': { backgroundColor: alpha('#e91e63', 0.1) }
                 }}
+                onClick={() => handleEdit(category)}
               >
                 <EditIcon fontSize="small" />
               </IconButton>
@@ -423,15 +423,14 @@ const CategoryManagement = () => {
             <Tooltip title="Xóa">
               <IconButton
                 size="small"
-                color="error"
+                sx={{
+                  border: '1px solid #e91e63',
+                  color: '#e91e63',
+                  '&:hover': { backgroundColor: alpha('#e91e63', 0.1) }
+                }}
                 onClick={() => {
                   setSelectedCategory(category);
                   setShowDeleteModal(true);
-                }}
-                sx={{
-                  border: '1px solid',
-                  borderColor: 'error.light',
-                  '&:hover': { backgroundColor: 'error.lighter' }
                 }}
               >
                 <DeleteIcon fontSize="small" />
@@ -468,7 +467,12 @@ const CategoryManagement = () => {
         <Alert
           severity="success"
           variant="filled"
-          sx={{ mb: 2, borderRadius: 2, boxShadow: 2 }}
+          sx={{
+            mb: 2,
+            borderRadius: 2,
+            boxShadow: 2,
+            backgroundColor: '#e91e63'
+          }}
           onClose={() => setSuccessMessage("")}
         >
           {successMessage}
@@ -479,7 +483,12 @@ const CategoryManagement = () => {
         <Alert
           severity="error"
           variant="filled"
-          sx={{ mb: 2, borderRadius: 2, boxShadow: 2 }}
+          sx={{
+            mb: 2,
+            borderRadius: 2,
+            boxShadow: 2,
+            backgroundColor: '#e91e63'
+          }}
           onClose={() => setErrorMessage("")}
         >
           {errorMessage}
@@ -489,13 +498,24 @@ const CategoryManagement = () => {
       {/* Loading State */}
       {loading ? (
         <Box display="flex" justifyContent="center" alignItems="center" py={5}>
-          <CircularProgress />
+          <CircularProgress sx={{ color: '#e91e63' }} />
           <Typography ml={2} variant="body1" color="text.secondary">
             Đang tải danh mục...
           </Typography>
         </Box>
       ) : error ? (
-        <Alert severity="error" sx={{ mt: 2, borderRadius: 2 }}>
+        <Alert
+          severity="error"
+          sx={{
+            mt: 2,
+            borderRadius: 2,
+            backgroundColor: 'rgba(233, 30, 99, 0.1)',
+            color: '#e91e63',
+            '& .MuiAlert-icon': {
+              color: '#e91e63'
+            }
+          }}
+        >
           {error}
         </Alert>
       ) : (
@@ -545,7 +565,17 @@ const CategoryManagement = () => {
               fullWidth
               margin="dense"
               variant="outlined"
-              sx={{ mb: 2 }}
+              sx={{
+                mb: 2,
+                '& .MuiOutlinedInput-root': {
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#e91e63',
+                  },
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#e91e63',
+                },
+              }}
               required
             />
 
@@ -558,7 +588,17 @@ const CategoryManagement = () => {
               multiline
               rows={3}
               variant="outlined"
-              sx={{ mb: 2 }}
+              sx={{
+                mb: 2,
+                '& .MuiOutlinedInput-root': {
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#e91e63',
+                  },
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#e91e63',
+                },
+              }}
             />
 
             <Divider sx={{ my: 2 }} />
@@ -569,11 +609,25 @@ const CategoryManagement = () => {
             </FormSectionTitle>
 
             <FormControl fullWidth margin="dense">
-              <InputLabel>Danh mục cha</InputLabel>
+              <InputLabel sx={{
+                '&.Mui-focused': {
+                  color: '#e91e63',
+                },
+              }}>Danh mục cha</InputLabel>
               <Select
                 value={newCategory.ParentId}
                 onChange={(e) => setNewCategory({ ...newCategory, ParentId: e.target.value })}
                 label="Danh mục cha"
+                sx={{
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    '&.Mui-focused': {
+                      borderColor: '#e91e63',
+                    },
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#e91e63',
+                  },
+                }}
               >
                 <MenuItem value="">-- Không có --</MenuItem>
                 {parentCategories.map((cat) => (
@@ -625,7 +679,17 @@ const CategoryManagement = () => {
               fullWidth
               margin="dense"
               variant="outlined"
-              sx={{ mb: 2 }}
+              sx={{
+                mb: 2,
+                '& .MuiOutlinedInput-root': {
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#e91e63',
+                  },
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#e91e63',
+                },
+              }}
               required
             />
 
@@ -638,7 +702,17 @@ const CategoryManagement = () => {
               multiline
               rows={3}
               variant="outlined"
-              sx={{ mb: 2 }}
+              sx={{
+                mb: 2,
+                '& .MuiOutlinedInput-root': {
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#e91e63',
+                  },
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#e91e63',
+                },
+              }}
             />
 
             <Divider sx={{ my: 2 }} />
@@ -649,11 +723,25 @@ const CategoryManagement = () => {
             </FormSectionTitle>
 
             <FormControl fullWidth margin="dense">
-              <InputLabel>Danh mục cha</InputLabel>
+              <InputLabel sx={{
+                '&.Mui-focused': {
+                  color: '#e91e63',
+                },
+              }}>Danh mục cha</InputLabel>
               <Select
                 value={selectedCategory?.ParentId || ""}
                 onChange={(e) => setSelectedCategory({ ...selectedCategory, ParentId: e.target.value })}
                 label="Danh mục cha"
+                sx={{
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    '&.Mui-focused': {
+                      borderColor: '#e91e63',
+                    },
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#e91e63',
+                  },
+                }}
               >
                 <MenuItem value="">-- Không có --</MenuItem>
                 {parentCategories.map((cat) => (
@@ -683,7 +771,7 @@ const CategoryManagement = () => {
           sx: { borderRadius: 2, overflow: 'hidden' }
         }}
       >
-        <StyledDialogTitle color="error">
+        <StyledDialogTitle>
           <Box display="flex" alignItems="center">
             <DeleteIcon sx={{ mr: 1 }} />
             Xác nhận xóa
@@ -693,7 +781,7 @@ const CategoryManagement = () => {
           <Typography variant="body1">
             Bạn có chắc muốn xóa danh mục: <Box component="span" fontWeight="bold">{selectedCategory?.Name}</Box>?
           </Typography>
-          <Typography variant="body2" color="text.secondary" mt={1}>
+          <Typography variant="body2" sx={{ mt: 1, color: '#e91e63' }}>
             Hành động này không thể hoàn tác.
           </Typography>
         </DialogContent>

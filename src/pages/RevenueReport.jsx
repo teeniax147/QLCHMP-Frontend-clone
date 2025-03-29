@@ -4,7 +4,9 @@ const formatDateForAPI = (date) => {
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   const year = date.getFullYear();
   return `${day}-${month}-${year}`;
-}; import React, { useState, useEffect } from "react";
+};
+
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   Table,
@@ -317,8 +319,8 @@ const RevenueReport = () => {
       {
         label: "Tổng doanh thu (đ)",
         data: revenueData.map((data) => data.TotalRevenue),
-        borderColor: "#4e73df",
-        backgroundColor: "#4e73df",
+        borderColor: "#fe60a2",
+        backgroundColor: "#fe60a2",
         tension: 0.4,
         fill: false,
         yAxisID: 'y-revenue'
@@ -326,8 +328,8 @@ const RevenueReport = () => {
       {
         label: "Tổng số đơn hàng",
         data: revenueData.map((data) => data.TotalOrders),
-        borderColor: "#1cc88a",
-        backgroundColor: "#1cc88a",
+        borderColor: "#fa83b5",
+        backgroundColor: "#fa83b5",
         tension: 0.4,
         fill: false,
         yAxisID: 'y-orders'
@@ -464,8 +466,8 @@ const RevenueReport = () => {
       {
         label: "Tổng doanh thu (đ)",
         data: [revenueData.reduce((total, data) => total + data.TotalRevenue, 0)],
-        backgroundColor: "rgba(78, 115, 223, 0.8)",
-        borderColor: "rgba(78, 115, 223, 1)",
+        backgroundColor: "rgba(254, 96, 162, 0.8)",
+        borderColor: "rgba(254, 96, 162, 1)",
         borderWidth: 1,
         // Sử dụng yAxisID để liên kết với trục y chính
         yAxisID: 'y-revenue'
@@ -473,8 +475,8 @@ const RevenueReport = () => {
       {
         label: "Tổng số đơn hàng",
         data: [revenueData.reduce((total, data) => total + data.TotalOrders, 0)],
-        backgroundColor: "rgba(28, 200, 138, 0.8)",
-        borderColor: "rgba(28, 200, 138, 1)",
+        backgroundColor: "rgba(250, 131, 181, 0.8)",
+        borderColor: "rgba(250, 131, 181, 1)",
         borderWidth: 1,
         // Sử dụng yAxisID để liên kết với trục y thứ hai
         yAxisID: 'y-orders'
@@ -606,6 +608,22 @@ const RevenueReport = () => {
           value={startDate.toISOString().split("T")[0]}
           onChange={(e) => setStartDate(new Date(e.target.value))}
           InputLabelProps={{ shrink: true }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#fe60a2'
+              },
+              '&:hover fieldset': {
+                borderColor: '#fe60a2'
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#fe60a2'
+              }
+            },
+            '& .MuiInputLabel-root.Mui-focused': {
+              color: '#fe60a2'
+            }
+          }}
         />
         <TextField
           type="date"
@@ -613,55 +631,94 @@ const RevenueReport = () => {
           value={endDate.toISOString().split("T")[0]}
           onChange={(e) => setEndDate(new Date(e.target.value))}
           InputLabelProps={{ shrink: true }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#fe60a2'
+              },
+              '&:hover fieldset': {
+                borderColor: '#fe60a2'
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#fe60a2'
+              }
+            },
+            '& .MuiInputLabel-root.Mui-focused': {
+              color: '#fe60a2'
+            }
+          }}
         />
         <Button
           variant="contained"
-          className="custom-button1 custom-button-contained1"
           onClick={fetchRevenueData}
+          sx={{
+            backgroundColor: '#fe60a2',
+            '&:hover': {
+              backgroundColor: '#fa83b5'
+            }
+          }}
         >
           Lấy dữ liệu
         </Button>
 
         <Button
           variant="outlined"
-          className="custom-button6 custom-button-outlined6"
           onClick={() => exportReport("excel")}
           style={{ marginRight: "10px" }}
+          sx={{
+            color: '#fe60a2',
+            borderColor: '#fe60a2',
+            '&:hover': {
+              borderColor: '#fa83b5',
+              backgroundColor: 'rgba(254, 96, 162, 0.05)'
+            }
+          }}
         >
           Xuất Excel
         </Button>
 
         <Button
           variant="outlined"
-          className="custom-button6 custom-button-outlined6"
           onClick={() => exportReport("pdf")}
+          sx={{
+            color: '#fe60a2',
+            borderColor: '#fe60a2',
+            '&:hover': {
+              borderColor: '#fa83b5',
+              backgroundColor: 'rgba(254, 96, 162, 0.05)'
+            }
+          }}
         >
           Xuất PDF
         </Button>
       </Box>
 
-      {error && <Typography color="error" style={{ marginBottom: "10px" }}>{error}</Typography>}
+      {error && <Typography sx={{ color: '#fe60a2', marginBottom: "10px" }}>{error}</Typography>}
 
       {loading ? (
         <Box display="flex" justifyContent="center" marginY="30px">
-          <CircularProgress />
+          <CircularProgress sx={{ color: '#fe60a2' }} />
         </Box>
       ) : (
         <>
           <TableContainer component={Paper} style={{ maxHeight: "400px", overflowY: "auto" }}>
             <Table stickyHeader>
               <TableHead>
-                <TableRow>
-                  <TableCell align="center" style={{ fontWeight: "bold", fontSize: "16px" }}>Ngày</TableCell>
-                  <TableCell align="center" style={{ fontWeight: "bold", fontSize: "16px" }}>Tổng doanh thu</TableCell>
-                  <TableCell align="center" style={{ fontWeight: "bold", fontSize: "16px" }}>Tổng số đơn hàng</TableCell>
-                  <TableCell align="center" style={{ fontWeight: "bold", fontSize: "16px" }}>Thao tác</TableCell>
+                <TableRow sx={{ '& th': { backgroundColor: '#fddde2' } }}>
+                  <TableCell align="center" style={{ fontWeight: "bold", fontSize: "16px", color: '#fe60a2' }}>Ngày</TableCell>
+                  <TableCell align="center" style={{ fontWeight: "bold", fontSize: "16px", color: '#fe60a2' }}>Tổng doanh thu</TableCell>
+                  <TableCell align="center" style={{ fontWeight: "bold", fontSize: "16px", color: '#fe60a2' }}>Tổng số đơn hàng</TableCell>
+                  <TableCell align="center" style={{ fontWeight: "bold", fontSize: "16px", color: '#fe60a2' }}>Thao tác</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {revenueData.length > 0 ? (
                   revenueData.map((data, index) => (
-                    <TableRow key={index}>
+                    <TableRow key={index} sx={{
+                      '&:hover': {
+                        backgroundColor: 'rgba(254, 96, 162, 0.05)'
+                      }
+                    }}>
                       <TableCell align="center">{formatDate(data.Date).split(' ')[0]}</TableCell>
                       <TableCell align="center">{data.TotalRevenue.toLocaleString()}đ</TableCell>
                       <TableCell align="center">{data.TotalOrders}</TableCell>
@@ -669,7 +726,12 @@ const RevenueReport = () => {
                         <Button
                           variant="contained"
                           size="small"
-                          color="primary"
+                          sx={{
+                            backgroundColor: '#fe60a2',
+                            '&:hover': {
+                              backgroundColor: '#fa83b5'
+                            }
+                          }}
                           onClick={() => {
                             setSelectedDayData(data);
                             setOpenModal(true);
@@ -738,7 +800,12 @@ const RevenueReport = () => {
         maxWidth="lg"
         fullWidth
       >
-        <DialogTitle>
+        <DialogTitle
+          sx={{
+            backgroundColor: '#fe60a2',
+            color: 'white'
+          }}
+        >
           <Box display="flex" justifyContent="space-between" alignItems="center">
             <Typography variant="h6">
               {selectedDayData ? `Chi tiết đơn hàng - Ngày ${formatDate(selectedDayData.Date).split(' ')[0]}` : 'Chi tiết đơn hàng'}
@@ -746,7 +813,7 @@ const RevenueReport = () => {
             <IconButton
               aria-label="close"
               onClick={() => setOpenModal(false)}
-              sx={{ color: (theme) => theme.palette.grey[500] }}
+              sx={{ color: 'white' }}
             >
               <CloseIcon />
             </IconButton>
@@ -756,24 +823,24 @@ const RevenueReport = () => {
           {selectedDayData && (
             <>
               <Box marginBottom="15px">
-                <Typography variant="subtitle1">
+                <Typography variant="subtitle1" sx={{ color: '#fe60a2', fontWeight: 'bold' }}>
                   Tổng số đơn hàng: {selectedDayData.TotalOrders}
                 </Typography>
-                <Typography variant="subtitle1">
+                <Typography variant="subtitle1" sx={{ color: '#fe60a2', fontWeight: 'bold' }}>
                   Tổng doanh thu: {selectedDayData.TotalRevenue.toLocaleString()}đ
                 </Typography>
               </Box>
               <TableContainer component={Paper}>
                 <Table>
                   <TableHead>
-                    <TableRow>
-                      <TableCell style={{ fontWeight: "bold" }}>Mã đơn</TableCell>
-                      <TableCell style={{ fontWeight: "bold" }}>Thời gian</TableCell>
-                      <TableCell style={{ fontWeight: "bold" }}>Khách hàng</TableCell>
-                      <TableCell style={{ fontWeight: "bold" }}>Tổng tiền</TableCell>
-                      <TableCell style={{ fontWeight: "bold" }}>Trạng thái</TableCell>
-                      <TableCell style={{ fontWeight: "bold" }}>Thanh toán</TableCell>
-                      <TableCell style={{ fontWeight: "bold" }}>Thao tác</TableCell>
+                    <TableRow sx={{ '& th': { backgroundColor: '#fddde2' } }}>
+                      <TableCell style={{ fontWeight: "bold", color: '#fe60a2' }}>Mã đơn</TableCell>
+                      <TableCell style={{ fontWeight: "bold", color: '#fe60a2' }}>Thời gian</TableCell>
+                      <TableCell style={{ fontWeight: "bold", color: '#fe60a2' }}>Khách hàng</TableCell>
+                      <TableCell style={{ fontWeight: "bold", color: '#fe60a2' }}>Tổng tiền</TableCell>
+                      <TableCell style={{ fontWeight: "bold", color: '#fe60a2' }}>Trạng thái</TableCell>
+                      <TableCell style={{ fontWeight: "bold", color: '#fe60a2' }}>Thanh toán</TableCell>
+                      <TableCell style={{ fontWeight: "bold", color: '#fe60a2' }}>Thao tác</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -790,8 +857,15 @@ const RevenueReport = () => {
                             <Button
                               variant="outlined"
                               size="small"
-                              color="primary"
-                              startIcon={<InfoIcon />}
+                              sx={{
+                                color: '#fe60a2',
+                                borderColor: '#fe60a2',
+                                '&:hover': {
+                                  borderColor: '#fa83b5',
+                                  backgroundColor: 'rgba(254, 96, 162, 0.05)'
+                                }
+                              }}
+                              startIcon={<InfoIcon sx={{ color: '#fe60a2' }} />}
                               onClick={() => handleOpenOrderDetails(order.Id)}
                             >
                               Chi tiết
@@ -801,7 +875,7 @@ const RevenueReport = () => {
                       ))
                     ) : (
                       <TableRow>
-                        <TableCell colSpan={6} align="center">
+                        <TableCell colSpan={7} align="center">
                           Không có dữ liệu chi tiết
                         </TableCell>
                       </TableRow>
@@ -813,7 +887,15 @@ const RevenueReport = () => {
           )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpenModal(false)}>
+          <Button
+            onClick={() => setOpenModal(false)}
+            sx={{
+              color: '#fe60a2',
+              '&:hover': {
+                backgroundColor: 'rgba(254, 96, 162, 0.05)'
+              }
+            }}
+          >
             Đóng
           </Button>
         </DialogActions>
@@ -826,7 +908,12 @@ const RevenueReport = () => {
         maxWidth="md"
         fullWidth
       >
-        <DialogTitle>
+        <DialogTitle
+          sx={{
+            backgroundColor: '#fe60a2',
+            color: 'white'
+          }}
+        >
           <Box display="flex" justifyContent="space-between" alignItems="center">
             <Typography variant="h6">
               Chi tiết hóa đơn #{selectedOrderId}
@@ -834,7 +921,7 @@ const RevenueReport = () => {
             <IconButton
               aria-label="close"
               onClick={() => setOrderDetailsOpen(false)}
-              sx={{ color: (theme) => theme.palette.grey[500] }}
+              sx={{ color: 'white' }}
             >
               <CloseIcon />
             </IconButton>
@@ -843,24 +930,31 @@ const RevenueReport = () => {
         <DialogContent dividers>
           {loadingDetails ? (
             <Box display="flex" justifyContent="center" p={3}>
-              <CircularProgress />
+              <CircularProgress sx={{ color: '#fe60a2' }} />
             </Box>
           ) : orderDetails && orderDetails.length > 0 ? (
             <>
               <TableContainer component={Paper} sx={{ mb: 3 }}>
                 <Table>
                   <TableHead>
-                    <TableRow>
-                      <TableCell style={{ fontWeight: "bold" }}>STT</TableCell>
-                      <TableCell style={{ fontWeight: "bold" }}>Sản phẩm</TableCell>
-                      <TableCell style={{ fontWeight: "bold" }}>Số lượng</TableCell>
-                      <TableCell style={{ fontWeight: "bold" }}>Đơn giá</TableCell>
-                      <TableCell style={{ fontWeight: "bold" }}>Thành tiền</TableCell>
+                    <TableRow sx={{ '& th': { backgroundColor: '#fddde2' } }}>
+                      <TableCell style={{ fontWeight: "bold", color: '#fe60a2' }}>STT</TableCell>
+                      <TableCell style={{ fontWeight: "bold", color: '#fe60a2' }}>Sản phẩm</TableCell>
+                      <TableCell style={{ fontWeight: "bold", color: '#fe60a2' }}>Số lượng</TableCell>
+                      <TableCell style={{ fontWeight: "bold", color: '#fe60a2' }}>Đơn giá</TableCell>
+                      <TableCell style={{ fontWeight: "bold", color: '#fe60a2' }}>Thành tiền</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {orderDetails.map((item, index) => (
-                      <TableRow key={item.Id || index}>
+                      <TableRow
+                        key={item.Id || index}
+                        sx={{
+                          '&:hover': {
+                            backgroundColor: 'rgba(254, 96, 162, 0.05)'
+                          }
+                        }}
+                      >
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>
                           <Box display="flex" alignItems="center">
@@ -892,7 +986,7 @@ const RevenueReport = () => {
               </TableContainer>
 
               <Box display="flex" justifyContent="flex-end">
-                <Typography variant="subtitle1" fontWeight="bold">
+                <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: '#fe60a2' }}>
                   Tổng cộng: {orderDetails.reduce((sum, item) => sum + (item.TotalPrice || 0), 0).toLocaleString()}đ
                 </Typography>
               </Box>
@@ -902,14 +996,22 @@ const RevenueReport = () => {
               <Typography color="textSecondary" gutterBottom>
                 Không có dữ liệu chi tiết đơn hàng
               </Typography>
-              <Typography variant="caption" color="error">
+              <Typography variant="caption" sx={{ color: '#fe60a2' }}>
                 Có thể API không trả về dữ liệu hoặc đường dẫn không chính xác. Vui lòng kiểm tra lại hoặc thử lại sau.
               </Typography>
             </Box>
           )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOrderDetailsOpen(false)} color="primary">
+          <Button
+            onClick={() => setOrderDetailsOpen(false)}
+            sx={{
+              color: '#fe60a2',
+              '&:hover': {
+                backgroundColor: 'rgba(254, 96, 162, 0.05)'
+              }
+            }}
+          >
             Đóng
           </Button>
         </DialogActions>

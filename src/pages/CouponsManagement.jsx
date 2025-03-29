@@ -46,24 +46,24 @@ const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
 }));
 
 const StyledTableHead = styled(TableHead)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: '#e91e63',
 }));
 
 const HeaderTableCell = styled(TableCell)(({ theme }) => ({
   textAlign: "center",
   fontWeight: "600",
   fontSize: "15px",
-  color: theme.palette.primary.contrastText,
+  color: "white",
   padding: theme.spacing(1.5),
   whiteSpace: 'nowrap',
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
-    backgroundColor: alpha(theme.palette.primary.light, 0.05),
+    backgroundColor: alpha('#e91e63', 0.05),
   },
   '&:hover': {
-    backgroundColor: alpha(theme.palette.primary.light, 0.1),
+    backgroundColor: alpha('#e91e63', 0.1),
     transition: 'all 0.2s ease',
   },
   transition: 'all 0.2s ease',
@@ -91,19 +91,19 @@ const StyledButton = styled(Button)(({ theme, customvariant }) => ({
   transition: 'all 0.2s ease',
 
   ...(customvariant === "add" && {
-    backgroundColor: theme.palette.success.main,
-    color: theme.palette.common.white,
+    backgroundColor: '#e91e63',
+    color: 'white',
     '&:hover': {
-      backgroundColor: theme.palette.success.dark,
-      boxShadow: `0 4px 12px ${alpha(theme.palette.success.main, 0.3)}`,
+      backgroundColor: '#c2185b',
+      boxShadow: `0 4px 12px ${alpha('#e91e63', 0.3)}`,
     },
   }),
   ...(customvariant === "edit" && {
-    color: theme.palette.primary.main,
-    border: `1px solid ${theme.palette.primary.main}`,
+    color: '#e91e63',
+    border: `1px solid #e91e63`,
     backgroundColor: 'transparent',
     '&:hover': {
-      backgroundColor: alpha(theme.palette.primary.main, 0.05),
+      backgroundColor: alpha('#e91e63', 0.05),
     },
   }),
   ...(customvariant === "delete" && {
@@ -115,11 +115,11 @@ const StyledButton = styled(Button)(({ theme, customvariant }) => ({
     },
   }),
   ...(customvariant === "save" && {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
+    backgroundColor: '#e91e63',
+    color: 'white',
     '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
-      boxShadow: `0 4px 12px ${alpha(theme.palette.primary.main, 0.3)}`,
+      backgroundColor: '#c2185b',
+      boxShadow: `0 4px 12px ${alpha('#e91e63', 0.3)}`,
     },
   }),
   ...(customvariant === "cancel" && {
@@ -144,13 +144,13 @@ const PageTitle = styled(Typography)(({ theme }) => ({
   alignItems: 'center',
   '& svg': {
     marginRight: theme.spacing(1),
-    color: theme.palette.primary.main,
+    color: '#e91e63',
   }
 }));
 
 const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
-  color: theme.palette.primary.contrastText,
+  backgroundColor: '#e91e63',
+  color: 'white',
   display: 'flex',
   alignItems: 'center',
   fontSize: '1.4rem',
@@ -171,7 +171,7 @@ const FormSectionTitle = styled(Typography)(({ theme }) => ({
   alignItems: 'center',
   '& svg': {
     marginRight: theme.spacing(1),
-    color: theme.palette.primary.main,
+    color: '#e91e63',
   }
 }));
 
@@ -185,16 +185,16 @@ const CouponActiveChip = styled(Chip)(({ theme, isActive }) => ({
 
 const CouponPercentageChip = styled(Chip)(({ theme }) => ({
   fontWeight: 500,
-  backgroundColor: alpha(theme.palette.primary.main, 0.1),
-  color: theme.palette.primary.dark,
-  border: `1px solid ${theme.palette.primary.light}`,
+  backgroundColor: alpha('#e91e63', 0.1),
+  color: '#c2185b',
+  border: `1px solid ${alpha('#e91e63', 0.3)}`,
 }));
 
 const CouponAmountChip = styled(Chip)(({ theme }) => ({
   fontWeight: 500,
-  backgroundColor: alpha(theme.palette.secondary.main, 0.1),
-  color: theme.palette.secondary.dark,
-  border: `1px solid ${theme.palette.secondary.light}`,
+  backgroundColor: alpha('#e91e63', 0.1),
+  color: '#c2185b',
+  border: `1px solid ${alpha('#e91e63', 0.3)}`,
 }));
 
 // Custom scrollable container with visible scrollbar
@@ -215,11 +215,11 @@ const ScrollableWrapper = styled(Box)(({ theme }) => ({
     margin: '0 10px',
   },
   '&::-webkit-scrollbar-thumb': {
-    backgroundColor: '#2196f3',
+    backgroundColor: '#e91e63',
     borderRadius: '10px',
     border: '3px solid #f1f1f1',
     '&:hover': {
-      backgroundColor: '#1976d2',
+      backgroundColor: '#c2185b',
     },
   }
 }));
@@ -232,8 +232,8 @@ const EmptyState = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: 12,
-  backgroundColor: alpha(theme.palette.primary.light, 0.05),
-  border: `1px dashed ${alpha(theme.palette.primary.main, 0.2)}`,
+  backgroundColor: alpha('#e91e63', 0.05),
+  border: `1px dashed ${alpha('#e91e63', 0.2)}`,
 }));
 
 const CouponsManagement = () => {
@@ -505,7 +505,7 @@ const CouponsManagement = () => {
         <Alert
           severity="success"
           variant="filled"
-          sx={{ mb: 2, borderRadius: 2, boxShadow: 2 }}
+          sx={{ mb: 2, borderRadius: 2, boxShadow: 2, backgroundColor: '#e91e63' }}
           onClose={() => setSuccessMessage("")}
         >
           {successMessage}
@@ -526,7 +526,7 @@ const CouponsManagement = () => {
       {/* Loading State */}
       {loading ? (
         <Box display="flex" justifyContent="center" alignItems="center" py={5}>
-          <CircularProgress />
+          <CircularProgress sx={{ color: '#e91e63' }} />
           <Typography ml={2} variant="body1" color="text.secondary">
             Đang tải danh sách mã giảm giá...
           </Typography>
@@ -539,7 +539,7 @@ const CouponsManagement = () => {
         <Box sx={{ mt: 3 }}>
           {coupons.length === 0 ? (
             <EmptyState>
-              <ErrorOutlineIcon sx={{ fontSize: 60, color: 'text.secondary', mb: 2 }} />
+              <ErrorOutlineIcon sx={{ fontSize: 60, color: '#e91e63', mb: 2 }} />
               <Typography variant="h6" color="text.secondary" gutterBottom>
                 Chưa có mã giảm giá nào
               </Typography>
@@ -578,7 +578,7 @@ const CouponsManagement = () => {
                     {coupons.map((coupon, index) => (
                       <StyledTableRow key={coupon.Id || index}>
                         <BodyTableCell>
-                          <Typography fontWeight={600} color="primary.main">
+                          <Typography fontWeight={600} sx={{ color: '#e91e63' }}>
                             {coupon?.Code || "N/A"}
                           </Typography>
                         </BodyTableCell>
@@ -620,7 +620,7 @@ const CouponsManagement = () => {
                         <BodyTableCell>
                           <Box display="flex" flexDirection="column" gap={0.5}>
                             <Box display="flex" alignItems="center" justifyContent="center" gap={0.5}>
-                              <CalendarTodayIcon fontSize="small" color="primary" />
+                              <CalendarTodayIcon fontSize="small" sx={{ color: '#e91e63' }} />
                               <Typography variant="body2">
                                 {formatDate(coupon?.StartDate)}
                               </Typography>
@@ -636,7 +636,7 @@ const CouponsManagement = () => {
                         </BodyTableCell>
                         <BodyTableCell>
                           <Box display="flex" alignItems="center" justifyContent="center" gap={0.5}>
-                            <InventoryIcon fontSize="small" color="action" />
+                            <InventoryIcon fontSize="small" sx={{ color: '#e91e63' }} />
                             <Typography variant="body2">
                               {coupon?.QuantityAvailable || 0}
                             </Typography>
@@ -653,17 +653,17 @@ const CouponsManagement = () => {
                           <Box display="flex" justifyContent="center" gap={2}>
                             <IconButton
                               size="small"
-                              color="primary"
+                              sx={{
+                                border: '1px solid #e91e63',
+                                p: 1,
+                                color: '#e91e63',
+                                '&:hover': {
+                                  backgroundColor: alpha('#e91e63', 0.1),
+                                }
+                              }}
                               onClick={() => {
                                 setEditingCoupon({ ...coupon });
                                 setOpenEditDialog(true);
-                              }}
-                              sx={{
-                                border: '1px solid #2196f3',
-                                p: 1,
-                                '&:hover': {
-                                  backgroundColor: alpha('#2196f3', 0.1),
-                                }
                               }}
                             >
                               <EditIcon fontSize="small" />
@@ -721,6 +721,16 @@ const CouponsManagement = () => {
                 variant="outlined"
                 required
                 helperText="Tên dễ nhớ cho mã giảm giá"
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#e91e63',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: '#e91e63',
+                  },
+                }}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -734,6 +744,16 @@ const CouponsManagement = () => {
                 variant="outlined"
                 required
                 helperText="Mã code khách hàng sẽ nhập (VD: SUMMER2023)"
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#e91e63',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: '#e91e63',
+                  },
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -754,6 +774,16 @@ const CouponsManagement = () => {
                 margin="normal"
                 variant="outlined"
                 helperText="Giảm theo số tiền cố định"
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#e91e63',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: '#e91e63',
+                  },
+                }}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -770,6 +800,16 @@ const CouponsManagement = () => {
                   endAdornment: <Box component="span">%</Box>,
                 }}
                 helperText="Giảm theo phần trăm đơn hàng"
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#e91e63',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: '#e91e63',
+                  },
+                }}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -783,6 +823,16 @@ const CouponsManagement = () => {
                 margin="normal"
                 variant="outlined"
                 helperText="Áp dụng khi giảm theo % (0 = không giới hạn)"
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#e91e63',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: '#e91e63',
+                  },
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -806,6 +856,16 @@ const CouponsManagement = () => {
                   shrink: true,
                 }}
                 required
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#e91e63',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: '#e91e63',
+                  },
+                }}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -822,6 +882,16 @@ const CouponsManagement = () => {
                   shrink: true,
                 }}
                 required
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#e91e63',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: '#e91e63',
+                  },
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -842,6 +912,16 @@ const CouponsManagement = () => {
                 margin="normal"
                 variant="outlined"
                 helperText="Giá trị đơn hàng tối thiểu để sử dụng mã (0 = không giới hạn)"
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#e91e63',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: '#e91e63',
+                  },
+                }}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -856,6 +936,16 @@ const CouponsManagement = () => {
                 variant="outlined"
                 required
                 helperText="Số lượng mã có thể sử dụng (yêu cầu > 0)"
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#e91e63',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: '#e91e63',
+                  },
+                }}
               />
             </Grid>
           </Grid>
@@ -897,6 +987,16 @@ const CouponsManagement = () => {
                   margin="normal"
                   variant="outlined"
                   required
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#e91e63',
+                      },
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#e91e63',
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -909,6 +1009,16 @@ const CouponsManagement = () => {
                   margin="normal"
                   variant="outlined"
                   required
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#e91e63',
+                      },
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#e91e63',
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -928,6 +1038,16 @@ const CouponsManagement = () => {
                   onChange={(e) => setEditingCoupon({ ...editingCoupon, DiscountAmount: e.target.value })}
                   margin="normal"
                   variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#e91e63',
+                      },
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#e91e63',
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12} md={4}>
@@ -943,6 +1063,16 @@ const CouponsManagement = () => {
                   InputProps={{
                     endAdornment: <Box component="span">%</Box>,
                   }}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#e91e63',
+                      },
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#e91e63',
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12} md={4}>
@@ -955,6 +1085,16 @@ const CouponsManagement = () => {
                   onChange={(e) => setEditingCoupon({ ...editingCoupon, MaxDiscountAmount: e.target.value })}
                   margin="normal"
                   variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#e91e63',
+                      },
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#e91e63',
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -982,6 +1122,16 @@ const CouponsManagement = () => {
                     shrink: true,
                   }}
                   required
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#e91e63',
+                      },
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#e91e63',
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -1002,6 +1152,16 @@ const CouponsManagement = () => {
                     shrink: true,
                   }}
                   required
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#e91e63',
+                      },
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#e91e63',
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -1021,6 +1181,16 @@ const CouponsManagement = () => {
                   onChange={(e) => setEditingCoupon({ ...editingCoupon, MinimumOrderAmount: e.target.value })}
                   margin="normal"
                   variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#e91e63',
+                      },
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#e91e63',
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -1034,6 +1204,16 @@ const CouponsManagement = () => {
                   margin="normal"
                   variant="outlined"
                   required
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#e91e63',
+                      },
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#e91e63',
+                    },
+                  }}
                 />
               </Grid>
             </Grid>
@@ -1083,7 +1263,7 @@ const CouponsManagement = () => {
                 flexDirection: 'column',
                 gap: 1
               }}>
-                <Typography variant="subtitle1" color="primary.main" fontWeight={600}>
+                <Typography variant="subtitle1" sx={{ color: '#e91e63' }} fontWeight={600}>
                   {couponToDelete.Code}
                 </Typography>
                 <Typography variant="body2">
@@ -1094,14 +1274,16 @@ const CouponsManagement = () => {
                     <Chip
                       label={`${couponToDelete.DiscountPercentage}%`}
                       size="small"
-                      color="primary"
+                      sx={{ bgcolor: alpha('#e91e63', 0.1), color: '#e91e63', borderColor: alpha('#e91e63', 0.3) }}
+                      variant="outlined"
                     />
                   )}
                   {Number(couponToDelete?.DiscountAmount) > 0 && (
                     <Chip
                       label={`${formatNumber(couponToDelete.DiscountAmount)}đ`}
                       size="small"
-                      color="secondary"
+                      sx={{ bgcolor: alpha('#e91e63', 0.1), color: '#e91e63', borderColor: alpha('#e91e63', 0.3) }}
+                      variant="outlined"
                     />
                   )}
                 </Box>

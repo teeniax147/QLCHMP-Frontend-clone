@@ -31,6 +31,7 @@ import {
   ListItemText,
   Checkbox,
   OutlinedInput,
+  Tooltip,
 } from "@mui/material";
 import { API_BASE_URL } from '../config';
 import EditIcon from '@mui/icons-material/Edit';
@@ -44,6 +45,7 @@ import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark';
 import DescriptionIcon from '@mui/icons-material/Description';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 // Styled Components
 const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
@@ -54,24 +56,24 @@ const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
 }));
 
 const StyledTableHead = styled(TableHead)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: '#e91e63',
 }));
 
 const HeaderTableCell = styled(TableCell)(({ theme }) => ({
   textAlign: "center",
   fontWeight: "600",
   fontSize: "15px",
-  color: theme.palette.primary.contrastText,
+  color: "white",
   padding: theme.spacing(1.5),
   whiteSpace: 'nowrap',
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
-    backgroundColor: alpha(theme.palette.primary.light, 0.05),
+    backgroundColor: alpha('#e91e63', 0.05),
   },
   '&:hover': {
-    backgroundColor: alpha(theme.palette.primary.light, 0.1),
+    backgroundColor: alpha('#e91e63', 0.1),
     transition: 'all 0.2s ease',
   },
   transition: 'all 0.2s ease',
@@ -89,19 +91,54 @@ const ActionButtonsCell = styled(TableCell)(({ theme }) => ({
   whiteSpace: 'nowrap',
 }));
 
-const AddProductButton = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.success.main,
-  color: theme.palette.common.white,
+const StyledButton = styled(Button)(({ theme, customvariant }) => ({
   borderRadius: 8,
   padding: '8px 16px',
   fontWeight: 500,
   textTransform: 'none',
   boxShadow: 'none',
   transition: 'all 0.2s ease',
-  '&:hover': {
-    backgroundColor: theme.palette.success.dark,
-    boxShadow: `0 4px 12px ${alpha(theme.palette.success.main, 0.3)}`,
-  },
+
+  ...(customvariant === "add" && {
+    backgroundColor: '#e91e63',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#c2185b',
+      boxShadow: `0 4px 12px ${alpha('#e91e63', 0.3)}`,
+    },
+  }),
+  ...(customvariant === "edit" && {
+    color: '#e91e63',
+    border: `1px solid #e91e63`,
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: alpha('#e91e63', 0.05),
+    },
+  }),
+  ...(customvariant === "delete" && {
+    color: '#e91e63',
+    border: `1px solid #e91e63`,
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: alpha('#e91e63', 0.05),
+    },
+  }),
+  ...(customvariant === "save" && {
+    backgroundColor: '#e91e63',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#c2185b',
+      boxShadow: `0 4px 12px ${alpha('#e91e63', 0.3)}`,
+    },
+  }),
+  ...(customvariant === "cancel" && {
+    color: '#9e9e9e',
+    border: `1px solid #9e9e9e`,
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: alpha('#9e9e9e', 0.05),
+    },
+  }),
   '&:focus': {
     outline: "none",
   },
@@ -123,7 +160,7 @@ const PageTitle = styled(Typography)(({ theme }) => ({
   alignItems: 'center',
   '& svg': {
     marginRight: theme.spacing(1),
-    color: theme.palette.primary.main,
+    color: '#e91e63',
   }
 }));
 
@@ -137,7 +174,7 @@ const FormSectionTitle = styled(Typography)(({ theme }) => ({
   alignItems: 'center',
   '& svg': {
     marginRight: theme.spacing(1),
-    color: theme.palette.primary.main,
+    color: '#e91e63',
   }
 }));
 
@@ -169,6 +206,13 @@ const ProductImageCell = styled(Box)(({ theme }) => ({
       transform: 'scale(1.1)',
     },
   },
+}));
+
+const ProductChip = styled(Chip)(({ theme }) => ({
+  margin: '2px',
+  backgroundColor: alpha('#e91e63', 0.1),
+  border: `1px solid ${alpha('#e91e63', 0.3)}`,
+  color: '#e91e63',
 }));
 
 const ITEM_HEIGHT = 48;
@@ -215,13 +259,33 @@ const ScrollableWrapper = styled(Box)(({ theme }) => ({
     margin: '0 10px',
   },
   '&::-webkit-scrollbar-thumb': {
-    backgroundColor: '#2196f3',
+    backgroundColor: '#e91e63',
     borderRadius: '10px',
     border: '3px solid #f1f1f1',
     '&:hover': {
-      backgroundColor: '#1976d2',
+      backgroundColor: '#c2185b',
     },
   }
+}));
+
+// Empty state component
+const EmptyState = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(5),
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: 12,
+  backgroundColor: alpha('#e91e63', 0.05),
+  border: `1px dashed ${alpha('#e91e63', 0.2)}`,
+}));
+
+const StyledDialogTitle = styled(Box)(({ theme, deleteMode }) => ({
+  backgroundColor: deleteMode ? '#f44336' : '#e91e63',
+  color: 'white',
+  padding: theme.spacing(2),
+  display: 'flex',
+  alignItems: 'center',
 }));
 
 const ProductManager = () => {
@@ -576,13 +640,14 @@ const ProductManager = () => {
           <InventoryIcon fontSize="large" />
           Quản Lý Sản Phẩm
         </PageTitle>
-        <AddProductButton
+        <StyledButton
+          customvariant="add"
           startIcon={<AddCircleIcon />}
           onClick={() => openModal("add")}
           size="large"
         >
           Thêm Sản Phẩm Mới
-        </AddProductButton>
+        </StyledButton>
       </Box>
 
       <Divider sx={{ mb: 3 }} />
@@ -592,7 +657,12 @@ const ProductManager = () => {
         <Alert
           severity="success"
           variant="filled"
-          sx={{ mb: 2, borderRadius: 2, boxShadow: 2 }}
+          sx={{
+            mb: 2,
+            borderRadius: 2,
+            boxShadow: 2,
+            backgroundColor: '#e91e63'
+          }}
           onClose={() => setSuccessMessage("")}
         >
           {successMessage}
@@ -603,7 +673,12 @@ const ProductManager = () => {
         <Alert
           severity="error"
           variant="filled"
-          sx={{ mb: 2, borderRadius: 2, boxShadow: 2 }}
+          sx={{
+            mb: 2,
+            borderRadius: 2,
+            boxShadow: 2,
+            backgroundColor: '#e91e63'
+          }}
           onClose={() => setErrorMessage("")}
         >
           {errorMessage}
@@ -613,166 +688,197 @@ const ProductManager = () => {
       {/* Loading State */}
       {loading ? (
         <Box display="flex" justifyContent="center" alignItems="center" py={5}>
-          <CircularProgress />
+          <CircularProgress sx={{ color: '#e91e63' }} />
           <Typography ml={2} variant="body1" color="text.secondary">
             Đang tải danh sách sản phẩm...
           </Typography>
         </Box>
       ) : error ? (
-        <Alert severity="error" sx={{ mt: 2, borderRadius: 2 }}>
+        <Alert
+          severity="error"
+          sx={{
+            mt: 2,
+            borderRadius: 2,
+            backgroundColor: 'rgba(233, 30, 99, 0.1)',
+            color: '#e91e63',
+            '& .MuiAlert-icon': {
+              color: '#e91e63'
+            }
+          }}
+        >
           {error}
         </Alert>
       ) : (
         <Box sx={{ mt: 3 }}>
-          <Typography variant="body2" color="text.secondary" mb={1}>
-            Kéo ngang để xem đầy đủ thông tin →
-          </Typography>
+          {products.length === 0 ? (
+            <EmptyState>
+              <ErrorOutlineIcon sx={{ fontSize: 60, color: '#e91e63', mb: 2 }} />
+              <Typography variant="h6" color="text.secondary" gutterBottom>
+                Chưa có sản phẩm nào
+              </Typography>
+              <Typography variant="body2" color="text.secondary" align="center" sx={{ mb: 3, maxWidth: 400 }}>
+                Bạn chưa có sản phẩm nào trong hệ thống. Hãy thêm sản phẩm mới để hiển thị cho khách hàng.
+              </Typography>
+              <StyledButton
+                customvariant="add"
+                startIcon={<AddCircleIcon />}
+                onClick={() => openModal("add")}
+              >
+                Thêm Sản Phẩm Mới
+              </StyledButton>
+            </EmptyState>
+          ) : (
+            <>
+              <Typography variant="body2" color="text.secondary" mb={1}>
+                Kéo ngang để xem đầy đủ thông tin →
+              </Typography>
 
-          <ScrollableWrapper>
-            <Table sx={{ minWidth: 1450 }}>
-              <StyledTableHead>
-                <TableRow>
-                  <HeaderTableCell>STT</HeaderTableCell>
-                  <HeaderTableCell>Tên sản phẩm</HeaderTableCell>
-                  <HeaderTableCell>Giá bán</HeaderTableCell>
-                  <HeaderTableCell>Giá gốc</HeaderTableCell>
-                  <HeaderTableCell>Mô tả</HeaderTableCell>
-                  <HeaderTableCell>Thương hiệu</HeaderTableCell>
-                  <HeaderTableCell>Danh mục</HeaderTableCell>
-                  <HeaderTableCell>Hình ảnh</HeaderTableCell>
-                  <HeaderTableCell>Hành động</HeaderTableCell>
-                </TableRow>
-              </StyledTableHead>
-              <TableBody>
-                {products.length === 0 ? (
-                  <TableRow>
-                    <TableCell colSpan={9} align="center" sx={{ py: 3 }}>
-                      <Typography variant="body1" color="text.secondary">
-                        Không có sản phẩm nào!
-                      </Typography>
-                    </TableCell>
-                  </TableRow>
-                ) : (
-                  products.map((product, index) => (
-                    <StyledTableRow key={product.Id}>
-                      <BodyTableCell>{(currentPage - 1) * pageSize + index + 1}</BodyTableCell>
-                      <BodyTableCell>
-                        <Typography fontWeight={500}>{product.Name}</Typography>
-                      </BodyTableCell>
-                      <BodyTableCell>
-                        <Chip
-                          icon={<LocalOfferIcon />}
-                          label={`${product.Price.toLocaleString()}đ`}
-                          color="primary"
-                          variant="outlined"
-                          size="small"
-                        />
-                      </BodyTableCell>
-                      <BodyTableCell>
-                        <Typography variant="body2" color="text.secondary">
-                          {product.OriginalPrice.toLocaleString()}đ
-                        </Typography>
-                      </BodyTableCell>
-                      <BodyTableCell sx={{ maxWidth: '250px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        <Typography
-                          noWrap
-                          title={product.Description || "Không có mô tả"}
-                        >
-                          {product.Description || "Không có mô tả"}
-                        </Typography>
-                      </BodyTableCell>
-                      <BodyTableCell>
-                        {product.BrandName ? (
-                          <Chip
-                            label={product.BrandName}
+              <ScrollableWrapper>
+                <Table sx={{ minWidth: 1450 }}>
+                  <StyledTableHead>
+                    <TableRow>
+                      <HeaderTableCell>STT</HeaderTableCell>
+                      <HeaderTableCell>Tên sản phẩm</HeaderTableCell>
+                      <HeaderTableCell>Giá bán</HeaderTableCell>
+                      <HeaderTableCell>Giá gốc</HeaderTableCell>
+                      <HeaderTableCell>Mô tả</HeaderTableCell>
+                      <HeaderTableCell>Thương hiệu</HeaderTableCell>
+                      <HeaderTableCell>Danh mục</HeaderTableCell>
+                      <HeaderTableCell>Hình ảnh</HeaderTableCell>
+                      <HeaderTableCell>Hành động</HeaderTableCell>
+                    </TableRow>
+                  </StyledTableHead>
+                  <TableBody>
+                    {products.map((product, index) => (
+                      <StyledTableRow key={product.Id}>
+                        <BodyTableCell>{(currentPage - 1) * pageSize + index + 1}</BodyTableCell>
+                        <BodyTableCell>
+                          <Typography fontWeight={500}>{product.Name}</Typography>
+                        </BodyTableCell>
+                        <BodyTableCell>
+                          <ProductChip
+                            icon={<LocalOfferIcon />}
+                            label={`${product.Price.toLocaleString()}đ`}
                             size="small"
-                            variant="outlined"
-                            color="secondary"
                           />
-                        ) : (
+                        </BodyTableCell>
+                        <BodyTableCell>
                           <Typography variant="body2" color="text.secondary">
-                            Không có thương hiệu
+                            {product.OriginalPrice.toLocaleString()}đ
                           </Typography>
-                        )}
-                      </BodyTableCell>
-                      <BodyTableCell>
-                        {product.Categories && product.Categories.$values && product.Categories.$values.length > 0 ? (
-                          <Box display="flex" flexWrap="wrap" justifyContent="center" gap={0.5}>
-                            {product.Categories.$values.map((category, idx) => (
-                              <Chip
-                                key={idx}
-                                label={category}
-                                size="small"
-                                sx={{ margin: '2px' }}
-                              />
-                            ))}
+                        </BodyTableCell>
+                        <BodyTableCell sx={{ maxWidth: '250px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                          <Tooltip title={product.Description || "Không có mô tả"} arrow>
+                            <Typography
+                              noWrap
+                            >
+                              {product.Description || "Không có mô tả"}
+                            </Typography>
+                          </Tooltip>
+                        </BodyTableCell>
+                        <BodyTableCell>
+                          {product.BrandName ? (
+                            <ProductChip
+                              label={product.BrandName}
+                              size="small"
+                            />
+                          ) : (
+                            <Typography variant="body2" color="text.secondary">
+                              Không có thương hiệu
+                            </Typography>
+                          )}
+                        </BodyTableCell>
+                        <BodyTableCell>
+                          {product.Categories && product.Categories.$values && product.Categories.$values.length > 0 ? (
+                            <Box display="flex" flexWrap="wrap" justifyContent="center" gap={0.5}>
+                              {product.Categories.$values.map((category, idx) => (
+                                <ProductChip
+                                  key={idx}
+                                  label={category}
+                                  size="small"
+                                />
+                              ))}
+                            </Box>
+                          ) : (
+                            <Typography variant="body2" color="text.secondary">
+                              Không có danh mục
+                            </Typography>
+                          )}
+                        </BodyTableCell>
+                        <BodyTableCell>
+                          <ProductImageCell>
+                            <img
+                              src={product.ImageUrl}
+                              alt={product.Name || "Hình ảnh sản phẩm"}
+                            />
+                          </ProductImageCell>
+                        </BodyTableCell>
+                        <ActionButtonsCell>
+                          <Box display="flex" justifyContent="center" gap={2}>
+                            <IconButton
+                              size="small"
+                              sx={{
+                                border: '1px solid #e91e63',
+                                color: '#e91e63',
+                                p: 1,
+                                '&:hover': {
+                                  backgroundColor: alpha('#e91e63', 0.1),
+                                }
+                              }}
+                              onClick={() => openModal("edit", product)}
+                            >
+                              <EditIcon fontSize="small" />
+                            </IconButton>
+                            <IconButton
+                              size="small"
+                              sx={{
+                                border: '1px solid #e91e63',
+                                color: '#e91e63',
+                                p: 1,
+                                '&:hover': {
+                                  backgroundColor: alpha('#e91e63', 0.1),
+                                }
+                              }}
+                              onClick={() => openModal("delete", product)}
+                            >
+                              <DeleteIcon fontSize="small" />
+                            </IconButton>
                           </Box>
-                        ) : (
-                          <Typography variant="body2" color="text.secondary">
-                            Không có danh mục
-                          </Typography>
-                        )}
-                      </BodyTableCell>
-                      <BodyTableCell>
-                        <ProductImageCell>
-                          <img
-                            src={product.ImageUrl}
-                            alt={product.Name || "Hình ảnh sản phẩm"}
-                          />
-                        </ProductImageCell>
-                      </BodyTableCell>
-                      <ActionButtonsCell>
-                        <Box display="flex" justifyContent="center" gap={2}>
-                          <IconButton
-                            size="small"
-                            color="primary"
-                            onClick={() => openModal("edit", product)}
-                            sx={{
-                              border: '1px solid #2196f3',
-                              p: 1,
-                              '&:hover': {
-                                backgroundColor: alpha('#2196f3', 0.1),
-                              }
-                            }}
-                          >
-                            <EditIcon fontSize="small" />
-                          </IconButton>
-                          <IconButton
-                            size="small"
-                            color="error"
-                            onClick={() => openModal("delete", product)}
-                            sx={{
-                              border: '1px solid #f44336',
-                              p: 1,
-                              '&:hover': {
-                                backgroundColor: alpha('#f44336', 0.1),
-                              }
-                            }}
-                          >
-                            <DeleteIcon fontSize="small" />
-                          </IconButton>
-                        </Box>
-                      </ActionButtonsCell>
-                    </StyledTableRow>
-                  ))
-                )}
-              </TableBody>
-            </Table>
-          </ScrollableWrapper>
+                        </ActionButtonsCell>
+                      </StyledTableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </ScrollableWrapper>
 
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-              <Pagination
-                count={totalPages}
-                page={currentPage}
-                onChange={handlePageChange}
-                color="primary"
-                size="large"
-                showFirstButton
-                showLastButton
-              />
-            </Box>
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+                  <Pagination
+                    count={totalPages}
+                    page={currentPage}
+                    onChange={handlePageChange}
+                    sx={{
+                      '& .MuiPaginationItem-root': {
+                        '&.Mui-selected': {
+                          backgroundColor: '#e91e63',
+                          color: 'white',
+                          '&:hover': {
+                            backgroundColor: '#c2185b',
+                          }
+                        },
+                        '&:hover': {
+                          backgroundColor: alpha('#e91e63', 0.1),
+                        }
+                      }
+                    }}
+                    size="large"
+                    showFirstButton
+                    showLastButton
+                  />
+                </Box>
+              )}
+            </>
           )}
         </Box>
       )}
@@ -785,20 +891,14 @@ const ProductManager = () => {
       >
         <Box sx={modalStyle}>
           {/* Modal Header */}
-          <Box sx={{
-            backgroundColor: modalType === 'delete' ? '#f44336' : '#2196f3',
-            color: 'white',
-            p: 2,
-            display: 'flex',
-            alignItems: 'center',
-          }}>
+          <StyledDialogTitle deleteMode={modalType === 'delete'}>
             {modalType === 'add' && <AddCircleIcon sx={{ mr: 1 }} />}
             {modalType === 'edit' && <EditIcon sx={{ mr: 1 }} />}
             {modalType === 'delete' && <DeleteIcon sx={{ mr: 1 }} />}
             <Typography variant="h6" component="h2">
               {getModalTitle()}
             </Typography>
-          </Box>
+          </StyledDialogTitle>
 
           {/* Modal Content */}
           {modalType === "delete" ? (
@@ -820,7 +920,20 @@ const ProductManager = () => {
                     value={currentProduct.Name}
                     onChange={(e) => setCurrentProduct({ ...currentProduct, Name: e.target.value })}
                     InputProps={{
-                      startAdornment: <InventoryIcon color="primary" sx={{ mr: 1 }} />,
+                      startAdornment: <InventoryIcon sx={{ mr: 1, color: '#e91e63' }} />,
+                    }}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        '&:hover fieldset': {
+                          borderColor: '#e91e63'
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#e91e63'
+                        }
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#e91e63'
+                      }
                     }}
                   />
                 </Grid>
@@ -832,7 +945,20 @@ const ProductManager = () => {
                     value={currentProduct.Price}
                     onChange={(e) => setCurrentProduct({ ...currentProduct, Price: e.target.value })}
                     InputProps={{
-                      startAdornment: <LocalOfferIcon color="primary" sx={{ mr: 1 }} />,
+                      startAdornment: <LocalOfferIcon sx={{ mr: 1, color: '#e91e63' }} />,
+                    }}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        '&:hover fieldset': {
+                          borderColor: '#e91e63'
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#e91e63'
+                        }
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#e91e63'
+                      }
                     }}
                   />
                 </Grid>
@@ -844,7 +970,20 @@ const ProductManager = () => {
                     value={currentProduct.OriginalPrice}
                     onChange={(e) => setCurrentProduct({ ...currentProduct, OriginalPrice: e.target.value })}
                     InputProps={{
-                      startAdornment: <CurrencyExchangeIcon color="primary" sx={{ mr: 1 }} />,
+                      startAdornment: <CurrencyExchangeIcon sx={{ mr: 1, color: '#e91e63' }} />,
+                    }}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        '&:hover fieldset': {
+                          borderColor: '#e91e63'
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#e91e63'
+                        }
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#e91e63'
+                      }
                     }}
                   />
                 </Grid>
@@ -855,7 +994,7 @@ const ProductManager = () => {
                     Chọn Thương Hiệu
                   </FormSectionTitle>
                   <FormControl fullWidth>
-                    <InputLabel>Thương hiệu</InputLabel>
+                    <InputLabel sx={{ '&.Mui-focused': { color: '#e91e63' } }}>Thương hiệu</InputLabel>
                     <Select
                       multiple
                       value={selectedBrands}
@@ -866,16 +1005,33 @@ const ProductManager = () => {
                           {selected.map((value) => {
                             const brand = brands.find(b => b.Id === value);
                             return (
-                              <Chip key={value} label={brand?.Name || value} size="small" />
+                              <ProductChip key={value} label={brand?.Name || value} size="small" />
                             );
                           })}
                         </Box>
                       )}
                       MenuProps={MenuProps}
+                      sx={{
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          '&.Mui-focused': {
+                            borderColor: '#e91e63',
+                          },
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: '#e91e63',
+                        },
+                      }}
                     >
                       {brands.map((brand) => (
                         <MenuItem key={brand.Id} value={brand.Id}>
-                          <Checkbox checked={selectedBrands.indexOf(brand.Id) > -1} />
+                          <Checkbox
+                            checked={selectedBrands.indexOf(brand.Id) > -1}
+                            sx={{
+                              '&.Mui-checked': {
+                                color: '#e91e63',
+                              },
+                            }}
+                          />
                           <ListItemText primary={brand.Name} />
                         </MenuItem>
                       ))}
@@ -888,7 +1044,7 @@ const ProductManager = () => {
                     Chọn Danh Mục
                   </FormSectionTitle>
                   <FormControl fullWidth>
-                    <InputLabel>Danh mục sản phẩm</InputLabel>
+                    <InputLabel sx={{ '&.Mui-focused': { color: '#e91e63' } }}>Danh mục sản phẩm</InputLabel>
                     <Select
                       multiple
                       value={selectedCategories}
@@ -899,16 +1055,33 @@ const ProductManager = () => {
                           {selected.map((value) => {
                             const category = categories.find(c => c.Id === value);
                             return (
-                              <Chip key={value} label={category?.Name || value} size="small" />
+                              <ProductChip key={value} label={category?.Name || value} size="small" />
                             );
                           })}
                         </Box>
                       )}
                       MenuProps={MenuProps}
+                      sx={{
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          '&.Mui-focused': {
+                            borderColor: '#e91e63',
+                          },
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: '#e91e63',
+                        },
+                      }}
                     >
                       {categories.map((category) => (
                         <MenuItem key={category.Id} value={category.Id}>
-                          <Checkbox checked={selectedCategories.indexOf(category.Id) > -1} />
+                          <Checkbox
+                            checked={selectedCategories.indexOf(category.Id) > -1}
+                            sx={{
+                              '&.Mui-checked': {
+                                color: '#e91e63',
+                              },
+                            }}
+                          />
                           <ListItemText primary={category.Name} />
                         </MenuItem>
                       ))}
@@ -928,6 +1101,19 @@ const ProductManager = () => {
                     rows={4}
                     value={currentProduct.Description}
                     onChange={(e) => setCurrentProduct({ ...currentProduct, Description: e.target.value })}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        '&:hover fieldset': {
+                          borderColor: '#e91e63'
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#e91e63'
+                        }
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#e91e63'
+                      }
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -940,7 +1126,15 @@ const ProductManager = () => {
                     <Button
                       variant="outlined"
                       component="label"
-                      sx={{ borderRadius: '8px' }}
+                      sx={{
+                        borderRadius: '8px',
+                        borderColor: '#e91e63',
+                        color: '#e91e63',
+                        '&:hover': {
+                          borderColor: '#c2185b',
+                          backgroundColor: alpha('#e91e63', 0.05),
+                        }
+                      }}
                     >
                       Chọn ảnh
                       <input
@@ -974,16 +1168,14 @@ const ProductManager = () => {
             borderColor: 'divider',
             gap: 2
           }}>
-            <Button
-              variant="outlined"
-              color="inherit"
+            <StyledButton
+              customvariant="cancel"
               onClick={() => setModalVisible(false)}
             >
               Hủy
-            </Button>
-            <Button
-              variant="contained"
-              color={modalType === 'delete' ? 'error' : 'primary'}
+            </StyledButton>
+            <StyledButton
+              customvariant={modalType === 'delete' ? 'delete' : 'save'}
               onClick={handleModalAction}
               startIcon={
                 modalType === 'add' ? <AddCircleIcon /> :
@@ -992,7 +1184,7 @@ const ProductManager = () => {
               }
             >
               {getModalActionText()}
-            </Button>
+            </StyledButton>
           </Box>
         </Box>
       </Modal>

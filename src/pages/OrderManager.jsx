@@ -543,19 +543,24 @@ const OrderManager = () => {
         value={activeTab}
         onChange={handleTabChange}
         centered
-        indicatorColor="primary"
         textColor="primary"
         className="status-tabs"
         sx={{
           '& .MuiTab-root': {
+            color: '#999999', // Unselected tab color
             '&:focus': {
               outline: 'none'
             },
             '&.Mui-focusVisible': {
               outline: 'none'
+            },
+            '&.Mui-selected': {
+              color: '#e91e63', // Selected tab text color (pink)
+              fontWeight: 'bold'
             }
           },
           '& .MuiTabs-indicator': {
+            backgroundColor: '#e91e63', // Indicator color (pink)
             height: '3px'
           }
         }}
@@ -568,8 +573,9 @@ const OrderManager = () => {
               '&:focus': {
                 outline: 'none'
               },
-              '&.Mui-selected': {
-                fontWeight: 'bold'
+              '&:hover': {
+                color: '#e91e63', // Hover color (pink)
+                opacity: 0.8
               }
             }}
           />
@@ -604,13 +610,13 @@ const OrderManager = () => {
               borderRadius: '4px 0 0 4px',
               '& fieldset': {
                 borderRight: 'none',
-                borderColor: '#e0e0e0'
+                borderColor: '#fe60a2'
               },
               '&:hover fieldset': {
-                borderColor: '#bdbdbd'
+                borderColor: '#fe60a2'
               },
               '&.Mui-focused fieldset': {
-                borderColor: '#1976d2',
+                borderColor: '#fe60a2',
                 borderWidth: '1px'
               }
             },
@@ -625,7 +631,7 @@ const OrderManager = () => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <SearchIcon fontSize="small" sx={{ color: '#757575' }} />
+                <SearchIcon fontSize="small" sx={{ color: '#fe60a2' }} />
               </InputAdornment>
             ),
             endAdornment: searchTerm && (
@@ -637,7 +643,7 @@ const OrderManager = () => {
                     p: 0.25,
                     mr: 0.5,
                     '&:hover': {
-                      backgroundColor: 'rgba(0,0,0,0.04)'
+                      backgroundColor: 'rgba(254, 96, 162, 0.1)'
                     },
                     '&:focus': {
                       outline: 'none'
@@ -647,7 +653,7 @@ const OrderManager = () => {
                     }
                   }}
                 >
-                  <ClearIcon fontSize="small" sx={{ color: '#757575' }} />
+                  <ClearIcon fontSize="small" sx={{ color: '#fe60a2' }} />
                 </IconButton>
               </InputAdornment>
             )
@@ -655,38 +661,24 @@ const OrderManager = () => {
         />
         <Button
           variant="contained"
-          color="primary"
           onClick={handleSearch}
           sx={{
             height: '34px',
-            fontSize: '11px',
-            width: '65px',
-            p: 0,
+            minWidth: '34px',
             borderRadius: '0 4px 4px 0',
-            boxShadow: 'none',
-            textTransform: 'none',
-            fontWeight: 500,
+            backgroundColor: '#fe60a2',
             '&:hover': {
-              boxShadow: 'none',
-              opacity: 0.9
+              backgroundColor: '#fa83b5',
             },
             '&:focus': {
-              outline: 'none',
-              boxShadow: 'none'
-            },
-            '&:active': {
-              outline: 'none',
-              boxShadow: 'none'
-            },
-            '&.Mui-focusVisible': {
               outline: 'none'
             },
-            '&::after': {
+            '&.Mui-focusVisible': {
               outline: 'none'
             }
           }}
         >
-          Tìm kiếm
+          <SearchIcon fontSize="small" />
         </Button>
       </Box>
 
@@ -699,7 +691,33 @@ const OrderManager = () => {
           Tổng số: {totalOrders} đơn hàng | Trang {currentPage}/{totalPages}
         </Typography>
 
-        <FormControl variant="outlined" size="small" style={{ minWidth: 70 }}>
+        <FormControl
+          variant="outlined"
+          size="small"
+          style={{ minWidth: 70 }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#fe60a2'
+              },
+              '&:hover fieldset': {
+                borderColor: '#fe60a2'
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#fe60a2'
+              }
+            },
+            '& .MuiInputLabel-root': {
+              color: '#666',
+              '&.Mui-focused': {
+                color: '#fe60a2'
+              }
+            },
+            '& .MuiSelect-icon': {
+              color: '#fe60a2'
+            }
+          }}
+        >
           <InputLabel>Hiển thị</InputLabel>
           <Select
             value={pageSize}
@@ -934,48 +952,47 @@ const OrderManager = () => {
                 background: 'linear-gradient(to right, #f8f9fa, #ffffff, #f8f9fa)'
               }}
             >
-              <Pagination
-                count={totalPages}
-                page={currentPage}
-                onChange={handlePageChange}
-                color="primary"
-                size="large"
-                showFirstButton
-                showLastButton
-                sx={{
-                  '& .MuiPaginationItem-root': {
-                    fontWeight: 500,
-                    margin: '0 2px',
-                    transition: 'all 0.3s ease',
-                    border: 'none',
-                    outline: 'none',
-                    '&:focus': {
+                <Pagination
+                  count={totalPages}
+                  page={currentPage}
+                  onChange={handlePageChange}
+                  size="large"
+                  showFirstButton
+                  showLastButton
+                  sx={{
+                    '& .MuiPaginationItem-root': {
+                      fontWeight: 500,
+                      margin: '0 2px',
+                      transition: 'all 0.3s ease',
+                      border: 'none',
                       outline: 'none',
-                      boxShadow: 'none'
+                      '&:focus': {
+                        outline: 'none',
+                        boxShadow: 'none'
+                      },
                     },
-                  },
-                  '& .MuiPaginationItem-page.Mui-selected': {
-                    backgroundColor: '#3f51b5',
-                    color: '#fff',
-                    boxShadow: 'none',
-                    transform: 'scale(1.1)',
-                  },
-                  '& .MuiPaginationItem-page:hover': {
-                    backgroundColor: 'rgba(63, 81, 181, 0.1)',
-
-                  },
-                  '& .MuiPaginationItem-ellipsis': {
-                    color: '#666',
-                  },
-                  '& .MuiPaginationItem-firstLast, & .MuiPaginationItem-previousNext': {
-                    color: '#3f51b5',
-                    '&:hover': {
-                      backgroundColor: 'rgba(63, 81, 181, 0.1)',
+                    '& .MuiPaginationItem-page.Mui-selected': {
+                      backgroundColor: '#fe60a2',
+                      color: '#fff',
+                      boxShadow: 'none',
+                      transform: 'scale(1.1)',
+                    },
+                    '& .MuiPaginationItem-page:hover': {
+                      backgroundColor: 'rgba(254, 96, 162, 0.1)',
+                    },
+                    '& .MuiPaginationItem-ellipsis': {
+                      color: '#666',
+                    },
+                    '& .MuiPaginationItem-firstLast, & .MuiPaginationItem-previousNext': {
+                      color: '#fe60a2',
+                      '&:hover': {
+                        backgroundColor: 'rgba(254, 96, 162, 0.1)',
+                      }
                     }
-                  }
-                }}
-              />
-            </Box>
+                  }}
+                />
+              </Box>
+            
           )}
 
         </>

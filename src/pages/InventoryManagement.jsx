@@ -44,24 +44,24 @@ const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
 }));
 
 const StyledTableHead = styled(TableHead)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: '#e91e63',
 }));
 
 const HeaderTableCell = styled(TableCell)(({ theme }) => ({
   textAlign: "center",
   fontWeight: "600",
   fontSize: "15px",
-  color: theme.palette.primary.contrastText,
+  color: "white",
   padding: theme.spacing(1.5),
   whiteSpace: 'nowrap',
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
-    backgroundColor: alpha(theme.palette.primary.light, 0.05),
+    backgroundColor: alpha('#e91e63', 0.05),
   },
   '&:hover': {
-    backgroundColor: alpha(theme.palette.primary.light, 0.1),
+    backgroundColor: alpha('#e91e63', 0.1),
     transition: 'all 0.2s ease',
   },
   transition: 'all 0.2s ease',
@@ -79,19 +79,54 @@ const ActionButtonsCell = styled(TableCell)(({ theme }) => ({
   whiteSpace: 'nowrap',
 }));
 
-const AddButton = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.success.main,
-  color: theme.palette.common.white,
+const StyledButton = styled(Button)(({ theme, customvariant }) => ({
   borderRadius: 8,
   padding: '8px 16px',
   fontWeight: 500,
   textTransform: 'none',
   boxShadow: 'none',
   transition: 'all 0.2s ease',
-  '&:hover': {
-    backgroundColor: theme.palette.success.dark,
-    boxShadow: `0 4px 12px ${alpha(theme.palette.success.main, 0.3)}`,
-  },
+
+  ...(customvariant === "add" && {
+    backgroundColor: '#e91e63',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#c2185b',
+      boxShadow: `0 4px 12px ${alpha('#e91e63', 0.3)}`,
+    },
+  }),
+  ...(customvariant === "edit" && {
+    color: '#e91e63',
+    border: `1px solid #e91e63`,
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: alpha('#e91e63', 0.05),
+    },
+  }),
+  ...(customvariant === "delete" && {
+    color: '#e91e63',
+    border: `1px solid #e91e63`,
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: alpha('#e91e63', 0.05),
+    },
+  }),
+  ...(customvariant === "save" && {
+    backgroundColor: '#e91e63',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#c2185b',
+      boxShadow: `0 4px 12px ${alpha('#e91e63', 0.3)}`,
+    },
+  }),
+  ...(customvariant === "cancel" && {
+    color: '#9e9e9e',
+    border: `1px solid #9e9e9e`,
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: alpha('#9e9e9e', 0.05),
+    },
+  }),
   '&:focus': {
     outline: "none",
   },
@@ -106,7 +141,7 @@ const PageTitle = styled(Typography)(({ theme }) => ({
   alignItems: 'center',
   '& svg': {
     marginRight: theme.spacing(1),
-    color: theme.palette.primary.main,
+    color: '#e91e63',
   }
 }));
 
@@ -125,8 +160,8 @@ const modalStyle = {
 };
 
 const StyledDialogTitle = styled(Box)(({ theme, error }) => ({
-  backgroundColor: error ? theme.palette.error.main : theme.palette.primary.main,
-  color: theme.palette.primary.contrastText,
+  backgroundColor: error ? '#f44336' : '#e91e63',
+  color: 'white',
   padding: theme.spacing(2),
   display: 'flex',
   alignItems: 'center',
@@ -145,7 +180,15 @@ const FormSectionTitle = styled(Typography)(({ theme }) => ({
   alignItems: 'center',
   '& svg': {
     marginRight: theme.spacing(1),
-    color: theme.palette.primary.main,
+    color: '#e91e63',
+  }
+}));
+
+const InventoryChip = styled(Chip)(({ theme }) => ({
+  borderColor: '#e91e63',
+  color: '#e91e63',
+  '& .MuiChip-icon': {
+    color: '#e91e63',
   }
 }));
 
@@ -318,13 +361,14 @@ const InventoryManagement = () => {
           <WarehouseIcon fontSize="large" />
           Quản Lý Kho Hàng
         </PageTitle>
-        <AddButton
+        <StyledButton
+          customvariant="add"
           startIcon={<AddCircleIcon />}
           onClick={() => openModal("add")}
           size="large"
         >
           Thêm Kho Hàng Mới
-        </AddButton>
+        </StyledButton>
       </Box>
 
       <Divider sx={{ mb: 3 }} />
@@ -334,7 +378,12 @@ const InventoryManagement = () => {
         <Alert
           severity="success"
           variant="filled"
-          sx={{ mb: 2, borderRadius: 2, boxShadow: 2 }}
+          sx={{
+            mb: 2,
+            borderRadius: 2,
+            boxShadow: 2,
+            backgroundColor: '#e91e63'
+          }}
           onClose={() => setSuccessMessage("")}
         >
           {successMessage}
@@ -345,7 +394,12 @@ const InventoryManagement = () => {
         <Alert
           severity="error"
           variant="filled"
-          sx={{ mb: 2, borderRadius: 2, boxShadow: 2 }}
+          sx={{
+            mb: 2,
+            borderRadius: 2,
+            boxShadow: 2,
+            backgroundColor: '#e91e63'
+          }}
           onClose={() => setErrorMessage("")}
         >
           {errorMessage}
@@ -355,13 +409,24 @@ const InventoryManagement = () => {
       {/* Loading State */}
       {loading ? (
         <Box display="flex" justifyContent="center" alignItems="center" py={5}>
-          <CircularProgress />
+          <CircularProgress sx={{ color: '#e91e63' }} />
           <Typography ml={2} variant="body1" color="text.secondary">
             Đang tải dữ liệu kho hàng...
           </Typography>
         </Box>
       ) : error ? (
-        <Alert severity="error" sx={{ mt: 2, borderRadius: 2 }}>
+        <Alert
+          severity="error"
+          sx={{
+            mt: 2,
+            borderRadius: 2,
+            backgroundColor: 'rgba(233, 30, 99, 0.1)',
+            color: '#e91e63',
+            '& .MuiAlert-icon': {
+              color: '#e91e63'
+            }
+          }}
+        >
           {error}
         </Alert>
       ) : (
@@ -389,17 +454,16 @@ const InventoryManagement = () => {
                   <StyledTableRow key={inventory.InventoryId}>
                     <BodyTableCell>{index + 1}</BodyTableCell>
                     <BodyTableCell>
-                      <Chip
+                      <InventoryChip
                         icon={<StoreIcon />}
                         label={inventory.WarehouseLocation}
-                        color="primary"
                         variant="outlined"
                         size="small"
                       />
                     </BodyTableCell>
                     <BodyTableCell>
                       <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <InventoryIcon fontSize="small" color="primary" sx={{ mr: 0.5 }} />
+                        <InventoryIcon sx={{ mr: 0.5, color: '#e91e63' }} />
                         {inventory.QuantityInStock}
                       </Typography>
                     </BodyTableCell>
@@ -407,29 +471,29 @@ const InventoryManagement = () => {
                       <Box display="flex" justifyContent="center" gap={2}>
                         <IconButton
                           size="small"
-                          color="primary"
-                          onClick={() => openModal("edit", inventory)}
                           sx={{
-                            border: '1px solid #2196f3',
+                            border: '1px solid #e91e63',
+                            color: '#e91e63',
                             p: 1,
                             '&:hover': {
-                              backgroundColor: alpha('#2196f3', 0.1),
+                              backgroundColor: alpha('#e91e63', 0.1),
                             }
                           }}
+                          onClick={() => openModal("edit", inventory)}
                         >
                           <EditIcon fontSize="small" />
                         </IconButton>
                         <IconButton
                           size="small"
-                          color="error"
-                          onClick={() => openModal("delete", inventory)}
                           sx={{
-                            border: '1px solid #f44336',
+                            border: '1px solid #e91e63',
+                            color: '#e91e63',
                             p: 1,
                             '&:hover': {
-                              backgroundColor: alpha('#f44336', 0.1),
+                              backgroundColor: alpha('#e91e63', 0.1),
                             }
                           }}
+                          onClick={() => openModal("delete", inventory)}
                         >
                           <DeleteIcon fontSize="small" />
                         </IconButton>
@@ -462,7 +526,7 @@ const InventoryManagement = () => {
                 <b>{selectedInventory?.WarehouseLocation}</b> với số lượng{' '}
                 <b>{selectedInventory?.QuantityInStock}</b> không?
               </Typography>
-              <Typography variant="body2" color="error" sx={{ mb: 2 }}>
+              <Typography variant="body2" sx={{ mb: 2, color: '#e91e63' }}>
                 Hành động này không thể hoàn tác và sẽ xóa kho hàng khỏi hệ thống.
               </Typography>
             </Box>
@@ -482,7 +546,20 @@ const InventoryManagement = () => {
                     fullWidth
                     margin="normal"
                     InputProps={{
-                      startAdornment: <ShoppingCartIcon color="primary" sx={{ mr: 1 }} />,
+                      startAdornment: <ShoppingCartIcon sx={{ mr: 1, color: '#e91e63' }} />,
+                    }}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        '&:hover fieldset': {
+                          borderColor: '#e91e63'
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#e91e63'
+                        }
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#e91e63'
+                      }
                     }}
                   />
                 </Grid>
@@ -500,7 +577,20 @@ const InventoryManagement = () => {
                     fullWidth
                     margin="normal"
                     InputProps={{
-                      startAdornment: <StoreIcon color="primary" sx={{ mr: 1 }} />,
+                      startAdornment: <StoreIcon sx={{ mr: 1, color: '#e91e63' }} />,
+                    }}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        '&:hover fieldset': {
+                          borderColor: '#e91e63'
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#e91e63'
+                        }
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#e91e63'
+                      }
                     }}
                   />
                 </Grid>
@@ -514,7 +604,20 @@ const InventoryManagement = () => {
                     margin="normal"
                     type="number"
                     InputProps={{
-                      startAdornment: <LocalShippingIcon color="primary" sx={{ mr: 1 }} />,
+                      startAdornment: <LocalShippingIcon sx={{ mr: 1, color: '#e91e63' }} />,
+                    }}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        '&:hover fieldset': {
+                          borderColor: '#e91e63'
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#e91e63'
+                        }
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#e91e63'
+                      }
                     }}
                   />
                 </Grid>
@@ -531,16 +634,14 @@ const InventoryManagement = () => {
             borderColor: 'divider',
             gap: 2
           }}>
-            <Button
-              variant="outlined"
-              color="inherit"
+            <StyledButton
+              customvariant="cancel"
               onClick={closeModal}
             >
               Hủy
-            </Button>
-            <Button
-              variant="contained"
-              color={modalType === 'delete' ? 'error' : 'primary'}
+            </StyledButton>
+            <StyledButton
+              customvariant={modalType === 'delete' ? 'delete' : 'save'}
               onClick={
                 modalType === 'add'
                   ? handleAddInventory
@@ -560,7 +661,7 @@ const InventoryManagement = () => {
                   ? 'Lưu Thay Đổi'
                   : 'Xác Nhận Xóa'
               }
-            </Button>
+            </StyledButton>
           </Box>
         </Box>
       </Modal>

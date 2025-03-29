@@ -5,8 +5,8 @@ const Home = () => {
 
   const banners = [
   
-    '/imgs/banner4.png',
-    '/imgs/banner3.png',
+    '/imgs/4.png',
+    '/imgs/2.png',
       
   ];
 
@@ -38,11 +38,11 @@ const Home = () => {
   const nextIndex = currentIndex === banners.length - 1 ? 0 : currentIndex + 1;
 
   const brands = [
-    { name: 'Samsung', image: '/imgs/samsung.png', url: 'https://cutexiu.teeniax.io.vn/brand/1' },
-    { name: 'Oppo', image: '/imgs/oppo.png', url: 'https://cutexiu.teeniax.io.vn/brand/2' },
-    { name: 'ViVo', image: '/imgs/vivo.png', url: 'https://cutexiu.teeniax.io.vn/brand/3' },
-    { name: 'Iphone', image: '/imgs/iphone.png', url: 'https://cutexiu.teeniax.io.vn/brand/4' },
-    { name: 'Xiaomi', image: '/imgs/xiaomi.png', url: 'https://cutexiu.teeniax.io.vn/brand/5' }
+    { name: 'Samsung', image: '/imgs/samsung.png', url: 'https://cutexiu.teeniax.io.vn/brand/10' },
+    { name: 'Oppo', image: '/imgs/oppo.png', url: 'https://cutexiu.teeniax.io.vn/brand/11' },
+    { name: 'ViVo', image: '/imgs/vivo.png', url: 'https://cutexiu.teeniax.io.vn/brand/12' },
+    { name: 'Iphone', image: '/imgs/iphone.png', url: 'https://cutexiu.teeniax.io.vn/brand/13' },
+    { name: 'Xiaomi', image: '/imgs/xiaomi.png', url: 'https://cutexiu.teeniax.io.vn/brand/15' }
   ];
 
   
@@ -107,7 +107,7 @@ const Home = () => {
 
        
       <div className="banner-container">
-        <img src="/imgs/banner.png" alt="Glamour Cosmic with Wonwoo" className="banner-image" />
+        <img src="/imgs/1.png" alt="Glamour Cosmic with Wonwoo" className="banner-image" />
       </div>
 
       <div className="store-system-section">

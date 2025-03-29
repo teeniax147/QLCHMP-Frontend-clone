@@ -46,7 +46,7 @@ const PageTitle = styled(Typography)(({ theme }) => ({
   justifyContent: 'center',
   '& svg': {
     marginRight: theme.spacing(1),
-    color: theme.palette.primary.main,
+    color: '#e91e63',
   }
 }));
 
@@ -64,7 +64,7 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
   alignItems: 'center',
   '& svg': {
     marginRight: theme.spacing(1),
-    color: theme.palette.primary.main,
+    color: '#e91e63',
   }
 }));
 
@@ -76,10 +76,10 @@ const SubmitButton = styled(Button)(({ theme }) => ({
   fontSize: '1rem',
   boxShadow: 'none',
   marginTop: theme.spacing(2),
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: '#e91e63',
   '&:hover': {
-    backgroundColor: theme.palette.primary.dark,
-    boxShadow: `0 4px 12px ${alpha(theme.palette.primary.main, 0.3)}`,
+    backgroundColor: '#c2185b',
+    boxShadow: `0 4px 12px ${alpha('#e91e63', 0.3)}`,
   },
 }));
 
@@ -89,15 +89,18 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
     borderRadius: 8,
     transition: 'all 0.2s ease-in-out',
     '&:hover': {
-      borderColor: theme.palette.primary.main,
+      borderColor: '#e91e63',
     },
     '&.Mui-focused': {
-      boxShadow: `0 0 0 2px ${alpha(theme.palette.primary.main, 0.2)}`,
+      boxShadow: `0 0 0 2px ${alpha('#e91e63', 0.2)}`,
     },
   },
   '& .MuiFormHelperText-root': {
     marginLeft: 0,
     fontWeight: 500,
+  },
+  '& .MuiInputLabel-root.Mui-focused': {
+    color: '#e91e63',
   },
 }));
 
@@ -107,11 +110,14 @@ const StyledFormControl = styled(FormControl)(({ theme }) => ({
     borderRadius: 8,
     transition: 'all 0.2s ease-in-out',
     '&:hover': {
-      borderColor: theme.palette.primary.main,
+      borderColor: '#e91e63',
     },
     '&.Mui-focused': {
-      boxShadow: `0 0 0 2px ${alpha(theme.palette.primary.main, 0.2)}`,
+      boxShadow: `0 0 0 2px ${alpha('#e91e63', 0.2)}`,
     },
+  },
+  '& .MuiInputLabel-root.Mui-focused': {
+    color: '#e91e63',
   },
 }));
 
@@ -271,6 +277,8 @@ const CreateUser = () => {
               borderRadius: 2,
               display: 'flex',
               alignItems: 'center',
+              backgroundColor: message.type === 'success' ? '#e91e63' : undefined,
+              color: message.type === 'success' ? 'white' : undefined,
               '& .MuiAlert-icon': {
                 fontSize: '1.5rem'
               }
@@ -300,7 +308,7 @@ const CreateUser = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <AccountCircleIcon color="primary" />
+                      <AccountCircleIcon sx={{ color: '#e91e63' }} />
                     </InputAdornment>
                   ),
                 }}
@@ -317,7 +325,7 @@ const CreateUser = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <EmailIcon color="primary" />
+                      <EmailIcon sx={{ color: '#e91e63' }} />
                     </InputAdornment>
                   ),
                 }}
@@ -334,7 +342,7 @@ const CreateUser = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <PhoneIcon color="primary" />
+                      <PhoneIcon sx={{ color: '#e91e63' }} />
                     </InputAdornment>
                   ),
                 }}
@@ -361,7 +369,7 @@ const CreateUser = () => {
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
-                          <BadgeIcon color="primary" />
+                          <BadgeIcon sx={{ color: '#e91e63' }} />
                         </InputAdornment>
                       ),
                     }}
@@ -379,7 +387,7 @@ const CreateUser = () => {
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
-                          <BadgeIcon color="primary" />
+                          <BadgeIcon sx={{ color: '#e91e63' }} />
                         </InputAdornment>
                       ),
                     }}
@@ -396,7 +404,7 @@ const CreateUser = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <HomeIcon color="primary" />
+                      <HomeIcon sx={{ color: '#e91e63' }} />
                     </InputAdornment>
                   ),
                 }}
@@ -422,7 +430,7 @@ const CreateUser = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <LockIcon color="primary" />
+                      <LockIcon sx={{ color: '#e91e63' }} />
                     </InputAdornment>
                   ),
                   endAdornment: (
@@ -449,13 +457,13 @@ const CreateUser = () => {
                   error={Boolean(errors.role)}
                   startAdornment={
                     <InputAdornment position="start" sx={{ ml: 1 }}>
-                      <AdminPanelSettingsIcon color="primary" />
+                      <AdminPanelSettingsIcon sx={{ color: '#e91e63' }} />
                     </InputAdornment>
                   }
                 >
                   <MenuItem value="Admin">
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <AdminPanelSettingsIcon sx={{ mr: 1, color: 'error.main' }} />
+                      <AdminPanelSettingsIcon sx={{ mr: 1, color: '#e91e63' }} />
                       <Typography>Admin</Typography>
                       <Chip
                         label="Toàn quyền"
@@ -468,7 +476,7 @@ const CreateUser = () => {
                   </MenuItem>
                   <MenuItem value="Staff">
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <AdminPanelSettingsIcon sx={{ mr: 1, color: 'info.main' }} />
+                      <AdminPanelSettingsIcon sx={{ mr: 1, color: '#e91e63' }} />
                       <Typography>Staff</Typography>
                       <Chip
                         label="Hạn chế"

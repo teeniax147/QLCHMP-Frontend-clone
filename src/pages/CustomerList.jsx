@@ -39,7 +39,7 @@ const PageTitle = styled(Typography)(({ theme }) => ({
   alignItems: 'center',
   '& svg': {
     marginRight: theme.spacing(1),
-    color: theme.palette.primary.main,
+    color: '#e91e63',
   }
 }));
 
@@ -50,24 +50,24 @@ const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
 }));
 
 const StyledTableHead = styled(TableHead)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: '#e91e63',
 }));
 
 const HeaderTableCell = styled(TableCell)(({ theme }) => ({
   textAlign: "center",
   fontWeight: "600",
   fontSize: "15px",
-  color: theme.palette.primary.contrastText,
+  color: "white",
   padding: theme.spacing(1.5),
   whiteSpace: 'nowrap',
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
-    backgroundColor: alpha(theme.palette.primary.light, 0.05),
+    backgroundColor: alpha('#e91e63', 0.05),
   },
   '&:hover': {
-    backgroundColor: alpha(theme.palette.primary.light, 0.1),
+    backgroundColor: alpha('#e91e63', 0.1),
     transition: 'all 0.2s ease',
   },
   transition: 'all 0.2s ease',
@@ -95,18 +95,18 @@ const ActionButton = styled(Button)(({ theme, buttontype }) => ({
   transition: 'all 0.2s ease',
 
   ...(buttontype === 'edit' && {
-    borderColor: theme.palette.primary.main,
-    color: theme.palette.primary.main,
+    borderColor: '#e91e63',
+    color: '#e91e63',
     '&:hover': {
-      backgroundColor: alpha(theme.palette.primary.main, 0.1),
+      backgroundColor: alpha('#e91e63', 0.1),
     },
   }),
 
   ...(buttontype === 'delete' && {
-    borderColor: theme.palette.error.main,
-    color: theme.palette.error.main,
+    borderColor: '#e91e63',
+    color: '#e91e63',
     '&:hover': {
-      backgroundColor: alpha(theme.palette.error.main, 0.1),
+      backgroundColor: alpha('#e91e63', 0.1),
     },
   }),
 }));
@@ -125,7 +125,7 @@ const ModalBox = styled(Box)(({ theme }) => ({
 
 const ModalHeader = styled(Box)(({ theme, modaltype }) => ({
   padding: theme.spacing(2),
-  backgroundColor: modaltype === 'delete' ? theme.palette.error.main : theme.palette.primary.main,
+  backgroundColor: modaltype === 'delete' ? '#f44336' : '#e91e63',
   color: 'white',
   display: 'flex',
   alignItems: 'center',
@@ -163,13 +163,66 @@ const ScrollableWrapper = styled(Box)(({ theme }) => ({
     margin: '0 10px',
   },
   '&::-webkit-scrollbar-thumb': {
-    backgroundColor: '#2196f3',
+    backgroundColor: '#e91e63',
     borderRadius: '10px',
     border: '3px solid #f1f1f1',
     '&:hover': {
-      backgroundColor: '#1976d2',
+      backgroundColor: '#c2185b',
     },
   }
+}));
+
+const StyledButton = styled(Button)(({ theme, customvariant }) => ({
+  borderRadius: 8,
+  padding: '8px 16px',
+  fontWeight: 500,
+  textTransform: 'none',
+  boxShadow: 'none',
+  transition: 'all 0.2s ease',
+
+  ...(customvariant === "add" && {
+    backgroundColor: '#e91e63',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#c2185b',
+      boxShadow: `0 4px 12px ${alpha('#e91e63', 0.3)}`,
+    },
+  }),
+  ...(customvariant === "edit" && {
+    color: '#e91e63',
+    border: `1px solid #e91e63`,
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: alpha('#e91e63', 0.05),
+    },
+  }),
+  ...(customvariant === "delete" && {
+    color: '#e91e63',
+    border: `1px solid #e91e63`,
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: alpha('#e91e63', 0.05),
+    },
+  }),
+  ...(customvariant === "save" && {
+    backgroundColor: '#e91e63',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#c2185b',
+      boxShadow: `0 4px 12px ${alpha('#e91e63', 0.3)}`,
+    },
+  }),
+  ...(customvariant === "cancel" && {
+    color: '#9e9e9e',
+    border: `1px solid #9e9e9e`,
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: alpha('#9e9e9e', 0.05),
+    },
+  }),
+  '&:focus': {
+    outline: "none",
+  },
 }));
 
 const CustomerList = () => {
@@ -447,7 +500,14 @@ const CustomerList = () => {
       {message.text && (
         <Alert
           severity={message.type}
-          sx={{ mb: 3, borderRadius: 2, boxShadow: 2 }}
+          sx={{
+            mb: 3,
+            borderRadius: 2,
+            boxShadow: 2,
+            ...(message.type === 'success' && {
+              backgroundColor: '#e91e63'
+            })
+          }}
           onClose={() => setMessage({ type: "", text: "" })}
         >
           {message.text}
@@ -457,7 +517,7 @@ const CustomerList = () => {
       {/* Loading State */}
       {loading ? (
         <Box display="flex" justifyContent="center" alignItems="center" py={5}>
-          <CircularProgress />
+          <CircularProgress sx={{ color: '#e91e63' }} />
           <Typography ml={2} variant="body1" color="text.secondary">
             Đang tải danh sách khách hàng...
           </Typography>
@@ -572,7 +632,20 @@ const CustomerList = () => {
                   type="number"
                   value={formData.totalSpending}
                   onChange={handleChange}
-                  sx={{ mb: 2 }}
+                  sx={{
+                    mb: 2,
+                    '& .MuiOutlinedInput-root': {
+                      '&:hover fieldset': {
+                        borderColor: '#e91e63'
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#e91e63'
+                      }
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#e91e63'
+                    }
+                  }}
                 />
                 <TextField
                   fullWidth
@@ -581,23 +654,36 @@ const CustomerList = () => {
                   type="number"
                   value={formData.membershipLevelId}
                   onChange={handleChange}
-                  sx={{ mb: 2 }}
+                  sx={{
+                    mb: 2,
+                    '& .MuiOutlinedInput-root': {
+                      '&:hover fieldset': {
+                        borderColor: '#e91e63'
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#e91e63'
+                      }
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#e91e63'
+                    }
+                  }}
                 />
               </ModalContent>
               <ModalActions>
-                <Button
-                  variant="outlined"
+                <StyledButton
+                  customvariant="cancel"
                   onClick={() => setIsEditOpen(false)}
                 >
                   Hủy
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
+                </StyledButton>
+                <StyledButton
+                  customvariant="save"
+                  startIcon={<EditIcon />}
                   onClick={handleUpdate}
                 >
                   Cập Nhật
-                </Button>
+                </StyledButton>
               </ModalActions>
             </>
           ) : (
@@ -632,26 +718,25 @@ const CustomerList = () => {
                   <Typography variant="body2" mb={1}>
                     <strong>Email:</strong> {selectedCustomer.user.email}
                   </Typography>
-                  <Typography variant="body2" color="error">
+                  <Typography variant="body2" sx={{ color: '#e91e63' }}>
                     Hành động này không thể hoàn tác!
                   </Typography>
                 </Box>
               </ModalContent>
               <ModalActions>
-                <Button
-                  variant="outlined"
-                  color="primary"
+                <StyledButton
+                  customvariant="cancel"
                   onClick={() => setIsDeleteOpen(false)}
                 >
                   Hủy
-                </Button>
-                <Button
-                  variant="contained"
-                  color="error"
+                </StyledButton>
+                <StyledButton
+                  customvariant="delete"
+                  startIcon={<DeleteIcon />}
                   onClick={handleDeleteConfirm}
                 >
                   Xác Nhận Xóa
-                </Button>
+                </StyledButton>
               </ModalActions>
             </>
           ) : (

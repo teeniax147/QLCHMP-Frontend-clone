@@ -50,24 +50,24 @@ const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
 }));
 
 const StyledTableHead = styled(TableHead)(({ theme }) => ({
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: '#e91e63',
 }));
 
 const HeaderTableCell = styled(TableCell)(({ theme }) => ({
     textAlign: "center",
     fontWeight: "600",
     fontSize: "15px",
-    color: theme.palette.primary.contrastText,
+    color: "white",
     padding: theme.spacing(1.5),
     whiteSpace: 'nowrap',
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
-        backgroundColor: alpha(theme.palette.primary.light, 0.05),
+        backgroundColor: alpha('#e91e63', 0.05),
     },
     '&:hover': {
-        backgroundColor: alpha(theme.palette.primary.light, 0.1),
+        backgroundColor: alpha('#e91e63', 0.1),
         transition: 'all 0.2s ease',
     },
     transition: 'all 0.2s ease',
@@ -85,19 +85,54 @@ const ActionButtonsCell = styled(TableCell)(({ theme }) => ({
     whiteSpace: 'nowrap',
 }));
 
-const AddLevelButton = styled(Button)(({ theme }) => ({
-    backgroundColor: theme.palette.success.main,
-    color: theme.palette.common.white,
+const StyledButton = styled(Button)(({ theme, customvariant }) => ({
     borderRadius: 8,
     padding: '8px 16px',
     fontWeight: 500,
     textTransform: 'none',
     boxShadow: 'none',
     transition: 'all 0.2s ease',
-    '&:hover': {
-        backgroundColor: theme.palette.success.dark,
-        boxShadow: `0 4px 12px ${alpha(theme.palette.success.main, 0.3)}`,
-    },
+
+    ...(customvariant === "add" && {
+        backgroundColor: '#e91e63',
+        color: 'white',
+        '&:hover': {
+            backgroundColor: '#c2185b',
+            boxShadow: `0 4px 12px ${alpha('#e91e63', 0.3)}`,
+        },
+    }),
+    ...(customvariant === "edit" && {
+        color: '#e91e63',
+        border: `1px solid #e91e63`,
+        backgroundColor: 'transparent',
+        '&:hover': {
+            backgroundColor: alpha('#e91e63', 0.05),
+        },
+    }),
+    ...(customvariant === "delete" && {
+        color: '#e91e63',
+        border: `1px solid #e91e63`,
+        backgroundColor: 'transparent',
+        '&:hover': {
+            backgroundColor: alpha('#e91e63', 0.05),
+        },
+    }),
+    ...(customvariant === "save" && {
+        backgroundColor: '#e91e63',
+        color: 'white',
+        '&:hover': {
+            backgroundColor: '#c2185b',
+            boxShadow: `0 4px 12px ${alpha('#e91e63', 0.3)}`,
+        },
+    }),
+    ...(customvariant === "cancel" && {
+        color: '#9e9e9e',
+        border: `1px solid #9e9e9e`,
+        backgroundColor: 'transparent',
+        '&:hover': {
+            backgroundColor: alpha('#9e9e9e', 0.05),
+        },
+    }),
     '&:focus': {
         outline: "none",
     },
@@ -112,13 +147,13 @@ const PageTitle = styled(Typography)(({ theme }) => ({
     alignItems: 'center',
     '& svg': {
         marginRight: theme.spacing(1),
-        color: theme.palette.primary.main,
+        color: '#e91e63',
     }
 }));
 
 const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
+    backgroundColor: '#e91e63',
+    color: 'white',
     padding: theme.spacing(2),
     display: 'flex',
     alignItems: 'center',
@@ -137,7 +172,23 @@ const FormSectionTitle = styled(Typography)(({ theme }) => ({
     alignItems: 'center',
     '& svg': {
         marginRight: theme.spacing(1),
-        color: theme.palette.primary.main,
+        color: '#e91e63',
+    }
+}));
+
+const MembershipChip = styled(Chip)(({ theme }) => ({
+    borderColor: '#e91e63',
+    color: '#e91e63',
+    '& .MuiChip-icon': {
+        color: '#e91e63',
+    }
+}));
+
+const DiscountChip = styled(Chip)(({ theme }) => ({
+    borderColor: '#e91e63',
+    color: '#e91e63',
+    '& .MuiChip-icon': {
+        color: '#e91e63',
     }
 }));
 
@@ -266,13 +317,14 @@ const MembershipLevelManager = () => {
                     <CardMembershipIcon fontSize="large" />
                     Cấp Độ Thành Viên
                 </PageTitle>
-                <AddLevelButton
+                <StyledButton
+                    customvariant="add"
                     startIcon={<AddCircleIcon />}
                     onClick={() => setOpenAddDialog(true)}
                     size="large"
                 >
                     Thêm Cấp Độ Mới
-                </AddLevelButton>
+                </StyledButton>
             </Box>
 
             <Divider sx={{ mb: 3 }} />
@@ -282,7 +334,12 @@ const MembershipLevelManager = () => {
                 <Alert
                     severity={snackbar.severity}
                     variant="filled"
-                    sx={{ mb: 2, borderRadius: 2, boxShadow: 2 }}
+                    sx={{
+                        mb: 2,
+                        borderRadius: 2,
+                        boxShadow: 2,
+                        backgroundColor: '#e91e63'
+                    }}
                     onClose={() => setSnackbar({ ...snackbar, open: false })}
                 >
                     {snackbar.message}
@@ -292,7 +349,7 @@ const MembershipLevelManager = () => {
             {/* Loading State */}
             {loading ? (
                 <Box display="flex" justifyContent="center" alignItems="center" py={5}>
-                    <CircularProgress />
+                    <CircularProgress sx={{ color: '#e91e63' }} />
                     <Typography ml={2} variant="body1" color="text.secondary">
                         Đang tải dữ liệu cấp độ thành viên...
                     </Typography>
@@ -306,7 +363,6 @@ const MembershipLevelManager = () => {
                                 <HeaderTableCell>Tên Cấp Độ</HeaderTableCell>
                                 <HeaderTableCell>Mức Chi Tiêu Tối Thiểu</HeaderTableCell>
                                 <HeaderTableCell>Quyền Lợi</HeaderTableCell>
-
                                 <HeaderTableCell>Tỷ Lệ Giảm Giá</HeaderTableCell>
                                 <HeaderTableCell>Hành Động</HeaderTableCell>
                             </TableRow>
@@ -317,17 +373,16 @@ const MembershipLevelManager = () => {
                                     <StyledTableRow key={level.MembershipLevelId}>
                                         <BodyTableCell>{index + 1}</BodyTableCell>
                                         <BodyTableCell>
-                                            <Chip
+                                            <MembershipChip
                                                 icon={<CardMembershipIcon />}
                                                 label={level.LevelName}
-                                                color="primary"
                                                 variant="outlined"
                                                 size="small"
                                             />
                                         </BodyTableCell>
                                         <BodyTableCell>
                                             <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                                <AttachMoneyIcon fontSize="small" color="primary" sx={{ mr: 0.5 }} />
+                                                <AttachMoneyIcon fontSize="small" sx={{ mr: 0.5, color: '#e91e63' }} />
                                                 {level.MinimumSpending.toLocaleString()}đ
                                             </Typography>
                                         </BodyTableCell>
@@ -341,7 +396,7 @@ const MembershipLevelManager = () => {
                                             title={level.Benefits}
                                         >
                                             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                                <RedeemIcon fontSize="small" color="primary" sx={{ mr: 0.5 }} />
+                                                <RedeemIcon fontSize="small" sx={{ mr: 0.5, color: '#e91e63' }} />
                                                 <Typography noWrap>
                                                     {level.Benefits || "Không có quyền lợi"}
                                                 </Typography>
@@ -349,10 +404,9 @@ const MembershipLevelManager = () => {
                                         </BodyTableCell>
 
                                         <BodyTableCell>
-                                            <Chip
+                                            <DiscountChip
                                                 icon={<DiscountIcon />}
                                                 label={`${level.DiscountRate}%`}
-                                                color="secondary"
                                                 variant="outlined"
                                                 size="small"
                                             />
@@ -361,29 +415,29 @@ const MembershipLevelManager = () => {
                                             <Box display="flex" justifyContent="center" gap={2}>
                                                 <IconButton
                                                     size="small"
-                                                    color="primary"
-                                                    onClick={() => handleEditClick(level)}
                                                     sx={{
-                                                        border: '1px solid #2196f3',
+                                                        border: '1px solid #e91e63',
+                                                        color: '#e91e63',
                                                         p: 1,
                                                         '&:hover': {
-                                                            backgroundColor: alpha('#2196f3', 0.1),
+                                                            backgroundColor: alpha('#e91e63', 0.1),
                                                         }
                                                     }}
+                                                    onClick={() => handleEditClick(level)}
                                                 >
                                                     <EditIcon fontSize="small" />
                                                 </IconButton>
                                                 <IconButton
                                                     size="small"
-                                                    color="error"
-                                                    onClick={() => handleDelete(level.MembershipLevelId)}
                                                     sx={{
-                                                        border: '1px solid #f44336',
+                                                        border: '1px solid #e91e63',
+                                                        color: '#e91e63',
                                                         p: 1,
                                                         '&:hover': {
-                                                            backgroundColor: alpha('#f44336', 0.1),
+                                                            backgroundColor: alpha('#e91e63', 0.1),
                                                         }
                                                     }}
+                                                    onClick={() => handleDelete(level.MembershipLevelId)}
                                                 >
                                                     <DeleteIcon fontSize="small" />
                                                 </IconButton>
@@ -435,7 +489,20 @@ const MembershipLevelManager = () => {
                                 onChange={(e) => setNewLevel({ ...newLevel, LevelName: e.target.value })}
                                 margin="normal"
                                 InputProps={{
-                                    startAdornment: <CardMembershipIcon color="primary" sx={{ mr: 1 }} />,
+                                    startAdornment: <CardMembershipIcon sx={{ mr: 1, color: '#e91e63' }} />,
+                                }}
+                                sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                        '&:hover fieldset': {
+                                            borderColor: '#e91e63'
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#e91e63'
+                                        }
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: '#e91e63'
+                                    }
                                 }}
                             />
                         </Grid>
@@ -448,7 +515,20 @@ const MembershipLevelManager = () => {
                                 onChange={(e) => setNewLevel({ ...newLevel, MinimumSpending: e.target.value })}
                                 margin="normal"
                                 InputProps={{
-                                    startAdornment: <AttachMoneyIcon color="primary" sx={{ mr: 1 }} />,
+                                    startAdornment: <AttachMoneyIcon sx={{ mr: 1, color: '#e91e63' }} />,
+                                }}
+                                sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                        '&:hover fieldset': {
+                                            borderColor: '#e91e63'
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#e91e63'
+                                        }
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: '#e91e63'
+                                    }
                                 }}
                             />
                         </Grid>
@@ -461,7 +541,20 @@ const MembershipLevelManager = () => {
                                 onChange={(e) => setNewLevel({ ...newLevel, DiscountRate: e.target.value })}
                                 margin="normal"
                                 InputProps={{
-                                    startAdornment: <LocalOfferIcon color="primary" sx={{ mr: 1 }} />,
+                                    startAdornment: <LocalOfferIcon sx={{ mr: 1, color: '#e91e63' }} />,
+                                }}
+                                sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                        '&:hover fieldset': {
+                                            borderColor: '#e91e63'
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#e91e63'
+                                        }
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: '#e91e63'
+                                    }
                                 }}
                             />
                         </Grid>
@@ -480,26 +573,37 @@ const MembershipLevelManager = () => {
                                 multiline
                                 rows={3}
                                 placeholder="Mô tả chi tiết các quyền lợi của cấp độ thành viên này"
+                                sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                        '&:hover fieldset': {
+                                            borderColor: '#e91e63'
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#e91e63'
+                                        }
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: '#e91e63'
+                                    }
+                                }}
                             />
                         </Grid>
                     </Grid>
                 </DialogContent>
                 <DialogActions sx={{ p: 2, borderTop: '1px solid', borderColor: 'divider' }}>
-                    <Button
+                    <StyledButton
+                        customvariant="cancel"
                         onClick={() => setOpenAddDialog(false)}
-                        variant="outlined"
-                        color="inherit"
                     >
                         Hủy
-                    </Button>
-                    <Button
+                    </StyledButton>
+                    <StyledButton
+                        customvariant="save"
                         onClick={handleAddNewLevel}
-                        variant="contained"
-                        color="primary"
                         startIcon={<AddCircleIcon />}
                     >
                         Thêm Cấp Độ
-                    </Button>
+                    </StyledButton>
                 </DialogActions>
             </Dialog>
 
@@ -533,7 +637,20 @@ const MembershipLevelManager = () => {
                                 onChange={(e) => setSelectedLevel({ ...selectedLevel, LevelName: e.target.value })}
                                 margin="normal"
                                 InputProps={{
-                                    startAdornment: <CardMembershipIcon color="primary" sx={{ mr: 1 }} />,
+                                    startAdornment: <CardMembershipIcon sx={{ mr: 1, color: '#e91e63' }} />,
+                                }}
+                                sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                        '&:hover fieldset': {
+                                            borderColor: '#e91e63'
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#e91e63'
+                                        }
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: '#e91e63'
+                                    }
                                 }}
                             />
                         </Grid>
@@ -546,7 +663,20 @@ const MembershipLevelManager = () => {
                                 onChange={(e) => setSelectedLevel({ ...selectedLevel, MinimumSpending: e.target.value })}
                                 margin="normal"
                                 InputProps={{
-                                    startAdornment: <AttachMoneyIcon color="primary" sx={{ mr: 1 }} />,
+                                    startAdornment: <AttachMoneyIcon sx={{ mr: 1, color: '#e91e63' }} />,
+                                }}
+                                sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                        '&:hover fieldset': {
+                                            borderColor: '#e91e63'
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#e91e63'
+                                        }
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: '#e91e63'
+                                    }
                                 }}
                             />
                         </Grid>
@@ -559,7 +689,20 @@ const MembershipLevelManager = () => {
                                 onChange={(e) => setSelectedLevel({ ...selectedLevel, DiscountRate: e.target.value })}
                                 margin="normal"
                                 InputProps={{
-                                    startAdornment: <LocalOfferIcon color="primary" sx={{ mr: 1 }} />,
+                                    startAdornment: <LocalOfferIcon sx={{ mr: 1, color: '#e91e63' }} />,
+                                }}
+                                sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                        '&:hover fieldset': {
+                                            borderColor: '#e91e63'
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#e91e63'
+                                        }
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: '#e91e63'
+                                    }
                                 }}
                             />
                         </Grid>
@@ -578,26 +721,37 @@ const MembershipLevelManager = () => {
                                 multiline
                                 rows={3}
                                 placeholder="Mô tả chi tiết các quyền lợi của cấp độ thành viên này"
+                                sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                        '&:hover fieldset': {
+                                            borderColor: '#e91e63'
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#e91e63'
+                                        }
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: '#e91e63'
+                                    }
+                                }}
                             />
                         </Grid>
                     </Grid>
                 </DialogContent>
                 <DialogActions sx={{ p: 2, borderTop: '1px solid', borderColor: 'divider' }}>
-                    <Button
+                    <StyledButton
+                        customvariant="cancel"
                         onClick={() => setOpenEditDialog(false)}
-                        variant="outlined"
-                        color="inherit"
                     >
                         Hủy
-                    </Button>
-                    <Button
+                    </StyledButton>
+                    <StyledButton
+                        customvariant="save"
                         onClick={handleSaveChanges}
-                        variant="contained"
-                        color="primary"
                         startIcon={<EditIcon />}
                     >
                         Lưu Thay Đổi
-                    </Button>
+                    </StyledButton>
                 </DialogActions>
             </Dialog>
 
@@ -610,6 +764,7 @@ const MembershipLevelManager = () => {
                 <Alert
                     severity={snackbar.severity}
                     variant="filled"
+                    sx={{ backgroundColor: '#e91e63' }}
                     onClose={() => setSnackbar({ ...snackbar, open: false })}
                 >
                     {snackbar.message}

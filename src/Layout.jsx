@@ -188,7 +188,7 @@ const Layout = () => {
             <li><Link to="/">TRANG CHỦ</Link></li>
             <li><Link to="/all-products">SẢN PHẨM</Link></li>
             <li>
-              <CategoryDropdown title="BỘ SƯU TẬP" parentId={2} />
+              <CategoryDropdown title="BỘ SƯU TẬP" parentId={1} />
             </li>
 
             <li><BrandDropdown title="THƯƠNG HIỆU" /></li>

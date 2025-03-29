@@ -86,7 +86,7 @@ const ProductList = () => {
     <div className="product-container-custom">
       <div className="product-header-banner-custom">
         <img
-          src="https://cutexiu.teeniax.io.vn/imgs/banner5.png"
+          src="https://cutexiu.teeniax.io.vn/imgs/3.png"
           alt="Banner"
         />
       </div>

@@ -40,24 +40,24 @@ const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
 }));
 
 const StyledTableHead = styled(TableHead)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: '#e91e63',
 }));
 
 const HeaderTableCell = styled(TableCell)(({ theme }) => ({
   textAlign: "center",
   fontWeight: "600",
   fontSize: "15px",
-  color: theme.palette.primary.contrastText,
+  color: "white",
   padding: theme.spacing(1.5),
   whiteSpace: 'nowrap',
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
-    backgroundColor: alpha(theme.palette.primary.light, 0.05),
+    backgroundColor: alpha('#e91e63', 0.05),
   },
   '&:hover': {
-    backgroundColor: alpha(theme.palette.primary.light, 0.1),
+    backgroundColor: alpha('#e91e63', 0.1),
     transition: 'all 0.2s ease',
   },
   transition: 'all 0.2s ease',
@@ -76,8 +76,8 @@ const ActionButtonsCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const AddBrandButton = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.success.main,
-  color: theme.palette.common.white,
+  backgroundColor: '#e91e63',
+  color: 'white',
   borderRadius: 8,
   padding: '8px 16px',
   fontWeight: 500,
@@ -85,8 +85,8 @@ const AddBrandButton = styled(Button)(({ theme }) => ({
   boxShadow: 'none',
   transition: 'all 0.2s ease',
   '&:hover': {
-    backgroundColor: theme.palette.success.dark,
-    boxShadow: `0 4px 12px ${alpha(theme.palette.success.main, 0.3)}`,
+    backgroundColor: '#c2185b',
+    boxShadow: `0 4px 12px ${alpha('#e91e63', 0.3)}`,
   },
   '&:focus': {
     outline: "none",
@@ -109,7 +109,7 @@ const PageTitle = styled(Typography)(({ theme }) => ({
   alignItems: 'center',
   '& svg': {
     marginRight: theme.spacing(1),
-    color: theme.palette.primary.main,
+    color: '#e91e63',
   }
 }));
 
@@ -123,7 +123,7 @@ const FormSectionTitle = styled(Typography)(({ theme }) => ({
   alignItems: 'center',
   '& svg': {
     marginRight: theme.spacing(1),
-    color: theme.palette.primary.main,
+    color: '#e91e63',
   }
 }));
 
@@ -174,11 +174,11 @@ const ScrollableWrapper = styled(Box)(({ theme }) => ({
     margin: '0 10px',
   },
   '&::-webkit-scrollbar-thumb': {
-    backgroundColor: '#2196f3',
+    backgroundColor: '#e91e63',
     borderRadius: '10px',
     border: '3px solid #f1f1f1',
     '&:hover': {
-      backgroundColor: '#1976d2',
+      backgroundColor: '#c2185b',
     },
   }
 }));
@@ -456,7 +456,12 @@ const BrandManagement = () => {
         <Alert
           severity="success"
           variant="filled"
-          sx={{ mb: 2, borderRadius: 2, boxShadow: 2 }}
+          sx={{
+            mb: 2,
+            borderRadius: 2,
+            boxShadow: 2,
+            backgroundColor: '#e91e63'
+          }}
           onClose={() => setSuccessMessage("")}
         >
           {successMessage}
@@ -467,7 +472,12 @@ const BrandManagement = () => {
         <Alert
           severity="error"
           variant="filled"
-          sx={{ mb: 2, borderRadius: 2, boxShadow: 2 }}
+          sx={{
+            mb: 2,
+            borderRadius: 2,
+            boxShadow: 2,
+            backgroundColor: '#e91e63'
+          }}
           onClose={() => setErrorMessage("")}
         >
           {errorMessage}
@@ -477,7 +487,7 @@ const BrandManagement = () => {
       {/* Loading State */}
       {loading ? (
         <Box display="flex" justifyContent="center" alignItems="center" py={5}>
-          <CircularProgress />
+          <CircularProgress sx={{ color: '#e91e63' }} />
           <Typography ml={2} variant="body1" color="text.secondary">
             Đang tải danh sách thương hiệu...
           </Typography>
@@ -536,29 +546,29 @@ const BrandManagement = () => {
                         <Box display="flex" justifyContent="center" gap={2}>
                           <IconButton
                             size="small"
-                            color="primary"
-                            onClick={() => openModal("edit", brand)}
                             sx={{
-                              border: '1px solid #2196f3',
+                              border: '1px solid #e91e63',
                               p: 1,
+                              color: '#e91e63',
                               '&:hover': {
-                                backgroundColor: alpha('#2196f3', 0.1),
+                                backgroundColor: alpha('#e91e63', 0.1),
                               }
                             }}
+                            onClick={() => openModal("edit", brand)}
                           >
                             <EditIcon fontSize="small" />
                           </IconButton>
                           <IconButton
                             size="small"
-                            color="error"
-                            onClick={() => openModal("delete", brand)}
                             sx={{
-                              border: '1px solid #f44336',
+                              border: '1px solid #e91e63',
                               p: 1,
+                              color: '#e91e63',
                               '&:hover': {
-                                backgroundColor: alpha('#f44336', 0.1),
+                                backgroundColor: alpha('#e91e63', 0.1),
                               }
                             }}
+                            onClick={() => openModal("delete", brand)}
                           >
                             <DeleteIcon fontSize="small" />
                           </IconButton>
@@ -582,7 +592,7 @@ const BrandManagement = () => {
         <Box sx={modalStyle}>
           {/* Modal Header */}
           <Box sx={{
-            backgroundColor: modalType === 'delete' ? '#f44336' : '#2196f3',
+            backgroundColor: '#e91e63',
             color: 'white',
             p: 2,
             display: 'flex',
@@ -602,7 +612,7 @@ const BrandManagement = () => {
               <Typography variant="body1" sx={{ mb: 2 }}>
                 Bạn có chắc chắn muốn xóa thương hiệu <b>{selectedBrand?.Name}</b>?
               </Typography>
-              <Typography variant="body2" color="error" sx={{ mb: 2 }}>
+              <Typography variant="body2" sx={{ mb: 2, color: '#e91e63' }}>
                 Hành động này không thể hoàn tác và sẽ xóa thương hiệu khỏi hệ thống.
               </Typography>
             </Box>
@@ -617,7 +627,17 @@ const BrandManagement = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     InputProps={{
-                      startAdornment: <BrandingWatermarkIcon color="primary" sx={{ mr: 1 }} />,
+                      startAdornment: <BrandingWatermarkIcon sx={{ mr: 1, color: '#e91e63' }} />,
+                    }}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#e91e63',
+                        },
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#e91e63',
+                      },
                     }}
                   />
                 </Grid>
@@ -636,6 +656,16 @@ const BrandManagement = () => {
                     rows={4}
                     value={formData.description}
                     onChange={handleInputChange}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#e91e63',
+                        },
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#e91e63',
+                      },
+                    }}
                   />
                 </Grid>
 
@@ -649,7 +679,15 @@ const BrandManagement = () => {
                     <Button
                       variant="outlined"
                       component="label"
-                      sx={{ borderRadius: '8px' }}
+                      sx={{
+                        borderRadius: '8px',
+                        borderColor: '#e91e63',
+                        color: '#e91e63',
+                        '&:hover': {
+                          borderColor: '#c2185b',
+                          backgroundColor: alpha('#e91e63', 0.05),
+                        }
+                      }}
                     >
                       Chọn logo
                       <input
@@ -685,14 +723,26 @@ const BrandManagement = () => {
           }}>
             <Button
               variant="outlined"
-              color="inherit"
+              sx={{
+                borderColor: '#9e9e9e',
+                color: '#9e9e9e',
+                '&:hover': {
+                  borderColor: '#757575',
+                  backgroundColor: alpha('#9e9e9e', 0.05),
+                }
+              }}
               onClick={closeModal}
             >
               Hủy
             </Button>
             <Button
               variant="contained"
-              color={modalType === 'delete' ? 'error' : 'primary'}
+              sx={{
+                backgroundColor: '#e91e63',
+                '&:hover': {
+                  backgroundColor: '#c2185b',
+                }
+              }}
               onClick={handleModalAction}
               startIcon={
                 modalType === 'add' ? <AddCircleIcon /> :
